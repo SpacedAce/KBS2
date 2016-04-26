@@ -7,4 +7,8 @@ public class Algoritme {
 	public String getBeschrijving(){
 		return beschrijving;
 	}
+	
+	public Algoritme getAlgoritme(){
+		return this;
+	}
 }
