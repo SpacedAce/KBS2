@@ -15,6 +15,24 @@ public class Algoritme {
 	public ArrayList<Bin> firstFitDecreasing(ArrayList<Artikel> artikelen){
 		Collections.sort(artikelen);
 		System.out.println(Arrays.toString(artikelen.toArray()));
-		return null;
+		ArrayList<Bin> bins = new ArrayList<Bin>(); 
+		bins.add(new Bin());
+//		for(Artikel artikel : artikelen){
+//			for(Bin bin : bins){
+//				if(artikel.getHoogte() <= bin.getRuimte()){
+//					bin.artikelen.add(artikel);
+//				}else{
+//					bins.add(new Bin());
+//				}
+//			}
+//		}
+//		for(Bin bin : bins){
+//			for(Artikel artikel : artikelen){
+//				if(artikel.getHoogte() <= bin.getRuimte()){
+//					bin.artikelen.add(artikel);
+//				}
+//			}
+//		}
+		return bins;
 	}
 }
