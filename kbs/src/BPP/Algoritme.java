@@ -36,3 +36,4 @@ public class Algoritme {
 		return bins;
 	}
 }
+// commit test

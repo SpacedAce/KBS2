@@ -21,6 +21,5 @@ public class Artikel implements java.lang.Comparable<Artikel>{
 	public int getHoogte() {
 		return hoogte;
 	}
-	
-	
 }
+// commit test
