@@ -72,7 +72,6 @@ public class hoofdscherm extends JFrame{
 		JButton start = new JButton("Start");
 		start.setBounds(130, 150, 80, 20);
 		add(start);
-<<<<<<< HEAD
 		start.addActionListener(new ActionListener(){																																//action listener op startknop
 			public void actionPerformed(ActionEvent e) {	
 				if(e.getSource() == start && comboBox.getSelectedItem() == "Kies een algoritme"){																					//kijk naar source en geselecteerde item in combobox
@@ -91,7 +90,6 @@ public class hoofdscherm extends JFrame{
 				}
 			}
 		});
-=======
 		
 		Artikel artikel1 = new Artikel(1);
 		Artikel artikel2 = new Artikel(10);
@@ -104,6 +102,5 @@ public class hoofdscherm extends JFrame{
 		System.out.println(artikel1);
 		System.out.println(artikel2);
 		System.out.println(artikel3);
->>>>>>> origin/Dev
 	}
 }

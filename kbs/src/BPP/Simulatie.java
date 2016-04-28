@@ -12,7 +12,7 @@ public class Simulatie extends JFrame{
 		
 		ArrayList<pakket> pakketten = new ArrayList<pakket>();
 		for(int i = 0; i < aantalPakketten; i++){
-			pakketten.add(new pakket(new Random().nextInt(11)));
+			pakketten.add(new pakket(new Random().nextInt(11) + 1));
 		}
 		
 		int index = 0;
