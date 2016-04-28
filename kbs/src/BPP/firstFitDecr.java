@@ -1,5 +1,9 @@
 package BPP;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class firstFitDecr extends Algoritme{
 	public firstFitDecr(){
 		this.naam = "First fit decreasing";

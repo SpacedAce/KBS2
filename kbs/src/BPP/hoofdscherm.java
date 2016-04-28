@@ -3,6 +3,7 @@ package BPP;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class hoofdscherm extends JFrame{
 	public hoofdscherm(String titel){
@@ -65,5 +66,17 @@ public class hoofdscherm extends JFrame{
 		JButton start = new JButton("Start");
 		start.setBounds(130, 150, 80, 20);
 		add(start);
+		
+		Artikel artikel1 = new Artikel(1);
+		Artikel artikel2 = new Artikel(10);
+		Artikel artikel3 = new Artikel(5);
+		ArrayList<Artikel> artikelen = new ArrayList<Artikel>();
+		artikelen.add(artikel1);
+		artikelen.add(artikel2);
+		artikelen.add(artikel3);
+		firstFitDecr.firstFitDecreasing(artikelen);
+		System.out.println(artikel1);
+		System.out.println(artikel2);
+		System.out.println(artikel3);
 	}
 }
