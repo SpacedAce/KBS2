@@ -2,20 +2,32 @@ package BPP;
 
 import java.awt.*;
 import javax.swing.*;
+<<<<<<< HEAD
 import javax.swing.border.*;
+=======
+import javax.swing.border.EmptyBorder;
+>>>>>>> origin/Dev
 
 public class helpPanel extends JFrame{
 	public helpPanel(){
 		setTitle("Help");
+<<<<<<< HEAD
 		setSize(500, 800);
+=======
+		setSize(600, 800);
+>>>>>>> origin/Dev
 		setLayout(new FlowLayout());
 		
 		ImageIcon image = new ImageIcon(getClass().getResource("helpPanelimg/hoofdscherm.png"));
-		
 		JLabel img = new JLabel();
 		img.setIcon(image);
+<<<<<<< HEAD
 		img.setBounds(10, 10, 350, 240);
 		img.setBorder(new EmptyBorder(0, 10, 0, 10));
+=======
+//		img.setBounds(10, 10, 480, 240);
+		img.setBorder(new EmptyBorder(10, 50, 10, 50));
+>>>>>>> origin/Dev
 		add(img);
 		String _text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus lectus lorem, in efficitur erat eleifend vitae. Aenean sit amet facilisis nisi, a pulvinar diam. Duis velit risus, maximus et nulla vel, varius suscipit massa. Phasellus in fringilla velit. Phasellus maximus fermentum quam vel tristique. Morbi aliquam enim ut interdum consequat. Praesent nulla velit, imperdiet sagittis mauris in, tempus vehicula augue. Proin congue libero ut interdum semper. Donec sagittis ex volutpat eros tincidunt, a semper erat imperdiet. Praesent tincidunt vulputate ante, sagittis tincidunt odio lobortis at. Nunc eu ante quis sapien blandit facilisis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nunc quam, ullamcorper vitae mauris sit amet, ullamcorper venenatis ligula. Nulla scelerisque risus sit amet lacus vulputate, quis euismod mauris eleifend. In eleifend blandit elementum."
 				+ "                                                                 Pellentesque convallis varius arcu, nec maximus dui auctor vel. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus consequat ac velit a vulputate. Sed egestas nulla dolor, vel dignissim massa feugiat sit amet. Aliquam varius justo sapien, sed placerat elit laoreet et. Aenean vel ante et elit accumsan porta eu mattis tellus. Donec in purus sagittis, tristique orci in, euismod urna. Vivamus facilisis porttitor nibh, dignissim ullamcorper quam.";

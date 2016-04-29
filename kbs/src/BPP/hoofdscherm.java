@@ -121,7 +121,7 @@ public class hoofdscherm extends JFrame{
 						simulatie1.setVisible(true);
 					}
 					catch(NumberFormatException e2){
-						Popup waarschuwing2 = new Popup("Vul een getal in.");																										//waarschuwing als er geen int is ingevuld
+						Popup waarschuwing2 = new Popup("Vul een heel getal in lager dan 2147483648");																										//waarschuwing als er geen int is ingevuld
 					}
 				}
 			}
@@ -143,4 +143,3 @@ public class hoofdscherm extends JFrame{
 		
 	}
 }
-// commit test
