@@ -15,3 +15,8 @@
 log/
 target/
 /Maggi/nbproject/private/
+/DatabaseEditor/nbproject/private/
+/DatabaseEditor/build/
+/kbs/nbproject/private/
+/kbs/build/
+/DatabaseEditor/dist/
