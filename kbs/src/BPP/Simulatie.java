@@ -9,10 +9,12 @@ public class Simulatie extends JFrame{
 	public Simulatie(int aantalPakketten, Algoritme gekozenAlgoritme){
 		setTitle("BPP Simulatie - " + aantalPakketten + " pakketten - " + gekozenAlgoritme.naam);
 		setSize(1280, 720);
+		Laadbalk laadbalk = new Laadbalk(aantalPakketten);
 		
 		ArrayList<pakket> pakketten = new ArrayList<pakket>();
 		for(int i = 0; i < aantalPakketten; i++){
 			pakketten.add(new pakket(new Random().nextInt(11) + 1));
+			
 		}
 		
 		int index = 0;
