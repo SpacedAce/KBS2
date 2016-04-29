@@ -26,9 +26,9 @@ public class TSP {
         return this.locaties;
     }
 
-    public void startSimulatie(){
+    public void startSimulatie() {
         // Start simulation
-}
+    }
 
     public ArrayList<Long> getTimes(){
         return this.times;
