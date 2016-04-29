@@ -4,10 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello word");
-		System.out.println("Kutzooi");
-		System.out.println("Kutzooi");
-		System.out.println("Kutzooi");
-		System.out.println("Kutzooi");
-		System.out.println("Kutzooi");
+		for(int i = 0; i<10; i++){
+			System.out.println("Ik heb honger");
+		}
     }
 }
