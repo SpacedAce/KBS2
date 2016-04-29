@@ -11,6 +11,39 @@ public class hoofdscherm extends JFrame{
 		setTitle(titel);																																							//zet titel van scherm
 		setSize(500,250);																																							//zet grootte
 		setLayout(null);																																							//geen layout manager
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JLabel help = new JLabel("?");
+		help.setFont(new Font("", Font.BOLD, 8));
+		help.setBounds(getWidth() - 30, 0, 15, 15);
+		add(help);
+		help.addMouseListener(new MouseListener(){
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				helpPanel help1 = new helpPanel();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+		});
 		
 		JLabel _titel = new JLabel("BPP Simulator");																																//
 		_titel.setFont(new Font("", Font.BOLD, 22));																																//Zet titel op scherm
