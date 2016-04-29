@@ -29,9 +29,15 @@ public class Resultaten extends JFrame implements ActionListener
         tsp.getAlgoritme().get(0).setName("Willekeurig Algoritme");
         tsp.getAlgoritme().get(0).setSimulatieNr(0);
         tsp.getAlgoritme().get(0).setTime(new Long("0"));
+        //System.out.println(tsp.getAlgoritme().get(0).getBestOderLocaties());
+        tsp.getAlgoritme().get(0).getBestOderLocaties().add(new Vak(0,0,1));
+        tsp.getAlgoritme().get(0).getBestOderLocaties().add(new Vak(0,1,2));
         tsp.getAlgoritme().get(1).setName("Volledige Enumeratie");
         tsp.getAlgoritme().get(1).setSimulatieNr(1);
         tsp.getAlgoritme().get(1).setTime(new Long("2"));
+        tsp.getAlgoritme().get(1).getBestOderLocaties().add(new Vak(0,0,1));
+        tsp.getAlgoritme().get(1).getBestOderLocaties().add(new Vak(0,1,2));
+
 
         //Data Object for JTable
         DefaultTableModel tabelModel = new DefaultTableModel(columnName,0);
