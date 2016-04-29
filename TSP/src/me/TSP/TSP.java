@@ -16,6 +16,8 @@ public class TSP {
         locaties = new ArrayList<>();
         times = new ArrayList<>();
         allLocaties = new ArrayList<>();
+
+        Hoofdscherm hoofdscherm = new Hoofdscherm(this);
     }
 
     public ArrayList<Algoritme> getAlgoritme(){
