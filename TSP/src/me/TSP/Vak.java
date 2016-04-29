@@ -1,7 +1,15 @@
 package me.TSP;
 
-/**
- * Created by Kevin on 29-4-2016.
- */
-public class Vak {
+public class Vak
+{
+    private int x;
+    private int y;
+    private int vakNr;
+
+    public Vak(int x, int y, int vakNr)
+    {
+        this.x = x;
+        this.y = y;
+        this.vakNr = vakNr;
+    }
 }
