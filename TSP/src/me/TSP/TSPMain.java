@@ -7,6 +7,6 @@ public class TSPMain
 {
     public static void main(String[] arg)
     {
-
+        TSP tsp = new TSP();
     }
 }
