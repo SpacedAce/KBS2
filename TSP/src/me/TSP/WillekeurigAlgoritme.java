@@ -7,6 +7,11 @@ import java.util.ArrayList;
  */
 public class WillekeurigAlgoritme extends Algoritme
 {
+    public WillekeurigAlgoritme()
+    {
+        super.setName("Willekeurig Algoritme");
+    }
+
     @Override
     public void calculate(ArrayList<Vak> locaties) {
         super.calculate(locaties);

@@ -7,6 +7,11 @@ import java.util.ArrayList;
  */
 public class VolledigeEnumeratie extends Algoritme
 {
+    public VolledigeEnumeratie()
+    {
+        super.setName("Volledige Enumeratie");
+    }
+
     @Override
     public void calculate(ArrayList<Vak> locaties) {
         super.calculate(locaties);
