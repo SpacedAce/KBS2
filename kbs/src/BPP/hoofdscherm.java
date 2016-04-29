@@ -3,14 +3,16 @@ package BPP;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class hoofdscherm extends JFrame{
 	private Algoritme gekozenAlgoritme;																																				//
+	public boolean helpOpened = false;
 	public hoofdscherm(String titel){
 		setTitle(titel);																																							//zet titel van scherm
 		setSize(500,250);																																							//zet grootte
 		setLayout(null);																																							//geen layout manager
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel help = new JLabel("?");
@@ -21,6 +23,7 @@ public class hoofdscherm extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				helpPanel help1 = new helpPanel();
+				helpOpened = true;
 			}
 
 			@Override
@@ -118,7 +121,7 @@ public class hoofdscherm extends JFrame{
 						simulatie1.setVisible(true);
 					}
 					catch(NumberFormatException e2){
-						Popup waarschuwing2 = new Popup("Vul een getal in.");																										//waarschuwing als er geen int is ingevuld
+						Popup waarschuwing2 = new Popup("Vul een heel getal in lager dan 2147483648");																										//waarschuwing als er geen int is ingevuld
 					}
 				}
 			}
@@ -140,4 +143,3 @@ public class hoofdscherm extends JFrame{
 		
 	}
 }
-// commit test
