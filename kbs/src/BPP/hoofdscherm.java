@@ -3,14 +3,16 @@ package BPP;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class hoofdscherm extends JFrame{
 	private Algoritme gekozenAlgoritme;																																				//
+	public boolean helpOpened = false;
 	public hoofdscherm(String titel){
 		setTitle(titel);																																							//zet titel van scherm
 		setSize(500,250);																																							//zet grootte
 		setLayout(null);																																							//geen layout manager
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel help = new JLabel("?");
@@ -21,6 +23,7 @@ public class hoofdscherm extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				helpPanel help1 = new helpPanel();
+				helpOpened = true;
 			}
 
 			@Override
