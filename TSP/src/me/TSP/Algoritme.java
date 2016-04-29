@@ -10,11 +10,10 @@ public abstract class Algoritme
     private Long time;
     private String name;
     private int simulatieNr;
-    private ArrayList<Vak> bestOderLocaties;
+    private ArrayList<Vak> bestOderLocaties = new ArrayList<>();
 
     public void calculate(ArrayList<Vak> locaties)
     {
-
     }
 
     public Long getTime() {
