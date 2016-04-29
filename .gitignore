@@ -3,11 +3,6 @@
 .project
 .settings/
 
-# Intellij
-.idea/
-*.iml
-*.iws
-
 # NetBeans specific #
 nbproject/private/
 build/
