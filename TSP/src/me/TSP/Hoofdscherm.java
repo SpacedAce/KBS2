@@ -29,7 +29,7 @@ public class Hoofdscherm extends JFrame {
 
         add(new JLabel("X: "));
         add(xInput = new JTextField(10));
-        setVisible(true);
+        setVisible(false);
 
         JPanel panelRight = new JPanel();
     }
