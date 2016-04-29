@@ -14,7 +14,7 @@ public class hoofdscherm extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel help = new JLabel("?");
-		help.setFont(new Font("", Font.BOLD, 8));
+		help.setFont(new Font("", Font.BOLD, 12));
 		help.setBounds(getWidth() - 30, 0, 15, 15);
 		add(help);
 		help.addMouseListener(new MouseListener(){
