@@ -6,6 +6,10 @@
             <name>KBS2</name>
             <source-roots>
                 <root id="src.dir"/>
+                <root id="src.ASRS.dir"/>
+                <root id="src.DatabaseEditor.dir"/>
+                <root id="src.BPP.dir"/>
+                <root id="src.TSP.dir"/>
             </source-roots>
             <test-roots/>
         </data>
