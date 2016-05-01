@@ -6,10 +6,15 @@ public class Vak
     private int y;
     private int vakNr;
 
-    public Vak(int x, int y, int vakNr)
+    public Vak(int x, int y)
     {
         this.x = x;
         this.y = y;
-        this.vakNr = vakNr;
+        this.vakNr = (x*10 + y);
+    }
+
+    @Override
+    public String toString(){
+        return x + ", " + y;
     }
 }
