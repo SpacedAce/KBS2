@@ -99,8 +99,8 @@ public class Hoofdscherm extends JFrame implements ActionListener {
                 int x = Integer.parseInt(xInput.getText());
                 int y = Integer.parseInt(yInput.getText());
                 Vak temp = new Vak(x, y);
-                tsp.getLocaties().add(new Vak(x, y));
-                selectCoordinates.addItem(new Vak(x, y));
+                tsp.getLocaties().add(temp);
+                selectCoordinates.addItem(temp);
                 xInput.setBackground(Color.WHITE);
                 yInput.setBackground(Color.WHITE);
             } catch(NumberFormatException nf) {

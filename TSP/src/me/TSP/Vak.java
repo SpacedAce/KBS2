@@ -12,6 +12,11 @@ public class Vak
         this.y = y;
         this.vakNr = (x*10 + y);
     }
+    public Vak(int x, int y, int vakNr){
+        this.x = x;
+        this.y = y;
+        this.vakNr = vakNr;
+    }
 
     @Override
     public String toString(){
