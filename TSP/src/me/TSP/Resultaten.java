@@ -30,13 +30,13 @@ public class Resultaten extends JFrame implements ActionListener
         tsp.getAlgoritme().get(0).setName("Willekeurig Algoritme");
         tsp.getAlgoritme().get(0).setSimulatieNr(0);
         tsp.getAlgoritme().get(0).setTime(new Long("0"));
-        tsp.getAlgoritme().get(0).getBestOderLocaties().add(new Vak(0,0,1));
-        tsp.getAlgoritme().get(0).getBestOderLocaties().add(new Vak(0,1,2));
+        tsp.getAlgoritme().get(0).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAlgoritme().get(0).getBestOrderLocaties().add(new Vak(0,1,2));
         tsp.getAlgoritme().get(1).setName("Volledige Enumeratie");
         tsp.getAlgoritme().get(1).setSimulatieNr(1);
         tsp.getAlgoritme().get(1).setTime(new Long("2"));
-        tsp.getAlgoritme().get(1).getBestOderLocaties().add(new Vak(0,0,1));
-        tsp.getAlgoritme().get(1).getBestOderLocaties().add(new Vak(0,1,2));
+        tsp.getAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,1,2));
         //End Settings
 
         //Data Object for JTable
@@ -44,7 +44,7 @@ public class Resultaten extends JFrame implements ActionListener
         ArrayList<Algoritme> algoritmes = tsp.getAlgoritme();
         for(int i = 0; i < tsp.getAlgoritme().size(); i++)
         {
-            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getBestOderLocaties().size(), new Boolean(false)};
+            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getBestOrderLocaties().size(), new Boolean(false)};
             tabelModel.addRow(objs);
         }
 
