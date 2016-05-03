@@ -21,6 +21,15 @@ public class ResultatenVergelijking extends JDialog
         resultatenTable.setFillsViewportHeight(true);
         resultatenTable.setPreferredScrollableViewportSize(new Dimension(480,400));
         add(scrollPane);
+        int bestRow = 0;
+        for(int i = 0; i < resultatenTable.getRowCount(); i++)
+        {
+            if((Long)resultatenTable.getValueAt(i,2) > (Long)resultatenTable.getValueAt(bestRow,2))
+            {
+                bestRow = i;
+            }
+        }
+        resultatenTable.getColumnModel().getColumn(2).setCellRenderer(new CustomRenderer(bestRow));
         setVisible(true);
     }
 }

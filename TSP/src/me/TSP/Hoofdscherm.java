@@ -96,6 +96,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
         //WHEN BUTTON "BEKIJK RESULTATEN" WAS PRESSED
         if(e.getSource() == showResults){
             System.out.println("Show results");
+            Resultaten resultaten = new Resultaten(tsp);
             for(int i = 0; i<tsp.getLocaties().size(); i++){
                 System.out.println(tsp.getLocaties().get(i));
             }

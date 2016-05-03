@@ -2,6 +2,7 @@ package me.TSP;
 
 import javax.management.openmbean.OpenMBeanConstructorInfo;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
@@ -21,7 +22,7 @@ public class Resultaten extends JFrame implements ActionListener
     {
         this.tsp = tsp;
         setSize(650,500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("TSP Simulatie Resultaten");
         setLayout(new FlowLayout());
 
@@ -78,7 +79,15 @@ public class Resultaten extends JFrame implements ActionListener
         resultatenTable.setPreferredScrollableViewportSize(new Dimension(480,400));
         add(scrollPane);
         add(vergelijkButton);
-
+        int bestRow = 0;
+        for(int i = 0; i < resultatenTable.getRowCount(); i++)
+        {
+            if((Long)resultatenTable.getValueAt(i,2) > (Long)resultatenTable.getValueAt(bestRow,2))
+            {
+                bestRow = i;
+            }
+        }
+        resultatenTable.getColumnModel().getColumn(2).setCellRenderer(new CustomRenderer(bestRow));
         setVisible(true);
     }
 
@@ -105,5 +114,28 @@ public class Resultaten extends JFrame implements ActionListener
                 ResultatenVergelijking resultatenVergelijking = new ResultatenVergelijking(data, this);
             }
         }
+    }
+}
+
+class CustomRenderer extends DefaultTableCellRenderer
+{
+    int bestRow;
+
+    public CustomRenderer(int row)
+    {
+        this.bestRow = row;
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        if(row == bestRow) {
+            cellComponent.setBackground(Color.green);
+        }
+        else
+        {
+            cellComponent.setBackground(Color.WHITE);
+        }
+        return cellComponent;
     }
 }
