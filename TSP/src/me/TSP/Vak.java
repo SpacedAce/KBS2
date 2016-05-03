@@ -10,7 +10,7 @@ public class Vak
     {
         this.x = x;
         this.y = y;
-        this.vakNr = (x*10 + y);
+        this.vakNr = (y*10 + x);
     }
     public Vak(int x, int y, int vakNr){
         this.x = x;
