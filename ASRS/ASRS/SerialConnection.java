@@ -21,12 +21,13 @@ import java.util.Enumeration;
 
     public class SerialConnection implements SerialPortEventListener {
 	SerialPort serialPort;
+        
         /** The port we're normally going to use. */
-	private static final String PORT_NAMES[] = { 
-			//"/dev/tty.usbserial-A9007UX1", // Mac OS X
-                        //"/dev/ttyACM0", // Raspberry Pi
-			"/dev/ttyUSB0", // Linux
-			//"COM3", // Windows
+	private static final String PORT_NAMES[] = {
+                        "COM3", // Windows
+                        "/dev/ttyACM3", // Linux
+                        "/dev/ttyUSB0", // Linux
+                        "/dev/ttyUSB1", // Linux
 	};
 	/**
 	* A BufferedReader which will be fed by a InputStreamReader 
@@ -40,6 +41,7 @@ import java.util.Enumeration;
 	private static final int TIME_OUT = 2000;
 	/** Default bits per second for COM port. */
 	private static final int DATA_RATE = 9600;
+        private static final String naam = "Arduino 1";
 
 	public void initialize() {
                 
@@ -47,11 +49,14 @@ import java.util.Enumeration;
 		Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
 
 		//First, Find an instance of serial port as set in PORT_NAMES.
+                System.out.println("Trying on:");
 		while (portEnum.hasMoreElements()) {
 			CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
 			for (String portName : PORT_NAMES) {
-				if (currPortId.getName().equals(portName)) {
+                            System.out.println("    " + portName);
+				if (currPortId.getName().equals(portName) || currPortId.getName().startsWith(portName)) {
 					portId = currPortId;
+                                        System.out.println("Device found on " + portId.getName());
 					break;
 				}
 			}
@@ -65,21 +70,26 @@ import java.util.Enumeration;
 			// open serial port, and use class name for the appName.
 			serialPort = (SerialPort) portId.open(this.getClass().getName(),
 					TIME_OUT);
+                        System.out.println("Opening port " + portId.getName());
 
 			// set port parameters
 			serialPort.setSerialPortParams(DATA_RATE,
 					SerialPort.DATABITS_8,
 					SerialPort.STOPBITS_1,
 					SerialPort.PARITY_NONE);
+                        System.out.println("Setting the port with");
 
 			// open the streams
 			input = new BufferedReader(new InputStreamReader(serialPort.getInputStream()));
 			output = serialPort.getOutputStream();
+                        System.out.println("Opening the Stream");
 
 			// add event listeners
+                        System.out.println("Adding Listeners");
 			serialPort.addEventListener(this);
 			serialPort.notifyOnDataAvailable(true);
 		} catch (Exception e) {
+                        System.out.println("Crap");
 			System.err.println(e.toString());
 		}
 	}
@@ -110,6 +120,13 @@ import java.util.Enumeration;
 		// Ignore all the other eventTypes, but you should consider the other ones.
 	}
 
+    public static String getNaam() {
+        return naam;
+    }
+
 	
+        
+        
+        
 }
 

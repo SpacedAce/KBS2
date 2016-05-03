@@ -22,7 +22,10 @@ public class ASRSmain {
 			}
 		};
 		t.start();
-		System.out.println("Started");
+		System.out.println("Thread Started");
+                System.out.println("Closing the port");
+                main.close();
+                t.stop();
 
     }
     
