@@ -1,6 +1,8 @@
 package me.TSP;
 
+import javax.management.openmbean.OpenMBeanConstructorInfo;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
@@ -20,36 +22,49 @@ public class Resultaten extends JFrame implements ActionListener
     {
         this.tsp = tsp;
         setSize(650,500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("TSP Simulatie Resultaten");
         setLayout(new FlowLayout());
 
-        //Test settings
+        //Test settings DELETE WHEN REAL DATA CAN BE SET
+        tsp.getAlgoritme().add(new WillekeurigAlgoritme());
+        tsp.getAlgoritme().add(new VolledigeEnumeratie());
         tsp.getAlgoritme().add(new WillekeurigAlgoritme());
         tsp.getAlgoritme().add(new VolledigeEnumeratie());
         tsp.getAlgoritme().get(0).setName("Willekeurig Algoritme");
         tsp.getAlgoritme().get(0).setSimulatieNr(0);
         tsp.getAlgoritme().get(0).setTime(new Long("0"));
-        tsp.getAlgoritme().get(0).getBestOderLocaties().add(new Vak(0,0,1));
-        tsp.getAlgoritme().get(0).getBestOderLocaties().add(new Vak(0,1,2));
+        tsp.getAlgoritme().get(0).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAlgoritme().get(0).getBestOrderLocaties().add(new Vak(0,1,2));
         tsp.getAlgoritme().get(1).setName("Volledige Enumeratie");
         tsp.getAlgoritme().get(1).setSimulatieNr(1);
         tsp.getAlgoritme().get(1).setTime(new Long("2"));
-        tsp.getAlgoritme().get(1).getBestOderLocaties().add(new Vak(0,0,1));
-        tsp.getAlgoritme().get(1).getBestOderLocaties().add(new Vak(0,1,2));
-        //End Settings
+        tsp.getAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,1,2));
+        tsp.getAlgoritme().get(2).setName("Volledige Enumeratie");
+        tsp.getAlgoritme().get(2).setSimulatieNr(1);
+        tsp.getAlgoritme().get(2).setTime(new Long("2"));
+        tsp.getAlgoritme().get(2).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAlgoritme().get(2).getBestOrderLocaties().add(new Vak(0,1,2));
+        tsp.getAlgoritme().get(3).setName("Volledige Enumeratie");
+        tsp.getAlgoritme().get(3).setSimulatieNr(1);
+        tsp.getAlgoritme().get(3).setTime(new Long("2"));
+        tsp.getAlgoritme().get(3).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAlgoritme().get(3).getBestOrderLocaties().add(new Vak(0,1,2));
+        //End Settings DELETE WHEN REAL DATA CAN BE SET
 
         //Data Object for JTable
         DefaultTableModel tabelModel = new DefaultTableModel(columnName,0);
         ArrayList<Algoritme> algoritmes = tsp.getAlgoritme();
         for(int i = 0; i < tsp.getAlgoritme().size(); i++)
         {
-            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getBestOderLocaties().size(), new Boolean(false)};
+            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getBestOrderLocaties().size(), new Boolean(false)};
             tabelModel.addRow(objs);
         }
 
         //Setting objects
         vergelijkButton = new JButton("Vergelijk");
+        vergelijkButton.addActionListener(this);
         resultatenTable = new JTable(tabelModel);
 
         //Setting column cell to return Boolean class
@@ -64,7 +79,15 @@ public class Resultaten extends JFrame implements ActionListener
         resultatenTable.setPreferredScrollableViewportSize(new Dimension(480,400));
         add(scrollPane);
         add(vergelijkButton);
-
+        int bestRow = 0;
+        for(int i = 0; i < resultatenTable.getRowCount(); i++)
+        {
+            if((Long)resultatenTable.getValueAt(i,2) > (Long)resultatenTable.getValueAt(bestRow,2))
+            {
+                bestRow = i;
+            }
+        }
+        resultatenTable.getColumnModel().getColumn(2).setCellRenderer(new CustomRenderer(bestRow));
         setVisible(true);
     }
 
@@ -72,7 +95,47 @@ public class Resultaten extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == vergelijkButton)
         {
-            //Pressed Vergelijking
+            ArrayList<Object[]> array = new ArrayList<>();
+            for(int i = 0; i < resultatenTable.getRowCount(); i++) {
+                if((Boolean)resultatenTable.getValueAt(i,4))
+                {
+                    Object[] rowData = new Object[resultatenTable.getColumnCount()];
+                    for(int x = 0; x < resultatenTable.getColumnCount(); x++)
+                    {
+                        if(x != 4) {
+                            rowData[x] = resultatenTable.getValueAt(i, x);
+                        }
+                    }
+                    array.add(rowData);
+                }
+            }
+            Object[][] data = array.toArray(new Object[array.size()][]);
+            if(data.length >= 2) {
+                ResultatenVergelijking resultatenVergelijking = new ResultatenVergelijking(data, this);
+            }
         }
+    }
+}
+
+class CustomRenderer extends DefaultTableCellRenderer
+{
+    int bestRow;
+
+    public CustomRenderer(int row)
+    {
+        this.bestRow = row;
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        if(row == bestRow) {
+            cellComponent.setBackground(Color.green);
+        }
+        else
+        {
+            cellComponent.setBackground(Color.WHITE);
+        }
+        return cellComponent;
     }
 }
