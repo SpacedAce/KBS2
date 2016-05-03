@@ -1,5 +1,6 @@
 package me.TSP;
 
+import javax.management.openmbean.OpenMBeanConstructorInfo;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -24,7 +25,9 @@ public class Resultaten extends JFrame implements ActionListener
         setTitle("TSP Simulatie Resultaten");
         setLayout(new FlowLayout());
 
-        //Test settings
+        //Test settings DELETE WHEN REAL DATA CAN BE SET
+        tsp.getAlgoritme().add(new WillekeurigAlgoritme());
+        tsp.getAlgoritme().add(new VolledigeEnumeratie());
         tsp.getAlgoritme().add(new WillekeurigAlgoritme());
         tsp.getAlgoritme().add(new VolledigeEnumeratie());
         tsp.getAlgoritme().get(0).setName("Willekeurig Algoritme");
@@ -37,7 +40,17 @@ public class Resultaten extends JFrame implements ActionListener
         tsp.getAlgoritme().get(1).setTime(new Long("2"));
         tsp.getAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,0,1));
         tsp.getAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,1,2));
-        //End Settings
+        tsp.getAlgoritme().get(2).setName("Volledige Enumeratie");
+        tsp.getAlgoritme().get(2).setSimulatieNr(1);
+        tsp.getAlgoritme().get(2).setTime(new Long("2"));
+        tsp.getAlgoritme().get(2).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAlgoritme().get(2).getBestOrderLocaties().add(new Vak(0,1,2));
+        tsp.getAlgoritme().get(3).setName("Volledige Enumeratie");
+        tsp.getAlgoritme().get(3).setSimulatieNr(1);
+        tsp.getAlgoritme().get(3).setTime(new Long("2"));
+        tsp.getAlgoritme().get(3).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAlgoritme().get(3).getBestOrderLocaties().add(new Vak(0,1,2));
+        //End Settings DELETE WHEN REAL DATA CAN BE SET
 
         //Data Object for JTable
         DefaultTableModel tabelModel = new DefaultTableModel(columnName,0);
@@ -50,6 +63,7 @@ public class Resultaten extends JFrame implements ActionListener
 
         //Setting objects
         vergelijkButton = new JButton("Vergelijk");
+        vergelijkButton.addActionListener(this);
         resultatenTable = new JTable(tabelModel);
 
         //Setting column cell to return Boolean class
@@ -72,7 +86,24 @@ public class Resultaten extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == vergelijkButton)
         {
-            //Pressed Vergelijking
+            ArrayList<Object[]> array = new ArrayList<>();
+            for(int i = 0; i < resultatenTable.getRowCount(); i++) {
+                if((Boolean)resultatenTable.getValueAt(i,4))
+                {
+                    Object[] rowData = new Object[resultatenTable.getColumnCount()];
+                    for(int x = 0; x < resultatenTable.getColumnCount(); x++)
+                    {
+                        if(x != 4) {
+                            rowData[x] = resultatenTable.getValueAt(i, x);
+                        }
+                    }
+                    array.add(rowData);
+                }
+            }
+            Object[][] data = array.toArray(new Object[array.size()][]);
+            if(data.length >= 2) {
+                ResultatenVergelijking resultatenVergelijking = new ResultatenVergelijking(data, this);
+            }
         }
     }
 }
