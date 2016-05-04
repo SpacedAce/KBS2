@@ -24,6 +24,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
     private JCheckBox simulatedAnnealingAlgoritme;
     private JButton startSimulation;
     private JButton showResults;
+    private JTextArea errorMessage;
     private TSP tsp;
 
     //CONSTRUCTOR, NEEDS TSP OBJECT. BECAUSE TSP OBJECT KEEPS APPLICATION DATA
@@ -93,6 +94,9 @@ public class Hoofdscherm extends JFrame implements ActionListener {
         panelRightTop.add(deleteCoordinates = new JButton("Verwijder geselecteerde coordinaten"));
         deleteCoordinates.addActionListener(this);
 
+        errorMessage = new JTextArea();
+        panelRightTop.add(errorMessage);
+
         JPanel panelRightBottom = new JPanel();
         panelRight.add(panelRightBottom, BorderLayout.SOUTH);
         panelRightBottom.setPreferredSize(new Dimension(375, 75));
@@ -160,9 +164,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
         if (e.getSource() == showResults) {
             System.out.println("Show results");
             Resultaten resultaten = new Resultaten(tsp);
-           /* for (int i = 0; i < tsp.getLocaties().size(); i++) {
-                System.out.println(tsp.getLocaties().get(i));
-            }*/
+
             //WHEN BUTTON "VERWIJDER GESELECTEERDE COORDINATEN" WAS PRESSED
         } else if (e.getSource() == deleteCoordinates) {
             //CHECK SIZE AND SELECTED ITEM FROM JCOMBOBOX
@@ -187,21 +189,26 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             try {
                 int x = Integer.parseInt(xInput.getText());
                 int y = Integer.parseInt(yInput.getText());
-                boolean coorCheck = true;
-                for(int i = 0; i<tsp.getLocaties().size(); i++) {
-                    int tempX = tsp.getLocaties().get(i).x;
-                    int tempY = tsp.getLocaties().get(i).y;
-                    if (x == tempX && y == tempY) {
-                        coorCheck = false;
+                if((x > 0 && x < 6)&&(y > 0 && y < 6)) {
+                    boolean coorCheck = true;
+                    for (int i = 0; i < tsp.getLocaties().size(); i++) {
+                        int tempX = tsp.getLocaties().get(i).x;
+                        int tempY = tsp.getLocaties().get(i).y;
+                        if (x == tempX && y == tempY) {
+                            coorCheck = false;
+                        }
                     }
-                }
-                if(coorCheck){
-                    Vak temp = new Vak(x, y);
-                    tsp.getLocaties().add(temp);
-                    selectCoordinates.addItem(temp);
-                    xInput.setBackground(Color.WHITE);
-                    yInput.setBackground(Color.WHITE);
-                } else if(!coorCheck){
+                    if (coorCheck) {
+                        Vak temp = new Vak(x, y);
+                        tsp.getLocaties().add(temp);
+                        selectCoordinates.addItem(temp);
+                        xInput.setBackground(Color.WHITE);
+                        yInput.setBackground(Color.WHITE);
+                    } else if (!coorCheck) {
+                        xInput.setBackground(Color.RED);
+                        yInput.setBackground(Color.RED);
+                    }
+                } else {
                     xInput.setBackground(Color.RED);
                     yInput.setBackground(Color.RED);
                 }
@@ -214,15 +221,14 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             checkAlgoritme();
             if(tsp.getAlgoritme().isEmpty()){
                 CheckBoxError error = new CheckBoxError(this);
+            } else if(tsp.getAlgoritme().size() == 1) {
+                errorMessage.setText("");
             } else {
                 for (int i = 0; i < tsp.getAlgoritme().size(); i++) {
                     tsp.getAlgoritme().get(i).calculate(tsp.getLocaties());
                     tsp.getAllAlgoritme().add(tsp.getAlgoritme().get(i));
                     tsp.getAlgoritme().remove(i);
                 }
-                Vak zeroPoint = new Vak(0, 5, 99);
-                tsp.getLocaties().add(0, zeroPoint);
-                tsp.getLocaties().add(tsp.getLocaties().size(), zeroPoint);
                 Simulatie simulatie = new Simulatie(tsp.getLocaties(), createSimulationNumber()-1, tsp);
             }
         }
