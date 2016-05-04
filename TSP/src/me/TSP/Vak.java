@@ -2,9 +2,9 @@ package me.TSP;
 
 public class Vak
 {
-    private int x;
-    private int y;
-    private int vakNr;
+    public int x;
+    public int y;
+    public int vakNr;
 
     public Vak(int x, int y)
     {

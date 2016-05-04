@@ -163,9 +163,9 @@ public class Hoofdscherm extends JFrame implements ActionListener {
         if (e.getSource() == showResults) {
             System.out.println("Show results");
             Resultaten resultaten = new Resultaten(tsp);
-            for (int i = 0; i < tsp.getLocaties().size(); i++) {
+           /* for (int i = 0; i < tsp.getLocaties().size(); i++) {
                 System.out.println(tsp.getLocaties().get(i));
-            }
+            }*/
             //WHEN BUTTON "VERWIJDER GESELECTEERDE COORDINATEN" WAS PRESSED
         } else if (e.getSource() == deleteCoordinates) {
             //CHECK SIZE AND SELECTED ITEM FROM JCOMBOBOX
@@ -205,7 +205,9 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             for(int i = 0; i<tsp.getAlgoritme().size(); i++){
                 tsp.getAlgoritme().get(i).calculate(tsp.getLocaties());
                 tsp.getAllAlgoritme().add(tsp.getAlgoritme().get(i));
+                tsp.getAlgoritme().remove(i);
             }
+            Simulatie simulatie = new Simulatie(tsp.getLocaties(), createSimulationNumber(),tsp);
         }
     }
 }

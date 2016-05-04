@@ -8,17 +8,27 @@ import java.util.ArrayList;
 /**
  * Created by Kevin on 29-4-2016.
  */
-public class Simulatie {
-    private BufferedImage vakImg;
-    private BufferedImage artikelImg;
-    private JLabel timeLabel;
-    private BufferedImage robotImg;
-
-    public Simulatie(ArrayList<Vak> locaties, String algoritmeName, int simulatieNr){
-
-    }
-
-    public void paintComponent(Graphics g){
-
+public class Simulatie extends JFrame
+{
+    public Simulatie(ArrayList<Vak> locaties, int simulatieNr, TSP tsp)
+    {
+        setSize(500,500);
+        setTitle("Simulatie");
+        setLayout(new FlowLayout());
+        setVisible(true);
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.setPreferredSize(new Dimension(450,380));
+        add(tabbedPane);
+        for(int i = 0; i < tsp.getAllAlgoritme().size(); i++)
+        {
+            System.out.println(simulatieNr);
+            System.out.println(tsp.getAllAlgoritme().get(i).getSimulatieNr());
+            if(tsp.getAllAlgoritme().get(i).getSimulatieNr() == simulatieNr)
+            {
+                SimulatiePanel simulatiePanel = new SimulatiePanel(locaties);
+                String split[] = tsp.getAllAlgoritme().get(i).getName().split(" ",2);
+                tabbedPane.addTab(split[0], simulatiePanel);
+            }
+        }
     }
 }

@@ -26,33 +26,6 @@ public class Resultaten extends JFrame implements ActionListener
         setTitle("TSP Simulatie Resultaten");
         setLayout(new FlowLayout());
 
-        //Test settings DELETE WHEN REAL DATA CAN BE SET
-        tsp.getAllAlgoritme().add(new WillekeurigAlgoritme());
-        tsp.getAllAlgoritme().add(new VolledigeEnumeratie());
-        tsp.getAllAlgoritme().add(new WillekeurigAlgoritme());
-        tsp.getAllAlgoritme().add(new VolledigeEnumeratie());
-        tsp.getAllAlgoritme().get(0).setName("Willekeurig Algoritme");
-        tsp.getAllAlgoritme().get(0).setSimulatieNr(0);
-        tsp.getAllAlgoritme().get(0).setTime(new Long("0"));
-        tsp.getAllAlgoritme().get(0).getBestOrderLocaties().add(new Vak(0,0,1));
-        tsp.getAllAlgoritme().get(0).getBestOrderLocaties().add(new Vak(0,1,2));
-        tsp.getAllAlgoritme().get(1).setName("Volledige Enumeratie");
-        tsp.getAllAlgoritme().get(1).setSimulatieNr(1);
-        tsp.getAllAlgoritme().get(1).setTime(new Long("2"));
-        tsp.getAllAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,0,1));
-        tsp.getAllAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,1,2));
-        tsp.getAllAlgoritme().get(2).setName("Willekeurig Algoritme");
-        tsp.getAllAlgoritme().get(2).setSimulatieNr(1);
-        tsp.getAllAlgoritme().get(2).setTime(new Long("2"));
-        tsp.getAllAlgoritme().get(2).getBestOrderLocaties().add(new Vak(0,0,1));
-        tsp.getAllAlgoritme().get(2).getBestOrderLocaties().add(new Vak(0,1,2));
-        tsp.getAllAlgoritme().get(3).setName("Volledige Enumeratie");
-        tsp.getAllAlgoritme().get(3).setSimulatieNr(1);
-        tsp.getAllAlgoritme().get(3).setTime(new Long("2"));
-        tsp.getAllAlgoritme().get(3).getBestOrderLocaties().add(new Vak(0,0,1));
-        tsp.getAllAlgoritme().get(3).getBestOrderLocaties().add(new Vak(0,1,2));
-        //End Settings DELETE WHEN REAL DATA CAN BE SET
-
         //Data Object for JTable
         DefaultTableModel tabelModel = new DefaultTableModel(columnName,0);
         ArrayList<Algoritme> algoritmes = tsp.getAllAlgoritme();
