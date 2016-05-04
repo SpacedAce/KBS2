@@ -187,12 +187,23 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             try {
                 int x = Integer.parseInt(xInput.getText());
                 int y = Integer.parseInt(yInput.getText());
-                if(x != tempX && y!= tempY) {
+                boolean coorCheck = true;
+                for(int i = 0; i<tsp.getLocaties().size(); i++) {
+                    int tempX = tsp.getLocaties().get(i).x;
+                    int tempY = tsp.getLocaties().get(i).y;
+                    if (x == tempX && y == tempY) {
+                        coorCheck = false;
+                    }
+                }
+                if(coorCheck){
                     Vak temp = new Vak(x, y);
                     tsp.getLocaties().add(temp);
                     selectCoordinates.addItem(temp);
                     xInput.setBackground(Color.WHITE);
                     yInput.setBackground(Color.WHITE);
+                } else if(!coorCheck){
+                    xInput.setBackground(Color.RED);
+                    yInput.setBackground(Color.RED);
                 }
             } catch (NumberFormatException nf) {
                 xInput.setBackground(Color.RED);
