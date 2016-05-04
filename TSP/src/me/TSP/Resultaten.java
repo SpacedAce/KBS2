@@ -55,9 +55,6 @@ public class Resultaten extends JFrame implements ActionListener
         int bestRow = 0;
         for(int i = 0; i < resultatenTable.getRowCount(); i++)
         {
-            System.out.println((Long)resultatenTable.getValueAt(i,2));
-            System.out.println((String)resultatenTable.getValueAt(i,1));
-            System.out.println((Long)resultatenTable.getValueAt(bestRow,2));
             if((Long)resultatenTable.getValueAt(i,2) > (Long)resultatenTable.getValueAt(bestRow,2))
             {
                 bestRow = i;

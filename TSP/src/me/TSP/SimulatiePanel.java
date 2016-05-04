@@ -19,11 +19,13 @@ public class SimulatiePanel extends JPanel
     private BufferedImage robotImg;
     private ArrayList<Vak> locaties;
     private Algoritme algoritme;
+    private TSP tsp;
 
-    public SimulatiePanel(ArrayList<Vak> locaties, Algoritme algoritme)
+    public SimulatiePanel(ArrayList<Vak> locaties, Algoritme algoritme, TSP tsp)
     {
         this.locaties = locaties;
         this.algoritme = algoritme;
+        this.tsp = tsp;
         try
         {
             vakImg = ImageIO.read(new File("border.png"));
@@ -39,15 +41,16 @@ public class SimulatiePanel extends JPanel
     {
         for(int x = 0; x < 5; x++) {
             for(int y = 0; y < 5; y++) {
-                for(int i = 0; i < locaties.size(); i++)
+                for(int i = 0; i < algoritme.getBestOrderLocaties().size(); i++)
                 {
-                    if(locaties.get(i).x == x && locaties.get(i).y == y)
+                    if(algoritme.getBestOrderLocaties().get(i).x == x && algoritme.getBestOrderLocaties().get(i).y == y)
                     {
                         g.drawImage(artikelImg,x*50, y*50,null);
                         break;
                     }
                     else
                     {
+
                         g.drawImage(vakImg,x*50, y*50,null);
                     }
                 }

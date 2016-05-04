@@ -21,11 +21,9 @@ public class Simulatie extends JFrame
         add(tabbedPane);
         for(int i = 0; i < tsp.getAllAlgoritme().size(); i++)
         {
-            System.out.println(simulatieNr);
-            System.out.println(tsp.getAllAlgoritme().get(i).getSimulatieNr());
             if(tsp.getAllAlgoritme().get(i).getSimulatieNr() == simulatieNr)
             {
-                SimulatiePanel simulatiePanel = new SimulatiePanel(locaties, tsp.getAllAlgoritme().get(i));
+                SimulatiePanel simulatiePanel = new SimulatiePanel(locaties, tsp.getAllAlgoritme().get(i), tsp);
                 String split[] = tsp.getAllAlgoritme().get(i).getName().split(" ",2);
                 tabbedPane.addTab(split[0], simulatiePanel);
             }

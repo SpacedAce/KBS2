@@ -15,17 +15,13 @@ public class WillekeurigAlgoritme extends Algoritme {
     @Override
     public void calculate(ArrayList<Vak> locaties) {
         //START TIMER
-        long startTime = System.currentTimeMillis();
-        setBestOrderLocaties(locaties);
+        long startTime = System.nanoTime() / 1000;
+        super.setBestOrderLocaties(locaties);
         Collections.shuffle(getBestOrderLocaties());
 
-        for(int i = 0; i<locaties.size(); i++){
-            System.out.println(locaties.get(i));
-        }
-
         //END TIMER
-        long endTime   = System.currentTimeMillis();
-        long totalTime = endTime - startTime;
+        long totalTime = System.nanoTime() / 1000 - startTime;
         setTime(totalTime);
+        System.out.println(super.getTime());
     }
 }
