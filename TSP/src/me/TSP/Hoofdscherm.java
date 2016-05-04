@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class Hoofdscherm extends JFrame implements ActionListener {
 
     //DEFINE SCREEN ELEMENTS
-
     private JTextField xInput;
     private JTextField yInput;
     private JButton addCoordinates;
@@ -23,7 +22,6 @@ public class Hoofdscherm extends JFrame implements ActionListener {
     private JCheckBox simpelGretigAlgoritme;
     private JCheckBox twoOptAlgoritme;
     private JCheckBox simulatedAnnealingAlgoritme;
-
     private JButton startSimulation;
     private JButton showResults;
     private TSP tsp;
@@ -106,7 +104,6 @@ public class Hoofdscherm extends JFrame implements ActionListener {
 
         setVisible(true);
     }
-
     //FUNCTION TO CONVERT THE ARRAYLIST WITH LOCATIONS IN A STRING ARRAY
     //FOR THE JCOMBOBOX.
     private String[] printCoor(ArrayList<Vak> a) {
@@ -123,7 +120,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
         if(tsp.getAllAlgoritme().isEmpty()){
             simulationNr = 1;
         } else {
-            simulationNr = tsp.getAllAlgoritme().get(tsp.getAllAlgoritme().size()-1).getSimulatieNr();
+            simulationNr = tsp.getAllAlgoritme().get(tsp.getAllAlgoritme().size()-1).getSimulatieNr()+1;
         }
         return simulationNr;
     }
@@ -190,11 +187,13 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             try {
                 int x = Integer.parseInt(xInput.getText());
                 int y = Integer.parseInt(yInput.getText());
-                Vak temp = new Vak(x, y);
-                tsp.getLocaties().add(temp);
-                selectCoordinates.addItem(temp);
-                xInput.setBackground(Color.WHITE);
-                yInput.setBackground(Color.WHITE);
+                if(x != tempX && y!= tempY) {
+                    Vak temp = new Vak(x, y);
+                    tsp.getLocaties().add(temp);
+                    selectCoordinates.addItem(temp);
+                    xInput.setBackground(Color.WHITE);
+                    yInput.setBackground(Color.WHITE);
+                }
             } catch (NumberFormatException nf) {
                 xInput.setBackground(Color.RED);
                 yInput.setBackground(Color.RED);
