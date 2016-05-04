@@ -17,13 +17,15 @@ public class WillekeurigAlgoritme extends Algoritme {
         //START TIMER
         long startTime = System.nanoTime() / 1000;
         Vak zeroPoint = new Vak(0, 5, 99);
-        super.setBestOrderLocaties(locaties);
+        for(int i = 0; i < locaties.size(); i++)
+        {
+            getBestOrderLocaties().add(locaties.get(i));
+        }
         Collections.shuffle(getBestOrderLocaties());
         getBestOrderLocaties().add(0, zeroPoint);
-        getBestOrderLocaties().add(locaties.size(), zeroPoint);
+        getBestOrderLocaties().add(getBestOrderLocaties().size(), zeroPoint);
         //END TIMER
         long totalTime = System.nanoTime() / 1000 - startTime;
         setTime(totalTime);
-        System.out.println(super.getTime());
     }
 }

@@ -15,7 +15,7 @@ public class Resultaten extends JFrame implements ActionListener
 {
     private JTable resultatenTable;
     private TSP tsp;
-    private String[] columnName = {"Simulatie Nummer","Algoritme", "Tijd", "Afstand", "Aantal Producten", "vergelijk"};
+    private String[] columnName = {"Simulatie Nummer","Algoritme", "Tijd(μs)", "Afstand", "Aantal Producten", "vergelijk"};
     private JButton vergelijkButton;
 
     public Resultaten(TSP tsp)
@@ -31,7 +31,7 @@ public class Resultaten extends JFrame implements ActionListener
         ArrayList<Algoritme> algoritmes = tsp.getAllAlgoritme();
         for(int i = 0; i < tsp.getAllAlgoritme().size(); i++)
         {
-            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getBestOrderLocaties().size(), new Boolean(false)};
+            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getAftstand(), algoritmes.get(i).getTime(), algoritmes.get(i).getBestOrderLocaties().size(), new Boolean(false)};
             tabelModel.addRow(objs);
         }
 
@@ -41,7 +41,7 @@ public class Resultaten extends JFrame implements ActionListener
         resultatenTable = new JTable(tabelModel);
 
         //Setting column cell to return Boolean class
-        TableColumn tc = resultatenTable.getColumnModel().getColumn(4);
+        TableColumn tc = resultatenTable.getColumnModel().getColumn(5);
         tc.setCellEditor(resultatenTable.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(resultatenTable.getDefaultRenderer(Boolean.class));
 
@@ -52,15 +52,24 @@ public class Resultaten extends JFrame implements ActionListener
         resultatenTable.setPreferredScrollableViewportSize(new Dimension(480,400));
         add(scrollPane);
         add(vergelijkButton);
-        int bestRow = 0;
+        int bestTime = 0;
         for(int i = 0; i < resultatenTable.getRowCount(); i++)
         {
-            if((Long)resultatenTable.getValueAt(i,2) > (Long)resultatenTable.getValueAt(bestRow,2))
+            if((Long)resultatenTable.getValueAt(i,2) > (Long)resultatenTable.getValueAt(bestTime,2))
             {
-                bestRow = i;
+                bestTime = i;
             }
         }
-        resultatenTable.getColumnModel().getColumn(2).setCellRenderer(new CustomRenderer(bestRow));
+        int bestAfstand = 0;
+        for(int a = 0; a < resultatenTable.getRowCount(); a++)
+        {
+            if((Integer)resultatenTable.getValueAt(a,3) > (Integer)resultatenTable.getValueAt(bestAfstand,3))
+            {
+                bestAfstand = a;
+            }
+        }
+        resultatenTable.getColumnModel().getColumn(3).setCellRenderer(new CustomRenderer(bestAfstand));
+        resultatenTable.getColumnModel().getColumn(2).setCellRenderer(new CustomRenderer(bestTime));
         setVisible(true);
     }
 
@@ -70,12 +79,12 @@ public class Resultaten extends JFrame implements ActionListener
         {
             ArrayList<Object[]> array = new ArrayList<>();
             for(int i = 0; i < resultatenTable.getRowCount(); i++) {
-                if((Boolean)resultatenTable.getValueAt(i,4))
+                if((Boolean)resultatenTable.getValueAt(i,5))
                 {
                     Object[] rowData = new Object[resultatenTable.getColumnCount()];
                     for(int x = 0; x < resultatenTable.getColumnCount(); x++)
                     {
-                        if(x != 4) {
+                        if(x != 5) {
                             rowData[x] = resultatenTable.getValueAt(i, x);
                         }
                     }
@@ -92,17 +101,17 @@ public class Resultaten extends JFrame implements ActionListener
 
 class CustomRenderer extends DefaultTableCellRenderer
 {
-    int bestRow;
+    int row;
 
     public CustomRenderer(int row)
     {
-        this.bestRow = row;
+        this.row = row;
     }
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        if(row == bestRow) {
+        if(row == this.row) {
             cellComponent.setBackground(Color.green);
         }
         else
