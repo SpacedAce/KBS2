@@ -41,6 +41,9 @@ public abstract class Algoritme
     }
 
     public ArrayList<Vak> getBestOrderLocaties() {
-        return bestOrderLocaties;
+        return this.bestOrderLocaties;
+    }
+    public void setBestOrderLocaties(ArrayList<Vak> a){
+        this.bestOrderLocaties = a;
     }
 }

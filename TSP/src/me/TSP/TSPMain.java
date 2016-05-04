@@ -9,7 +9,7 @@ public class TSPMain
 {
     public static void main(String[] arg)
     {
-        //TSP tsp = new TSP();
+        TSP tsp = new TSP();
         Vak vak1 = new Vak(1, 2);
         Vak vak2 = new Vak(2, 2);
         Vak vak3 = new Vak(3, 3);

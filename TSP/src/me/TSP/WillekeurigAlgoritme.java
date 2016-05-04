@@ -16,8 +16,8 @@ public class WillekeurigAlgoritme extends Algoritme {
     public void calculate(ArrayList<Vak> locaties) {
         //START TIMER
         long startTime = System.currentTimeMillis();
-
-        Collections.shuffle(locaties);
+        setBestOrderLocaties(locaties);
+        Collections.shuffle(getBestOrderLocaties());
 
         for(int i = 0; i<locaties.size(); i++){
             System.out.println(locaties.get(i));
