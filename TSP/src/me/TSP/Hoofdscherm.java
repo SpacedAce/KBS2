@@ -220,8 +220,10 @@ public class Hoofdscherm extends JFrame implements ActionListener {
                     tsp.getAllAlgoritme().add(tsp.getAlgoritme().get(i));
                     tsp.getAlgoritme().remove(i);
                 }
+                Vak zeroPoint = new Vak(0, 5, 99);
+                tsp.getLocaties().add(0, zeroPoint);
+                tsp.getLocaties().add(tsp.getLocaties().size(), zeroPoint);
                 Simulatie simulatie = new Simulatie(tsp.getLocaties(), createSimulationNumber()-1, tsp);
-
             }
         }
     }

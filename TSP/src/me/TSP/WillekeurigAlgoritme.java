@@ -18,7 +18,10 @@ public class WillekeurigAlgoritme extends Algoritme {
         long startTime = System.nanoTime() / 1000;
         super.setBestOrderLocaties(locaties);
         Collections.shuffle(getBestOrderLocaties());
-
+        ArrayList<Vak> tempZeroPoint = new ArrayList<>();
+        for(int i = 0; i<locaties.size(); i++){
+            tempZeroPoint
+        }
         //END TIMER
         long totalTime = System.nanoTime() / 1000 - startTime;
         setTime(totalTime);
