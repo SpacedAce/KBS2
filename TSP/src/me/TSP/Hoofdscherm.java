@@ -202,12 +202,17 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             //WHEN BUTTON "START SIMULATIE" WAS PRESSED
         } else if (e.getSource() == startSimulation) {
             checkAlgoritme();
-            for(int i = 0; i<tsp.getAlgoritme().size(); i++){
-                tsp.getAlgoritme().get(i).calculate(tsp.getLocaties());
-                tsp.getAllAlgoritme().add(tsp.getAlgoritme().get(i));
-                tsp.getAlgoritme().remove(i);
+            if(tsp.getAlgoritme().isEmpty()){
+                CheckBoxError error = new CheckBoxError(this);
+            } else {
+                for (int i = 0; i < tsp.getAlgoritme().size(); i++) {
+                    tsp.getAlgoritme().get(i).calculate(tsp.getLocaties());
+                    tsp.getAllAlgoritme().add(tsp.getAlgoritme().get(i));
+                    tsp.getAlgoritme().remove(i);
+                }
+                Simulatie simulatie = new Simulatie(tsp.getLocaties(), createSimulationNumber(), tsp);
+                tsp.getLocaties().clear();
             }
-            Simulatie simulatie = new Simulatie(tsp.getLocaties(), createSimulationNumber(),tsp);
         }
     }
 }
