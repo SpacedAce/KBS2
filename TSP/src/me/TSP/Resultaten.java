@@ -15,48 +15,48 @@ public class Resultaten extends JFrame implements ActionListener
 {
     private JTable resultatenTable;
     private TSP tsp;
-    private String[] columnName = {"Simulatie Nummer","Algoritme", "Tijd", "Aantal Producten", "vergelijk"};
+    private String[] columnName = {"Simulatie Nummer","Algoritme", "Tijd", "Afstand", "Aantal Producten", "vergelijk"};
     private JButton vergelijkButton;
 
     public Resultaten(TSP tsp)
     {
         this.tsp = tsp;
         setSize(650,500);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("TSP Simulatie Resultaten");
         setLayout(new FlowLayout());
 
         //Test settings DELETE WHEN REAL DATA CAN BE SET
-        tsp.getAlgoritme().add(new WillekeurigAlgoritme());
-        tsp.getAlgoritme().add(new VolledigeEnumeratie());
-        tsp.getAlgoritme().add(new WillekeurigAlgoritme());
-        tsp.getAlgoritme().add(new VolledigeEnumeratie());
-        tsp.getAlgoritme().get(0).setName("Willekeurig Algoritme");
-        tsp.getAlgoritme().get(0).setSimulatieNr(0);
-        tsp.getAlgoritme().get(0).setTime(new Long("0"));
-        tsp.getAlgoritme().get(0).getBestOrderLocaties().add(new Vak(0,0,1));
-        tsp.getAlgoritme().get(0).getBestOrderLocaties().add(new Vak(0,1,2));
-        tsp.getAlgoritme().get(1).setName("Volledige Enumeratie");
-        tsp.getAlgoritme().get(1).setSimulatieNr(1);
-        tsp.getAlgoritme().get(1).setTime(new Long("2"));
-        tsp.getAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,0,1));
-        tsp.getAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,1,2));
-        tsp.getAlgoritme().get(2).setName("Volledige Enumeratie");
-        tsp.getAlgoritme().get(2).setSimulatieNr(1);
-        tsp.getAlgoritme().get(2).setTime(new Long("2"));
-        tsp.getAlgoritme().get(2).getBestOrderLocaties().add(new Vak(0,0,1));
-        tsp.getAlgoritme().get(2).getBestOrderLocaties().add(new Vak(0,1,2));
-        tsp.getAlgoritme().get(3).setName("Volledige Enumeratie");
-        tsp.getAlgoritme().get(3).setSimulatieNr(1);
-        tsp.getAlgoritme().get(3).setTime(new Long("2"));
-        tsp.getAlgoritme().get(3).getBestOrderLocaties().add(new Vak(0,0,1));
-        tsp.getAlgoritme().get(3).getBestOrderLocaties().add(new Vak(0,1,2));
+        tsp.getAllAlgoritme().add(new WillekeurigAlgoritme());
+        tsp.getAllAlgoritme().add(new VolledigeEnumeratie());
+        tsp.getAllAlgoritme().add(new WillekeurigAlgoritme());
+        tsp.getAllAlgoritme().add(new VolledigeEnumeratie());
+        tsp.getAllAlgoritme().get(0).setName("Willekeurig Algoritme");
+        tsp.getAllAlgoritme().get(0).setSimulatieNr(0);
+        tsp.getAllAlgoritme().get(0).setTime(new Long("0"));
+        tsp.getAllAlgoritme().get(0).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAllAlgoritme().get(0).getBestOrderLocaties().add(new Vak(0,1,2));
+        tsp.getAllAlgoritme().get(1).setName("Volledige Enumeratie");
+        tsp.getAllAlgoritme().get(1).setSimulatieNr(1);
+        tsp.getAllAlgoritme().get(1).setTime(new Long("2"));
+        tsp.getAllAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAllAlgoritme().get(1).getBestOrderLocaties().add(new Vak(0,1,2));
+        tsp.getAllAlgoritme().get(2).setName("Willekeurig Algoritme");
+        tsp.getAllAlgoritme().get(2).setSimulatieNr(1);
+        tsp.getAllAlgoritme().get(2).setTime(new Long("2"));
+        tsp.getAllAlgoritme().get(2).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAllAlgoritme().get(2).getBestOrderLocaties().add(new Vak(0,1,2));
+        tsp.getAllAlgoritme().get(3).setName("Volledige Enumeratie");
+        tsp.getAllAlgoritme().get(3).setSimulatieNr(1);
+        tsp.getAllAlgoritme().get(3).setTime(new Long("2"));
+        tsp.getAllAlgoritme().get(3).getBestOrderLocaties().add(new Vak(0,0,1));
+        tsp.getAllAlgoritme().get(3).getBestOrderLocaties().add(new Vak(0,1,2));
         //End Settings DELETE WHEN REAL DATA CAN BE SET
 
         //Data Object for JTable
         DefaultTableModel tabelModel = new DefaultTableModel(columnName,0);
-        ArrayList<Algoritme> algoritmes = tsp.getAlgoritme();
-        for(int i = 0; i < tsp.getAlgoritme().size(); i++)
+        ArrayList<Algoritme> algoritmes = tsp.getAllAlgoritme();
+        for(int i = 0; i < tsp.getAllAlgoritme().size(); i++)
         {
             Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getBestOrderLocaties().size(), new Boolean(false)};
             tabelModel.addRow(objs);
@@ -82,6 +82,9 @@ public class Resultaten extends JFrame implements ActionListener
         int bestRow = 0;
         for(int i = 0; i < resultatenTable.getRowCount(); i++)
         {
+            System.out.println((Long)resultatenTable.getValueAt(i,2));
+            System.out.println((String)resultatenTable.getValueAt(i,1));
+            System.out.println((Long)resultatenTable.getValueAt(bestRow,2));
             if((Long)resultatenTable.getValueAt(i,2) > (Long)resultatenTable.getValueAt(bestRow,2))
             {
                 bestRow = i;
