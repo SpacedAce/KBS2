@@ -12,19 +12,23 @@ import java.util.ArrayList;
 public class Hoofdscherm extends JFrame implements ActionListener {
 
     //DEFINE SCREEN ELEMENTS
-
     private JTextField xInput;
     private JTextField yInput;
     private JButton addCoordinates;
     private JComboBox selectCoordinates;
     private JButton deleteCoordinates;
-    private JComboBox selectAlgorithm;
+    private JCheckBox randomAlgoritme;
+    private JCheckBox volledigAlgoritme;
+    private JCheckBox simpelGretigAlgoritme;
+    private JCheckBox twoOptAlgoritme;
+    private JCheckBox simulatedAnnealingAlgoritme;
     private JButton startSimulation;
     private JButton showResults;
+    private JTextArea errorMessage;
     private TSP tsp;
 
     //CONSTRUCTOR, NEEDS TSP OBJECT. BECAUSE TSP OBJECT KEEPS APPLICATION DATA
-    public Hoofdscherm(TSP tsp){
+    public Hoofdscherm(TSP tsp) {
         this.tsp = tsp;
 
         //SETUP SCREEN
@@ -47,10 +51,30 @@ public class Hoofdscherm extends JFrame implements ActionListener {
         panelLeftTop.add(yInput = new JTextField(10));
         panelLeftTop.add(addCoordinates = new JButton("Voeg toe"));
         addCoordinates.addActionListener(this);
-        panelLeftTop.add(new JLabel("Kies een algoritme "));
-        String[] algorithms = new String[]{"Kies algoritme", "Random", "Volledige enumeratie", "Ant colony", "Simpel gretig", "2-opt", "Simulated annealing"};
-        panelLeftTop.add(selectAlgorithm = new JComboBox(algorithms));
+        panelLeftTop.add(new JLabel("Kies een algoritme: "));
 
+        //INITIALIZATION CHECKBOXES AND CORRESPONDING JPANEL WITH GRIDLAYOUT
+        JPanel checkBoxes = new JPanel();
+        checkBoxes.setLayout(new GridLayout(5, 1));
+        panelLeftTop.add(checkBoxes);
+
+        randomAlgoritme = new JCheckBox("Random");
+        randomAlgoritme.setSelected(false);
+        checkBoxes.add(randomAlgoritme);
+        volledigAlgoritme = new JCheckBox("Volledige enumeratie");
+        volledigAlgoritme.setSelected(false);
+        checkBoxes.add(volledigAlgoritme);
+        simpelGretigAlgoritme = new JCheckBox("Simpel gretig");
+        simpelGretigAlgoritme.setSelected(false);
+        checkBoxes.add(simpelGretigAlgoritme);
+        twoOptAlgoritme = new JCheckBox("2-opt");
+        twoOptAlgoritme.setSelected(false);
+        checkBoxes.add(twoOptAlgoritme);
+        simulatedAnnealingAlgoritme = new JCheckBox("Simulated annealing");
+        simulatedAnnealingAlgoritme.setSelected(false);
+        checkBoxes.add(simulatedAnnealingAlgoritme);
+
+        //CREATES START SIMULATION BUTTON
         JPanel panelLeftBottom = new JPanel();
         panelLeftBottom.setPreferredSize(new Dimension(375, 75));
         panelLeft.add(panelLeftBottom, BorderLayout.SOUTH);
@@ -70,6 +94,9 @@ public class Hoofdscherm extends JFrame implements ActionListener {
         panelRightTop.add(deleteCoordinates = new JButton("Verwijder geselecteerde coordinaten"));
         deleteCoordinates.addActionListener(this);
 
+        errorMessage = new JTextArea();
+        panelRightTop.add(errorMessage);
+
         JPanel panelRightBottom = new JPanel();
         panelRight.add(panelRightBottom, BorderLayout.SOUTH);
         panelRightBottom.setPreferredSize(new Dimension(375, 75));
@@ -81,27 +108,65 @@ public class Hoofdscherm extends JFrame implements ActionListener {
 
         setVisible(true);
     }
-
     //FUNCTION TO CONVERT THE ARRAYLIST WITH LOCATIONS IN A STRING ARRAY
     //FOR THE JCOMBOBOX.
-    private String[] printCoor(ArrayList<Vak> a){
+    private String[] printCoor(ArrayList<Vak> a) {
         String[] string = new String[a.size()];
-        for (int i = 0; i<a.size(); i++){
+        for (int i = 0; i < a.size(); i++) {
             string[i] = a.get(i).toString();
         }
         return string;
     }
 
-    public void actionPerformed(ActionEvent e){
+    //CREATES A SIMULATION NUMBER
+    private int createSimulationNumber(){
+        int simulationNr;
+        if(tsp.getAllAlgoritme().isEmpty()){
+            simulationNr = 1;
+        } else {
+            simulationNr = tsp.getAllAlgoritme().get(tsp.getAllAlgoritme().size()-1).getSimulatieNr()+1;
+        }
+        return simulationNr;
+    }
+    //CHECKBOX BOOLEAN CHECK AND CREATION OF ALGORITHMS
+    private void checkAlgoritme() {
+        int simulationNr = createSimulationNumber();
+
+        if (randomAlgoritme.isSelected()) {
+            Algoritme willekeurigAlgoritme = new WillekeurigAlgoritme();
+            tsp.getAlgoritme().add(willekeurigAlgoritme);
+            willekeurigAlgoritme.setSimulatieNr(simulationNr);
+        }
+        if (volledigAlgoritme.isSelected()) {
+            Algoritme volledigeEnumeratie = new VolledigeEnumeratie();
+            tsp.getAlgoritme().add(volledigeEnumeratie);
+            volledigeEnumeratie.setSimulatieNr(simulationNr);
+        }
+        if (simpelGretigAlgoritme.isSelected()) {
+            Algoritme simpelGretig = new SimpelGretig();
+            tsp.getAlgoritme().add(simpelGretig);
+            simpelGretig.setSimulatieNr(simulationNr);
+        }
+        if (twoOptAlgoritme.isSelected()) {
+            Algoritme twoOptAlgoritme = new TwoOptAlgoritme();
+            tsp.getAlgoritme().add(twoOptAlgoritme);
+            twoOptAlgoritme.setSimulatieNr(simulationNr);
+        }
+        if (simulatedAnnealingAlgoritme.isSelected()) {
+            Algoritme simulatedAnnealing = new SimulatedAnnealing();
+            tsp.getAlgoritme().add(simulatedAnnealing);
+            simulatedAnnealing.setSimulatieNr(simulationNr);
+        }
+    }
+
+    public void actionPerformed(ActionEvent e) {
         //WHEN BUTTON "BEKIJK RESULTATEN" WAS PRESSED
-        if(e.getSource() == showResults){
+        if (e.getSource() == showResults) {
             System.out.println("Show results");
             Resultaten resultaten = new Resultaten(tsp);
-            for(int i = 0; i<tsp.getLocaties().size(); i++){
-                System.out.println(tsp.getLocaties().get(i));
-            }
+
             //WHEN BUTTON "VERWIJDER GESELECTEERDE COORDINATEN" WAS PRESSED
-        } else if (e.getSource() == deleteCoordinates){
+        } else if (e.getSource() == deleteCoordinates) {
             //CHECK SIZE AND SELECTED ITEM FROM JCOMBOBOX
             int selectedIndex = selectCoordinates.getSelectedIndex();
             int size = selectCoordinates.getItemCount();
@@ -116,26 +181,56 @@ public class Hoofdscherm extends JFrame implements ActionListener {
                         }
                     }
                 }
-            }catch(ArrayIndexOutOfBoundsException ai){
+            } catch (ArrayIndexOutOfBoundsException ai) {
                 System.out.println("Geen items meer");
             }
             //WHEN BUTTON "VOEG TOE" WAS PRESSED
-        } else if (e.getSource() == addCoordinates){
-            try{
+        } else if (e.getSource() == addCoordinates) {
+            try {
                 int x = Integer.parseInt(xInput.getText());
                 int y = Integer.parseInt(yInput.getText());
-                Vak temp = new Vak(x, y);
-                tsp.getLocaties().add(temp);
-                selectCoordinates.addItem(temp);
-                xInput.setBackground(Color.WHITE);
-                yInput.setBackground(Color.WHITE);
-            } catch(NumberFormatException nf) {
+                if((x > 0 && x < 6)&&(y > 0 && y < 6)) {
+                    boolean coorCheck = true;
+                    for (int i = 0; i < tsp.getLocaties().size(); i++) {
+                        int tempX = tsp.getLocaties().get(i).x;
+                        int tempY = tsp.getLocaties().get(i).y;
+                        if (x == tempX && y == tempY) {
+                            coorCheck = false;
+                        }
+                    }
+                    if (coorCheck) {
+                        Vak temp = new Vak(x, y);
+                        tsp.getLocaties().add(temp);
+                        selectCoordinates.addItem(temp);
+                        xInput.setBackground(Color.WHITE);
+                        yInput.setBackground(Color.WHITE);
+                    } else if (!coorCheck) {
+                        xInput.setBackground(Color.RED);
+                        yInput.setBackground(Color.RED);
+                    }
+                } else {
+                    xInput.setBackground(Color.RED);
+                    yInput.setBackground(Color.RED);
+                }
+            } catch (NumberFormatException nf) {
                 xInput.setBackground(Color.RED);
                 yInput.setBackground(Color.RED);
             }
             //WHEN BUTTON "START SIMULATIE" WAS PRESSED
         } else if (e.getSource() == startSimulation) {
-            System.out.println("Start simulation");
+            checkAlgoritme();
+            if(tsp.getAlgoritme().isEmpty()){
+                CheckBoxError error = new CheckBoxError(this);
+            } else if(tsp.getAlgoritme().size() == 1) {
+                errorMessage.setText("");
+            } else {
+                for (int i = 0; i < tsp.getAlgoritme().size(); i++) {
+                    tsp.getAlgoritme().get(i).calculate(tsp.getLocaties());
+                    tsp.getAllAlgoritme().add(tsp.getAlgoritme().get(i));
+                    tsp.getAlgoritme().remove(i);
+                }
+                Simulatie simulatie = new Simulatie(tsp.getLocaties(), createSimulationNumber()-1, tsp);
+            }
         }
     }
 }

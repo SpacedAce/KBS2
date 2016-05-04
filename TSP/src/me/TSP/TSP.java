@@ -9,13 +9,13 @@ public class TSP {
     private ArrayList<Algoritme> algoritme;
     private ArrayList<Vak> locaties;
     private ArrayList<Long> times;
-    private ArrayList<Vak> allLocaties;
+    private ArrayList<Algoritme> allAlgoritme;
 
     public TSP(){
         algoritme = new ArrayList<>();
         locaties = new ArrayList<>();
         times = new ArrayList<>();
-        allLocaties = new ArrayList<>();
+        allAlgoritme = new ArrayList<>();
 
         Hoofdscherm hoofdscherm = new Hoofdscherm(this);
     }
@@ -36,8 +36,8 @@ public class TSP {
         return this.times;
     }
 
-    public ArrayList<Vak> getAllLocaties(){
-        return this.allLocaties;
+    public ArrayList<Algoritme> getAllAlgoritme(){
+        return this.allAlgoritme;
     }
 }
 
