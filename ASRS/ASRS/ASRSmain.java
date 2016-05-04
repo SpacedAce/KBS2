@@ -4,11 +4,8 @@
  * and open the template in the editor.
  */
 package ASRS;
+// Door: Jeroen Gerrese, s1097417, ICTM2b, WTJ01
 
-/**
- *
- * @author ace
- */
 public class ASRSmain {
     public static void main(String[] arg) throws Exception 
     {

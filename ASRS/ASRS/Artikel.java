@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package ASRS;
+// Door: Jeroen Gerrese, s1097417, ICTM2b, WTJ01
 
 /**
  *
  * @author ace
  */
 public class Artikel {
+    
+    private Vak vak;
     private int artikelnummer;
     private String naam;
     private int lengte;
@@ -19,12 +22,13 @@ public class Artikel {
     
     
     //Constructors
-    public Artikel(int artikelnummer, String naam, int lengte, int breedte, int hoogte) {
+    public Artikel(int artikelnummer, String naam, int lengte, int breedte, int hoogte, Vak vak) {
         this.artikelnummer = artikelnummer;
         this.naam = naam;
         this.lengte = lengte;
         this.breedte = breedte;
         this.hoogte = hoogte;
+        this.vak = vak;
     }
 
     //Setters
@@ -48,12 +52,18 @@ public class Artikel {
         this.hoogte = hoogte;
     }
     
+    public void setVak(Vak vak){
+        this.vak = vak;
+    }
+    
     //toString
 
     @Override
     public String toString() {
-        return "Artikel{" + "artikelnummer=" + artikelnummer + ", naam=" + naam + ", lengte=" + lengte + ", breedte=" + breedte + ", hoogte=" + hoogte + '}';
+        return "Artikel{" + "vak=" + vak + ", artikelnummer=" + artikelnummer + ", naam=" + naam + ", lengte=" + lengte + ", breedte=" + breedte + ", hoogte=" + hoogte + '}';
     }
+
+    
     
     
     
