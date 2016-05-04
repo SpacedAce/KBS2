@@ -10,7 +10,7 @@ public abstract class Algoritme
     private Long time;
     private String name;
     private int simulatieNr;
-    private int aftstand;
+    private float aftstand;
     private ArrayList<Vak> bestOrderLocaties = new ArrayList<>();
 
     public void calculate(ArrayList<Vak> locaties) {}
@@ -46,11 +46,11 @@ public abstract class Algoritme
         this.bestOrderLocaties = a;
     }
 
-    public int getAftstand() {
+    public float getAftstand() {
         return aftstand;
     }
 
-    public void setAftstand(int aftstand) {
+    public void setAftstand(float aftstand) {
         this.aftstand = aftstand;
     }
 }

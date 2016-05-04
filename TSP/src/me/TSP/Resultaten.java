@@ -31,7 +31,7 @@ public class Resultaten extends JFrame implements ActionListener
         ArrayList<Algoritme> algoritmes = tsp.getAllAlgoritme();
         for(int i = 0; i < tsp.getAllAlgoritme().size(); i++)
         {
-            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getAftstand(), algoritmes.get(i).getTime(), algoritmes.get(i).getBestOrderLocaties().size(), new Boolean(false)};
+            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getAftstand()*50, algoritmes.get(i).getBestOrderLocaties().size(), new Boolean(false)};
             tabelModel.addRow(objs);
         }
 
@@ -55,7 +55,7 @@ public class Resultaten extends JFrame implements ActionListener
         int bestTime = 0;
         for(int i = 0; i < resultatenTable.getRowCount(); i++)
         {
-            if((Long)resultatenTable.getValueAt(i,2) > (Long)resultatenTable.getValueAt(bestTime,2))
+            if((Long)resultatenTable.getValueAt(i,2) < (Long)resultatenTable.getValueAt(bestTime,2))
             {
                 bestTime = i;
             }
@@ -63,7 +63,7 @@ public class Resultaten extends JFrame implements ActionListener
         int bestAfstand = 0;
         for(int a = 0; a < resultatenTable.getRowCount(); a++)
         {
-            if((Integer)resultatenTable.getValueAt(a,3) > (Integer)resultatenTable.getValueAt(bestAfstand,3))
+            if((Float)resultatenTable.getValueAt(a,3) < (Float)resultatenTable.getValueAt(bestAfstand,3))
             {
                 bestAfstand = a;
             }
