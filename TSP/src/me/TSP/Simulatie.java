@@ -17,7 +17,7 @@ public class Simulatie extends JFrame
         setLayout(new FlowLayout());
         setVisible(true);
         JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.setPreferredSize(new Dimension(450,380));
+        tabbedPane.setPreferredSize(new Dimension(450,450));
         add(tabbedPane);
         for(int i = 0; i < tsp.getAllAlgoritme().size(); i++)
         {

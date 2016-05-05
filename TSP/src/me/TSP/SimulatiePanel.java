@@ -23,10 +23,10 @@ public class SimulatiePanel extends JPanel
 
     public SimulatiePanel(ArrayList<Vak> locaties, Algoritme algoritme, TSP tsp)
     {
+        setLayout(new BorderLayout());
         this.locaties = locaties;
         this.algoritme = algoritme;
         this.tsp = tsp;
-        System.out.println(locaties.size());
         try
         {
             vakImg = ImageIO.read(new File("border.png"));
@@ -36,6 +36,14 @@ public class SimulatiePanel extends JPanel
         {
             e.printStackTrace();
         }
+        JPanel dataPanel = new JPanel();
+        add(dataPanel, BorderLayout.SOUTH);
+        dataPanel.setLayout(new GridLayout(5,1));
+        dataPanel.add(new Label("Algoritme: " + algoritme.getName()));
+        dataPanel.add(new Label("Ordernr: " + algoritme.getSimulatieNr()));
+        dataPanel.add(new Label("Aantal producten: " + (algoritme.getBestOrderLocaties().size()-2)));
+        dataPanel.add(new Label("Tijd: " + algoritme.getTime()));
+        dataPanel.add(new Label("Afstand: " + algoritme.getAftstand()*50));
     }
 
     public void paintComponent(Graphics g)
