@@ -6,6 +6,8 @@
 package ASRS;
 // Door: Jeroen Gerrese, s1097417, ICTM2b, WTJ01
 
+import java.awt.List;
+import java.util.ArrayList;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
@@ -17,10 +19,15 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author ace
  */
 public class XmlImport {
+    private ArrayList<String> contactGegevens2;
+    private ArrayList bestelling;
     
-    public static void main(String argv[]) {
-    //public void XmlRead(){
-    Order order = new Order();
+    public static ArrayList XmlImportFromFile(String bestandslocatie){
+    
+    ArrayList contactGegevens = new ArrayList<String>();
+    ArrayList bestelling = new ArrayList<String>();
+    ArrayList list = new ArrayList<String>();
+    
     try {
 
 	SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -40,7 +47,7 @@ public class XmlImport {
 	public void startElement(String uri, String localName,String qName, 
                 Attributes attributes) throws SAXException {
 
-		System.out.println("Start Element :" + qName + "");
+		//System.out.println("Start Element :" + qName + "");
                 
                 if(qName.equalsIgnoreCase("ORDERNUMMER")){
                     bordernummer = true;
@@ -80,50 +87,50 @@ public class XmlImport {
 	public void characters(char ch[], int start, int length) throws SAXException {
 
                 if (bordernummer) {                        
-			System.out.println("Ordernummer : " + new String(ch, start, length));                        
-                        order.setOrderNr(Integer.parseInt(new String(ch, start, length)));
+			//System.out.println("Ordernummer : " + new String(ch, start, length));                        
+                        bestelling.add(new String(ch, start, length));
 			bordernummer = false;
 		}
             
 		if (bvnaam) {
-			System.out.println("Voornaam : " + new String(ch, start, length));
-                        order.setVoornaam((new String(ch, start, length)));
+			//System.out.println("Voornaam : " + new String(ch, start, length));
+                        contactGegevens.add(new String(ch, start, length));
 			bvnaam = false;
 		}
 
 		if (banaam) {
-			System.out.println("Achternaam : " + new String(ch, start, length));
-                        order.setAchternaam((new String(ch, start, length)));
+			//System.out.println("Achternaam : " + new String(ch, start, length));
+                        contactGegevens.add(new String(ch, start, length));
 			banaam = false;
 		}
 
 		if (badres) {
-			System.out.println("Adres : " + new String(ch, start, length));
-                        order.setAdres((new String(ch, start, length)));
+			//System.out.println("Adres : " + new String(ch, start, length));
+                        contactGegevens.add(new String(ch, start, length));
 			badres = false;
 		}
 
 		if (bpostcode) {
-			System.out.println("Postcode : " + new String(ch, start, length));
-                        order.setPostcode((new String(ch, start, length)));
+			//System.out.println("Postcode : " + new String(ch, start, length));
+                        contactGegevens.add(new String(ch, start, length));
 			bpostcode = false;
 		}
                 
                 if (bplaats) {
-			System.out.println("Plaats : " + new String(ch, start, length));
-                        order.setPlaats((new String(ch, start, length)));
+			//System.out.println("Plaats : " + new String(ch, start, length));
+                        contactGegevens.add(new String(ch, start, length));
 			bplaats = false;
 		}
                 
                 if (bdatum) {
-			System.out.println("Datum : " + new String(ch, start, length));
-                        order.setDatum((new String(ch, start, length)));
+			//System.out.println("Datum : " + new String(ch, start, length));
+                        contactGegevens.add(new String(ch, start, length));
 			bdatum = false;
 		}
                 
                 if (bartikelnr) {
-			System.out.println("Artikelnummer : " + new String(ch, start, length));
-                        order.AddArtikel((new String(ch, start, length)));
+			//System.out.println("Artikelnummer : " + new String(ch, start, length));
+                        bestelling.add(new String(ch, start, length));
 			bartikelnr = false;
 		}
 
@@ -133,20 +140,37 @@ public class XmlImport {
 	public void endElement(String uri, String localName,
 		String qName) throws SAXException {
 
-		System.out.println("End Element :" + qName);
+		//System.out.println("End Element :" + qName);
 
 	}
 
-     };
+    };
 
-       saxParser.parse("/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml", handler);
+        saxParser.parse(bestandslocatie, handler);
  
-     } catch (Exception e) {
-       e.printStackTrace();
-     }
-  System.out.println(order.toString());
-   }
-   
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+        
+        list.add(contactGegevens);
+        list.add(bestelling);
+        
+    
+        //DebugPrint
+        //System.out.println(contactGegevens);
+        //System.out.print(bestelling);
+        
+        return list;
+}
+    
+    public ArrayList XmlImportGegevensFromFile(String bestandslocatie, Order order){
+        ArrayList lijst = XmlImportFromFile(bestandslocatie);
+        List gegevens = lijst.get(0);
+        
+        
+    }
+    
+    
 }
 
     
