@@ -160,6 +160,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        errorMessage.setText("");
         //WHEN BUTTON "BEKIJK RESULTATEN" WAS PRESSED
         if (e.getSource() == showResults) {
             System.out.println("Show results");
@@ -168,21 +169,25 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             //WHEN BUTTON "VERWIJDER GESELECTEERDE COORDINATEN" WAS PRESSED
         } else if (e.getSource() == deleteCoordinates) {
             //CHECK SIZE AND SELECTED ITEM FROM JCOMBOBOX
-            int selectedIndex = selectCoordinates.getSelectedIndex();
-            int size = selectCoordinates.getItemCount();
-            try {
-                for (int i = 0; i < size; i++) {
-                    if (i == selectedIndex) {
-                        //DELETE VAK FROM ARRAYLIST AND REFRESH JCOMBOBOX
-                        tsp.getLocaties().remove(i);
-                        selectCoordinates.removeAllItems();
-                        for (int x = 0; x < tsp.getLocaties().size(); x++) {
-                            selectCoordinates.addItem(tsp.getLocaties().get(x));
+            if(selectCoordinates.getItemCount() > 0) {
+                int selectedIndex = selectCoordinates.getSelectedIndex();
+                int size = selectCoordinates.getItemCount();
+                try {
+                    for (int i = 0; i < size; i++) {
+                        if (i == selectedIndex) {
+                            //DELETE VAK FROM ARRAYLIST AND REFRESH JCOMBOBOX
+                            tsp.getLocaties().remove(i);
+                            selectCoordinates.removeAllItems();
+                            for (int x = 0; x < tsp.getLocaties().size(); x++) {
+                                selectCoordinates.addItem(tsp.getLocaties().get(x));
+                            }
                         }
                     }
+                } catch (ArrayIndexOutOfBoundsException ai) {
+                    ai.getStackTrace();
                 }
-            } catch (ArrayIndexOutOfBoundsException ai) {
-                System.out.println("Geen items meer");
+            } else {
+                errorMessage.append("Geen coordinaten meer aanwezig\n");
             }
             //WHEN BUTTON "VOEG TOE" WAS PRESSED
         } else if (e.getSource() == addCoordinates) {
@@ -207,6 +212,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
                     } else if (!coorCheck) {
                         xInput.setBackground(Color.RED);
                         yInput.setBackground(Color.RED);
+                        errorMessage.append("Ingevoerde coordinaten zijn al aanwezig \n");
                     }
                 } else {
                     xInput.setBackground(Color.RED);
@@ -215,6 +221,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             } catch (NumberFormatException nf) {
                 xInput.setBackground(Color.RED);
                 yInput.setBackground(Color.RED);
+                errorMessage.append("Coordinaten moeten tussen 0 en 6 liggen\n");
             }
             //WHEN BUTTON "START SIMULATIE" WAS PRESSED
         } else if (e.getSource() == startSimulation) {
@@ -222,7 +229,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             if(tsp.getAlgoritme().isEmpty()){
                 CheckBoxError error = new CheckBoxError(this);
             } else if(tsp.getLocaties().size() == 1) {
-                System.out.println("raar dit");
+                errorMessage.append("U heeft maar 1 locatie opgegeven\n");
             } else {
                 for (int i = 0; i < tsp.getAlgoritme().size(); i++) {
                     tsp.getAlgoritme().get(i).calculate(tsp.getLocaties());
