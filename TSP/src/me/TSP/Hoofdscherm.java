@@ -221,8 +221,8 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             checkAlgoritme();
             if(tsp.getAlgoritme().isEmpty()){
                 CheckBoxError error = new CheckBoxError(this);
-            } else if(tsp.getAlgoritme().size() == 1) {
-                errorMessage.setText("");
+            } else if(tsp.getLocaties().size() == 1) {
+                System.out.println("raar dit");
             } else {
                 for (int i = 0; i < tsp.getAlgoritme().size(); i++) {
                     tsp.getAlgoritme().get(i).calculate(tsp.getLocaties());
