@@ -134,12 +134,12 @@ public class hoofdscherm extends JFrame{
 		artikelen.add(artikel1);
 		artikelen.add(artikel2);
 		artikelen.add(artikel3);
-		ArrayList<Bin> bins = firstFitDecr.firstFitDecreasing(artikelen);
-		for(Bin binLoop : bins){
-			for(Artikel artikel : binLoop.artikelen){
-				System.out.println(artikel.toString());
-			}
-		}
+//		ArrayList<Bin> bins = firstFitDecr.firstFitDecreasing(artikelen);
+//		for(Bin binLoop : bins){
+//			for(Artikel artikel : binLoop.artikelen){
+//				System.out.println(artikel.toString());
+//			}
+//		}
 		
 	}
 }
