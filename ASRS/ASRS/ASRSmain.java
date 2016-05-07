@@ -27,8 +27,14 @@ public class ASRSmain {
 //                main.close();
 //                t.stop();
       
-        ArrayList bestelling = XmlImport.XmlImportFromFile("/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml");
-        System.out.print(bestelling);
+        //ArrayList bestelling = XmlImport.XmlImportFromFile("/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml");
+        ArrayList gegevens = XmlImport.XmlImportGegevensFromFile("/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml");
+        ArrayList bestelling2 = XmlImport.XmlImportBestellingFromFile("/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml");
+        
+        //System.out.println(bestelling);
+        System.out.println(gegevens);
+        System.out.println(bestelling2);
+        
         Scherm scherm = new Scherm();
         
         

@@ -19,8 +19,8 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author ace
  */
 public class XmlImport {
-    private ArrayList<String> contactGegevens2;
-    private ArrayList bestelling;
+    private static ArrayList contactGegevens2;
+    private static ArrayList bestelling2;
     
     public static ArrayList XmlImportFromFile(String bestandslocatie){
     
@@ -151,27 +151,30 @@ public class XmlImport {
     } catch (Exception e) {
         e.printStackTrace();
     }
-        
-        list.add(contactGegevens);
-        list.add(bestelling);
-        
     
-        //DebugPrint
-        //System.out.println(contactGegevens);
-        //System.out.print(bestelling);
+    
+        contactGegevens2 = contactGegevens;
+        bestelling2 = bestelling;
+        list.add(contactGegevens);
+        list.add(bestelling);        
+
         
         return list;
 }
     
-    public ArrayList XmlImportGegevensFromFile(String bestandslocatie, Order order){
-        ArrayList lijst = XmlImportFromFile(bestandslocatie);
-        List gegevens = lijst.get(0);
-        
+    
+    //Gebruikt de functie hierboven en geeft alleen een arraylist met contactgegevens terug
+    public static ArrayList XmlImportGegevensFromFile(String bestandslocatie){
+        XmlImportFromFile(bestandslocatie);
+        return contactGegevens2;        
         
     }
     
-    
+//Gebruikt de functie hierboven en geeft alleen een arraylist met artikelen terug
+    public static ArrayList XmlImportBestellingFromFile(String bestandslocatie){
+        XmlImportFromFile(bestandslocatie);
+        return bestelling2;
+    }
+
+        
 }
-
-    
-
