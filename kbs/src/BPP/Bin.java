@@ -18,5 +18,15 @@ public class Bin {
 		}
 		return ruimte;
 	}
+	
+	@Override
+	public String toString(){
+		String _return = "";
+		for(Artikel artikel : artikelen){
+			_return += artikel.getHoogte() + " ";
+//			_return += artikel;
+		}
+		return _return;
+	}
 }
 // commit test

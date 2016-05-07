@@ -17,22 +17,15 @@ public class Algoritme {
 		System.out.println(Arrays.toString(artikelen.toArray()));
 		ArrayList<Bin> bins = new ArrayList<Bin>(); 
 		bins.add(new Bin());
-//		for(Artikel artikel : artikelen){
-//			for(Bin bin : bins){
-//				if(artikel.getHoogte() <= bin.getRuimte()){
-//					bin.artikelen.add(artikel);
-//				}else{
-//					bins.add(new Bin());
-//				}
-//			}
-//		}
-//		for(Bin bin : bins){
-//			for(Artikel artikel : artikelen){
-//				if(artikel.getHoogte() <= bin.getRuimte()){
-//					bin.artikelen.add(artikel);
-//				}
-//			}
-//		}
+		for(Artikel artikel : artikelen){
+			for(Bin bin : bins){
+				if(artikel.getHoogte() <= bin.getRuimte()){
+					bin.artikelen.add(artikel);
+				}
+			}
+			bins.add(new Bin());
+		}
+		bins.remove(bins.size() - 1);
 		return bins;
 	}
 }
