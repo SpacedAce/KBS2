@@ -2,9 +2,14 @@ package BPP;
 
 public class Artikel implements java.lang.Comparable<Artikel>{
 	private int hoogte;
+	private boolean verwerkt = false;
 
 	public Artikel(int hoogte) {
 		this.hoogte = hoogte;
+	}
+	
+	public void gevuld(){
+		verwerkt = true;
 	}
 	
 	@Override
@@ -20,6 +25,10 @@ public class Artikel implements java.lang.Comparable<Artikel>{
 
 	public int getHoogte() {
 		return hoogte;
+	}
+
+	public boolean isVerwerkt() {
+		return verwerkt;
 	}
 }
 // commit test

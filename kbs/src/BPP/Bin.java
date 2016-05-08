@@ -19,6 +19,10 @@ public class Bin {
 		return ruimte;
 	}
 	
+	public ArrayList<Artikel> getArtikelen(){
+		return artikelen;
+	}
+	
 	@Override
 	public String toString(){
 		String _return = "";
