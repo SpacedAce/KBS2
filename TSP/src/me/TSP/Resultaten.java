@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Resultaten extends JFrame implements ActionListener
@@ -31,7 +32,7 @@ public class Resultaten extends JFrame implements ActionListener
         ArrayList<Algoritme> algoritmes = tsp.getAllAlgoritme();
         for(int i = 0; i < tsp.getAllAlgoritme().size(); i++)
         {
-            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getAftstand()*50, algoritmes.get(i).getBestOrderLocaties().size(), new Boolean(false)};
+            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getAftstand()*50 , algoritmes.get(i).getBestOrderLocaties().size(), new Boolean(false)};
             tabelModel.addRow(objs);
         }
 

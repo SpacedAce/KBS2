@@ -43,7 +43,8 @@ public class SimulatiePanel extends JPanel
         dataPanel.add(new Label("Ordernr: " + algoritme.getSimulatieNr()));
         dataPanel.add(new Label("Aantal producten: " + (algoritme.getBestOrderLocaties().size()-2)));
         dataPanel.add(new Label("Tijd: " + algoritme.getTime()));
-        dataPanel.add(new Label("Afstand: " + algoritme.getAftstand()*50));
+        String s = String.format("%.2f", algoritme.getAftstand()*50);
+        dataPanel.add(new Label("Afstand: " + s));
     }
 
     public void paintComponent(Graphics g)
