@@ -27,11 +27,20 @@ public class Resultaten extends JFrame implements ActionListener
         setLayout(new FlowLayout());
 
         //Data Object for JTable
-        DefaultTableModel tabelModel = new DefaultTableModel(columnName,0);
+        DefaultTableModel tabelModel = new DefaultTableModel(columnName,0)
+        {
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                if(colIndex != 5) {
+                    return false;
+                }
+                return true;
+            }
+        };
+
         ArrayList<Algoritme> algoritmes = tsp.getAllAlgoritme();
         for(int i = 0; i < tsp.getAllAlgoritme().size(); i++)
         {
-            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getAftstand()*50, algoritmes.get(i).getBestOrderLocaties().size(), new Boolean(false)};
+            Object[] objs = {algoritmes.get(i).getSimulatieNr(), algoritmes.get(i).getName(), algoritmes.get(i).getTime(), algoritmes.get(i).getAftstand()*50, algoritmes.get(i).getBestOrderLocaties().size()-2, new Boolean(false)};
             tabelModel.addRow(objs);
         }
 

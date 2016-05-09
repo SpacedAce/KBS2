@@ -29,7 +29,7 @@ public class WillekeurigAlgoritme extends Algoritme {
             (getBestOrderLocaties().get(a).y - getBestOrderLocaties().get(a+1).y) * (getBestOrderLocaties().get(a).y - getBestOrderLocaties().get(a+1).y)
             );
         }
-        setAftstand(Math.round(distance));
+        setAftstand(distance);
         //END TIMER
         long totalTime = System.nanoTime() / 1000 - startTime;
         setTime(totalTime);

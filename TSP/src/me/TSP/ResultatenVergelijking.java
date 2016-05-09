@@ -15,7 +15,13 @@ public class ResultatenVergelijking extends JDialog
         super(frame,true);
         setSize(500,400);
         setLayout(new FlowLayout());
-        resultatenTable = new JTable(data, columnName);
+        resultatenTable = new JTable(data, columnName)
+        {
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+
         JScrollPane scrollPane = new JScrollPane(resultatenTable);
         scrollPane.setVisible(true);
         resultatenTable.setFillsViewportHeight(true);
