@@ -231,12 +231,14 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             } else if(tsp.getLocaties().size() == 1) {
                 errorMessage.append("U heeft maar 1 locatie opgegeven\n");
             } else {
+                int simNum = tsp.getAlgoritme().get(0).getSimulatieNr();
                 for (int i = 0; i < tsp.getAlgoritme().size(); i++) {
                     tsp.getAlgoritme().get(i).calculate(tsp.getLocaties());
                     tsp.getAllAlgoritme().add(tsp.getAlgoritme().get(i));
-                    tsp.getAlgoritme().remove(i);
-                    Simulatie simulatie = new Simulatie(tsp.getLocaties(), createSimulationNumber()-1, tsp);
+                    //tsp.getAlgoritme().remove(i);
                 }
+                Simulatie simulatie = new Simulatie(tsp.getLocaties(),simNum , tsp);
+                tsp.getAlgoritme().clear();
             }
         }
     }
