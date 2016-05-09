@@ -51,7 +51,7 @@ import java.util.Enumeration;
 
 		//First, Find an instance of serial port as set in PORT_NAMES.
                 System.out.println("Trying on:");
-		while (portEnum.hasMoreElements()) {
+		while (portEnum.hasMoreElements() || portId ==null) {
 			CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
 			for (String portName : PORT_NAMES) {
                             System.out.println("    " + portName);
@@ -59,12 +59,13 @@ import java.util.Enumeration;
 					portId = currPortId;
                                         System.out.println("Device found on " + portId.getName());
 					break;
-				}
+                                        
+				}else{
+                                    System.out.println("Could not find COM port.");
+                                    
+                                }
+                             
 			}
-		}
-		if (portId == null) {
-			System.out.println("Could not find COM port.");
-			return;
 		}
 
 		try {
@@ -84,6 +85,8 @@ import java.util.Enumeration;
 			input = new BufferedReader(new InputStreamReader(serialPort.getInputStream()));
 			output = serialPort.getOutputStream();
                         System.out.println("Opening the Stream");
+                        System.out.println(input);
+                        System.out.println(output);
 
 			// add event listeners
                         System.out.println("Adding Listeners");
