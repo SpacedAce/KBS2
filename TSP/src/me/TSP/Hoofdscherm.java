@@ -217,6 +217,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
                 } else {
                     xInput.setBackground(Color.RED);
                     yInput.setBackground(Color.RED);
+                    errorMessage.append("Coordinaten moeten tussen 0 en 6 liggen\n");
                 }
             } catch (NumberFormatException nf) {
                 xInput.setBackground(Color.RED);
