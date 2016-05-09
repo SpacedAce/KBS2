@@ -29,8 +29,8 @@ public class SimulatiePanel extends JPanel
         this.tsp = tsp;
         try
         {
-            vakImg = ImageIO.read(new File("src/me/TSP/images/border.png"));
-            artikelImg = ImageIO.read(new File("src/me/TSP/images/locatie.png"));
+            vakImg = ImageIO.read(new File("../TSP/src/me/TSP/images/border.png"));
+            artikelImg = ImageIO.read(new File("../TSP/src/me/TSP/images/locatie.png"));
         }
         catch (IOException e)
         {
