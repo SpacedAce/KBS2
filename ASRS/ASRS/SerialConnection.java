@@ -85,6 +85,8 @@ import java.util.Enumeration;
 			input = new BufferedReader(new InputStreamReader(serialPort.getInputStream()));
 			output = serialPort.getOutputStream();
                         System.out.println("Opening the Stream");
+                        System.out.println(input);
+                        System.out.println(output);
 
 			// add event listeners
                         System.out.println("Adding Listeners");
