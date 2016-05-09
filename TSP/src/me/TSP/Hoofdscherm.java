@@ -211,6 +211,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
                 } else {
                     xInput.setBackground(Color.RED);
                     yInput.setBackground(Color.RED);
+                    errorMessage.append("Coordinaten moeten tussen 0 en 6 liggen\n");
                 }
             } catch (NumberFormatException nf) {
                 xInput.setBackground(Color.RED);
@@ -224,12 +225,14 @@ public class Hoofdscherm extends JFrame implements ActionListener {
            /* } else if(tsp.getAlgoritme().size() == 1) {
                 errorMessage.setText("");*/
             } else {
+                int simNum = tsp.getAlgoritme().get(0).getSimulatieNr();
                 for (int i = 0; i < tsp.getAlgoritme().size(); i++) {
                     tsp.getAlgoritme().get(i).calculate(tsp.getLocaties());
                     tsp.getAllAlgoritme().add(tsp.getAlgoritme().get(i));
-                    tsp.getAlgoritme().remove(i);
+                    //tsp.getAlgoritme().remove(i);
                 }
-                Simulatie simulatie = new Simulatie(tsp.getLocaties(), createSimulationNumber()-1, tsp);
+                Simulatie simulatie = new Simulatie(tsp.getLocaties(),simNum , tsp);
+                tsp.getAlgoritme().clear();
             }
         }
     }

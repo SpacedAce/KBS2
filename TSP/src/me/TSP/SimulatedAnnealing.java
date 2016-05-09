@@ -1,6 +1,5 @@
 package me.TSP;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -9,70 +8,66 @@ import java.util.Collections;
  */
 public class SimulatedAnnealing extends Algoritme
 {
-    public SimulatedAnnealing() {
+    public SimulatedAnnealing()
+    {
         super.setName("Simulated Annealing");
     }
 
     @Override
-    public void calculate(ArrayList<Vak> locaties)
-    {
+    public void calculate(ArrayList<Vak> locaties) {
         long startTime = System.nanoTime() / 1000;
-        double temp = 10000;
-        double coolingRate = 0.003;
+        double startTemp = 10000;
+        double cooling = 0.003;
 
-        ArrayList<Vak> currentSolution = new ArrayList<>();
-        currentSolution.addAll(locaties);
-
+        ArrayList<Vak> startOplossing = new ArrayList<>();
+        startOplossing.addAll(locaties);
+        Collections.shuffle(startOplossing);
         Vak zeroPoint = new Vak(0, 5, 99);
-        currentSolution.add(0, zeroPoint);
-        currentSolution.add(currentSolution.size(), zeroPoint);
-
-        float distance = 0;
-        for(int d = 0; d < currentSolution.size()-1; d++)
-        {
-            distance += Math.sqrt((currentSolution.get(d).x - currentSolution.get(d+1).x) * (currentSolution.get(d).x - currentSolution.get(d+1).x) +
-                    (currentSolution.get(d).y - currentSolution.get(d+1).y) * (currentSolution.get(d).y - currentSolution.get(d+1).y)
-            );
-        }
-        System.out.println("Start size: " + distance*50);
+        startOplossing.add(0, zeroPoint);
+        startOplossing.add(startOplossing.size(), zeroPoint);
         ArrayList<Vak> best = new ArrayList<>();
-        best.addAll(currentSolution);
+        best.addAll(startOplossing);
 
-        while(temp > 1)
+        while(startTemp > 1)
         {
-            System.out.println(temp);
-            ArrayList<Vak> newSolution = new ArrayList<>();
-            newSolution.addAll(currentSolution);
-
-            int locatie1 = (int) (newSolution.size()-1 * Math.random());
-            int locatie2 = (int) (newSolution.size()-1 * Math.random());
-            if(locatie1 == 0 || locatie2 == 0)
+            ArrayList<Vak> newOplossing = new ArrayList<>();
+            newOplossing.addAll(startOplossing);
+            int randomIndex1 = (int)(newOplossing.size()-1 * Math.random());
+            int randomIndex2 = (int)(newOplossing.size()-1 * Math.random());
+            if(randomIndex1 == 0 || randomIndex2 == 0)
             {
                 continue;
             }
-
-            Collections.swap(newSolution, locatie1, locatie2);
+            Collections.swap(newOplossing, randomIndex1, randomIndex2);
 
             float currentDistance = 0;
-            for(int currentIndex = 0; currentIndex < currentSolution.size()-1; currentIndex++)
+            for(int currentIndex = 0; currentIndex < startOplossing.size()-1; currentIndex++)
             {
-                currentDistance += Math.sqrt((currentSolution.get(currentIndex).x - currentSolution.get(currentIndex+1).x) * (currentSolution.get(currentIndex).x - currentSolution.get(currentIndex+1).x) +
-                        (currentSolution.get(currentIndex).y - currentSolution.get(currentIndex+1).y) * (currentSolution.get(currentIndex).y - currentSolution.get(currentIndex+1).y)
+                currentDistance += Math.sqrt((startOplossing.get(currentIndex).x - startOplossing.get(currentIndex+1).x) * (startOplossing.get(currentIndex).x - startOplossing.get(currentIndex+1).x) +
+                        (startOplossing.get(currentIndex).y - startOplossing.get(currentIndex+1).y) * (startOplossing.get(currentIndex).y - startOplossing.get(currentIndex+1).y)
                 );
             }
 
             float newDistance = 0;
-            for(int newIndex = 0; newIndex < newSolution.size()-1; newIndex++)
+            for(int newIndex = 0; newIndex < newOplossing.size()-1; newIndex++)
             {
-                newDistance += Math.sqrt((newSolution.get(newIndex).x - newSolution.get(newIndex+1).x) * (newSolution.get(newIndex).x - newSolution.get(newIndex+1).x) +
-                        (newSolution.get(newIndex).y - newSolution.get(newIndex+1).y) * (newSolution.get(newIndex).y - newSolution.get(newIndex+1).y)
+                newDistance += Math.sqrt((newOplossing.get(newIndex).x - newOplossing.get(newIndex+1).x) * (newOplossing.get(newIndex).x - newOplossing.get(newIndex+1).x) +
+                        (newOplossing.get(newIndex).y - newOplossing.get(newIndex+1).y) * (newOplossing.get(newIndex).y - newOplossing.get(newIndex+1).y)
                 );
             }
-            //System.out.println(currentDistance*50 + " : " + newDistance*50);
-            if(acceptanceProbability(currentDistance, newDistance, temp) > Math.random())
+
+            if(acceptanceProbability(currentDistance, newDistance, startTemp) > Math.random())
             {
-                currentSolution.clear();
-                currentSolution.addAll(newSolution);
+                startOplossing.clear();
+                startOplossing.addAll(newOplossing);
+            }
+
+            float currentDistanceCheck = 0;
+            for(int currentIndex = 0; currentIndex < startOplossing.size()-1; currentIndex++)
+            {
+                currentDistanceCheck += Math.sqrt((startOplossing.get(currentIndex).x - startOplossing.get(currentIndex+1).x) * (startOplossing.get(currentIndex).x - startOplossing.get(currentIndex+1).x) +
+                        (startOplossing.get(currentIndex).y - startOplossing.get(currentIndex+1).y) * (startOplossing.get(currentIndex).y - startOplossing.get(currentIndex+1).y)
+                );
             }
             float bestDistance = 0;
             for(int bestIndex = 0; bestIndex < best.size()-1; bestIndex++)
@@ -81,13 +76,15 @@ public class SimulatedAnnealing extends Algoritme
                         (best.get(bestIndex).y - best.get(bestIndex+1).y) * (best.get(bestIndex).y - best.get(bestIndex+1).y)
                 );
             }
-            if(currentDistance < bestDistance)
+            if(currentDistanceCheck < bestDistance)
             {
                 best.clear();
-                best.addAll(currentSolution);
+                best.addAll(startOplossing);
             }
-            temp *= 1-coolingRate;
+
+            startTemp *= 1-cooling;
         }
+
         float bestDistance = 0;
         for(int bestIndex = 0; bestIndex < best.size()-1; bestIndex++)
         {
@@ -97,17 +94,17 @@ public class SimulatedAnnealing extends Algoritme
         }
         getBestOrderLocaties().addAll(best);
         setAftstand(bestDistance);
-        System.out.println("Final solution distance: " + bestDistance*50);
         long totalTime = System.nanoTime() / 1000 - startTime;
         setTime(totalTime);
+
     }
 
-    public double acceptanceProbability(float energy, float newEnergy, double temperature) {
+    public double acceptanceProbability(float oldDistance, float newDistance, double temperature) {
         // If the new solution is better, accept it
-        if (newEnergy < energy) {
+        if (newDistance < oldDistance) {
             return 1.0;
         }
         // If the new solution is worse, calculate an acceptance probability
-        return Math.exp((energy - newEnergy) / temperature);
+        return Math.exp((oldDistance - newDistance) / temperature);
     }
 }
