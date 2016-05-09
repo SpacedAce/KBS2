@@ -3,7 +3,7 @@ package BPP;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
+@XmlRootElement																						//is een xml root element
 public class Artikel implements java.lang.Comparable<Artikel>{
 	private int hoogte;
 

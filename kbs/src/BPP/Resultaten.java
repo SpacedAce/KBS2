@@ -8,35 +8,35 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "Resultaten")
-@XmlAccessorType (XmlAccessType.FIELD)
+@XmlRootElement(name = "Resultaten")								//geeft dat aan dat het de root is met de naam 'resultaten'
+@XmlAccessorType (XmlAccessType.FIELD)								//geeft aan dat er attributen in kunnen
 public class Resultaten {
-	float time;
-	List<Bin> bins = new ArrayList<Bin>();
+	float time;														
 	int aantalBins;
+	List<Bin> bin = new ArrayList<Bin>();
 
 	public int getAantalBins(){
-		return bins.size();
+		return bin.size();											//zet het aantal bins dat gebruikt wordt in de reultaten van het xml bestand
 	}
 	
 	public void setAantalBins(){
-		this.aantalBins = bins.size();
+		this.aantalBins = bin.size();								//berekend het aantal bins
 	}
 	
 	public List<Bin> getBins(){
-		return bins;
+		return bin;													//geeft een lijst van bins terug
 	}
 	
-	@XmlElement(name = "bin")
+	@XmlElement(name = "bin")										//geeft aan dat bin een element is en geen attribuut
 	public void setBins(ArrayList<Bin> bins){
-		this.bins = bins;
+		this.bin = bins;											//--
 	}
 	
 	public float getTime() {
-		return time;
+		return time;												//geeft de verwerktijd van de simulatie terug
 	}
 
 	public void setTime(float time) {
-		this.time = time;
+		this.time = time;											//--
 	}
 }
