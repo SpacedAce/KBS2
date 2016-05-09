@@ -149,6 +149,7 @@ public class XmlImport {
         saxParser.parse(bestandslocatie, handler);
  
     } catch (Exception e) {
+        System.out.println("Crap");
         e.printStackTrace();
     }
     

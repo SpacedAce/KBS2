@@ -135,6 +135,41 @@ public class hoofdscherm extends JFrame implements ActionListener{
 		artikelen.add(artikel1);
 		artikelen.add(artikel2);
 		artikelen.add(artikel3);
+		JButton opslaanTest = new JButton("test");
+		opslaanTest.setBounds(this.getWidth() - 200, this.getHeight() - 100, 150, 50);
+		opslaanTest.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == opslaanTest){
+					ResultatenOpslaan resultaten = new ResultatenOpslaan();
+					System.out.println("test");
+					ArrayList<Bin> bins = new ArrayList<Bin>();
+					Bin bin1 = new Bin();
+					Bin bin2 = new Bin();
+					Bin bin3 = new Bin();
+					Artikel artikel1 = new Artikel();
+					Artikel artikel2 = new Artikel();
+					artikel1.setHoogte(7);
+					artikel2.setHoogte(5);
+					ArrayList<Artikel> artikelen_ = new ArrayList<Artikel>();
+					artikelen_.add(artikel1);
+					artikelen_.add(artikel2);
+					bin1.artikelen.add(artikel1);
+					bin1.artikelen.add(artikel2);
+					bin2.artikelen.add(artikel1);
+					bin1.setRuimte();
+					bin2.setRuimte();
+					bin3.setRuimte();
+					bins.add(bin1);
+					bins.add(bin2);
+					bins.add(bin3);
+					resultaten.saveToXML(10, bins);
+				}
+			}
+			
+		});
+		add(opslaanTest);
 //		ArrayList<Bin> bins = firstFitDecr.firstFitDecreasing(artikelen);
 //		for(Bin binLoop : bins){
 //			for(Artikel artikel : binLoop.artikelen){

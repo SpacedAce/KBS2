@@ -1,15 +1,28 @@
 package BPP;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
 public class Artikel implements java.lang.Comparable<Artikel>{
 	private int hoogte;
 	private boolean verwerkt = false;
 
+	public Artikel(){
+		
+	}
+	
 	public Artikel(int hoogte) {
 		this.hoogte = hoogte;
 	}
 	
+<<<<<<< HEAD
 	public void gevuld(){
 		verwerkt = true;
+=======
+	public void setHoogte(int hoogte){
+		this.hoogte = hoogte;
+>>>>>>> origin/Dev
 	}
 	
 	@Override

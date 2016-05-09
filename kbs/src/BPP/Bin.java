@@ -1,12 +1,20 @@
 package BPP;
 
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 
+@XmlRootElement(name = "bin")
+@XmlAccessorType (XmlAccessType.FIELD)
 public class Bin {
-	private int hoogte;
-	public ArrayList<Artikel> artikelen = new ArrayList<Artikel>();
-	private int ruimte;
-			
+	int hoogte;
+	@XmlTransient
+	ArrayList<Artikel> artikelen = new ArrayList<Artikel>();
+	int ruimte;
+	
 	public Bin() {
 		this.hoogte = 12;
 		this.ruimte = hoogte;
@@ -19,8 +27,15 @@ public class Bin {
 		return ruimte;
 	}
 	
+<<<<<<< HEAD
 	public ArrayList<Artikel> getArtikelen(){
 		return artikelen;
+=======
+	public void setRuimte(){
+		for(Artikel artikel : artikelen){
+			this.ruimte -= artikel.getHoogte();
+		}
+>>>>>>> origin/Dev
 	}
 	
 	@Override
