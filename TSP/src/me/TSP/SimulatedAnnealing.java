@@ -16,58 +16,57 @@ public class SimulatedAnnealing extends Algoritme
     @Override
     public void calculate(ArrayList<Vak> locaties) {
         long startTime = System.nanoTime() / 1000;
-        double temp = 10000;
-        double coolingRate = 0.003;
+        double startTemp = 10000;
+        double cooling = 0.003;
 
-        ArrayList<Vak> currentSolution = new ArrayList<>();
-        currentSolution.addAll(locaties);
-        Collections.shuffle(currentSolution);
+        ArrayList<Vak> startOplossing = new ArrayList<>();
+        startOplossing.addAll(locaties);
+        Collections.shuffle(startOplossing);
         Vak zeroPoint = new Vak(0, 5, 99);
-        currentSolution.add(0, zeroPoint);
-        currentSolution.add(currentSolution.size(), zeroPoint);
+        startOplossing.add(0, zeroPoint);
+        startOplossing.add(startOplossing.size(), zeroPoint);
         ArrayList<Vak> best = new ArrayList<>();
-        best.addAll(currentSolution);
+        best.addAll(startOplossing);
 
-        while(temp > 1)
+        while(startTemp > 1)
         {
-            System.out.println(temp);
-            ArrayList<Vak> newSolution = new ArrayList<>();
-            newSolution.addAll(currentSolution);
-            int random1 = (int)(newSolution.size()-1 * Math.random());
-            int random2 = (int)(newSolution.size()-1 * Math.random());
-            if(random1 == 0 || random2 == 0)
+            ArrayList<Vak> newOplossing = new ArrayList<>();
+            newOplossing.addAll(startOplossing);
+            int randomIndex1 = (int)(newOplossing.size()-1 * Math.random());
+            int randomIndex2 = (int)(newOplossing.size()-1 * Math.random());
+            if(randomIndex1 == 0 || randomIndex2 == 0)
             {
                 continue;
             }
-            Collections.swap(newSolution, random1, random2);
+            Collections.swap(newOplossing, randomIndex1, randomIndex2);
 
             float currentDistance = 0;
-            for(int currentIndex = 0; currentIndex < currentSolution.size()-1; currentIndex++)
+            for(int currentIndex = 0; currentIndex < startOplossing.size()-1; currentIndex++)
             {
-                currentDistance += Math.sqrt((currentSolution.get(currentIndex).x - currentSolution.get(currentIndex+1).x) * (currentSolution.get(currentIndex).x - currentSolution.get(currentIndex+1).x) +
-                        (currentSolution.get(currentIndex).y - currentSolution.get(currentIndex+1).y) * (currentSolution.get(currentIndex).y - currentSolution.get(currentIndex+1).y)
+                currentDistance += Math.sqrt((startOplossing.get(currentIndex).x - startOplossing.get(currentIndex+1).x) * (startOplossing.get(currentIndex).x - startOplossing.get(currentIndex+1).x) +
+                        (startOplossing.get(currentIndex).y - startOplossing.get(currentIndex+1).y) * (startOplossing.get(currentIndex).y - startOplossing.get(currentIndex+1).y)
                 );
             }
 
             float newDistance = 0;
-            for(int newIndex = 0; newIndex < newSolution.size()-1; newIndex++)
+            for(int newIndex = 0; newIndex < newOplossing.size()-1; newIndex++)
             {
-                newDistance += Math.sqrt((newSolution.get(newIndex).x - newSolution.get(newIndex+1).x) * (newSolution.get(newIndex).x - newSolution.get(newIndex+1).x) +
-                        (newSolution.get(newIndex).y - newSolution.get(newIndex+1).y) * (newSolution.get(newIndex).y - newSolution.get(newIndex+1).y)
+                newDistance += Math.sqrt((newOplossing.get(newIndex).x - newOplossing.get(newIndex+1).x) * (newOplossing.get(newIndex).x - newOplossing.get(newIndex+1).x) +
+                        (newOplossing.get(newIndex).y - newOplossing.get(newIndex+1).y) * (newOplossing.get(newIndex).y - newOplossing.get(newIndex+1).y)
                 );
             }
 
-            if(acceptanceProbability(currentDistance, newDistance, temp) > Math.random())
+            if(acceptanceProbability(currentDistance, newDistance, startTemp) > Math.random())
             {
-                currentSolution.clear();
-                currentSolution.addAll(newSolution);
+                startOplossing.clear();
+                startOplossing.addAll(newOplossing);
             }
 
             float currentDistanceCheck = 0;
-            for(int currentIndex = 0; currentIndex < currentSolution.size()-1; currentIndex++)
+            for(int currentIndex = 0; currentIndex < startOplossing.size()-1; currentIndex++)
             {
-                currentDistanceCheck += Math.sqrt((currentSolution.get(currentIndex).x - currentSolution.get(currentIndex+1).x) * (currentSolution.get(currentIndex).x - currentSolution.get(currentIndex+1).x) +
-                        (currentSolution.get(currentIndex).y - currentSolution.get(currentIndex+1).y) * (currentSolution.get(currentIndex).y - currentSolution.get(currentIndex+1).y)
+                currentDistanceCheck += Math.sqrt((startOplossing.get(currentIndex).x - startOplossing.get(currentIndex+1).x) * (startOplossing.get(currentIndex).x - startOplossing.get(currentIndex+1).x) +
+                        (startOplossing.get(currentIndex).y - startOplossing.get(currentIndex+1).y) * (startOplossing.get(currentIndex).y - startOplossing.get(currentIndex+1).y)
                 );
             }
             float bestDistance = 0;
@@ -80,10 +79,10 @@ public class SimulatedAnnealing extends Algoritme
             if(currentDistanceCheck < bestDistance)
             {
                 best.clear();
-                best.addAll(currentSolution);
+                best.addAll(startOplossing);
             }
 
-            temp *= 1-coolingRate;
+            startTemp *= 1-cooling;
         }
 
         float bestDistance = 0;
@@ -100,12 +99,12 @@ public class SimulatedAnnealing extends Algoritme
 
     }
 
-    public double acceptanceProbability(float energy, float newEnergy, double temperature) {
+    public double acceptanceProbability(float oldDistance, float newDistance, double temperature) {
         // If the new solution is better, accept it
-        if (newEnergy < energy) {
+        if (newDistance < oldDistance) {
             return 1.0;
         }
         // If the new solution is worse, calculate an acceptance probability
-        return Math.exp((energy - newEnergy) / temperature);
+        return Math.exp((oldDistance - newDistance) / temperature);
     }
 }
