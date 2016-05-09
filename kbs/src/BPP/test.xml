@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Resultaten>
+    <time>10.0</time>
+    <bins>
+        <hoogte>12</hoogte>
+        <ruimte>0</ruimte>
+    </bins>
+    <bins>
+        <hoogte>12</hoogte>
+        <ruimte>5</ruimte>
+    </bins>
+    <bins>
+        <hoogte>12</hoogte>
+        <ruimte>12</ruimte>
+    </bins>
+    <aantalBins>3</aantalBins>
+</Resultaten>
