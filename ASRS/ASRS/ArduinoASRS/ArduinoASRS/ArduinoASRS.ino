@@ -48,20 +48,7 @@ void interrupt1()
 void interrupt2()
 {  
   Serial.println("Interrupt 2");
-  
-  
-  
-    
-  
-  
-  if((millis() - lastDebounceTime) > debounceDelay)
-  {
-    //banaan
-    Serial.println("Interrupt 2 Debounced");
-  }
-    
-  
-  
+ 
 }
 
 
