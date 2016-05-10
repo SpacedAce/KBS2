@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement																						//is een xml root element
 public class Artikel implements java.lang.Comparable<Artikel>{
 	private int hoogte;
+	private boolean verwerkt = false;
 
 	public Artikel(){
 		
@@ -15,8 +16,13 @@ public class Artikel implements java.lang.Comparable<Artikel>{
 		this.hoogte = hoogte;
 	}
 	
+<<<<<<< HEAD
+	public void gevuld(){
+		verwerkt = true;
+=======
 	public void setHoogte(int hoogte){
 		this.hoogte = hoogte;
+>>>>>>> origin/Dev
 	}
 	
 	@Override
@@ -32,6 +38,10 @@ public class Artikel implements java.lang.Comparable<Artikel>{
 
 	public int getHoogte() {
 		return hoogte;
+	}
+
+	public boolean isVerwerkt() {
+		return verwerkt;
 	}
 }
 // commit test

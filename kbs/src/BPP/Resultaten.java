@@ -1,5 +1,15 @@
 package BPP;
 
+<<<<<<< HEAD
+import javax.swing.*;
+
+public class Resultaten extends JFrame{
+	public Resultaten(){
+		setSize(1280,  720);
+		setTitle("Resultaten");
+		setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+=======
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -37,6 +47,11 @@ public class Resultaten {
 	}
 
 	public void setTime(float time) {
+<<<<<<< HEAD
 		this.time = time;											//--
+=======
+		this.time = time;
+>>>>>>> origin/Dev
+>>>>>>> origin/Dev
 	}
 }

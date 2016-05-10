@@ -27,10 +27,15 @@ public class Bin {
 		return ruimte;												//geeft de overgebleven ruimte terug
 	}
 	
+<<<<<<< HEAD
+	public ArrayList<Artikel> getArtikelen(){
+		return artikelen;
+=======
 	public void setRuimte(){
 		for(Artikel artikel : artikelen){							//foreach loop door de arraylist van artikelen
 			this.ruimte -= artikel.getHoogte();						//bereken de overgebleven ruimte
 		}
+>>>>>>> origin/Dev
 	}
 	
 	@Override														

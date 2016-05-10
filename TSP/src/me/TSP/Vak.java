@@ -18,6 +18,8 @@ public class Vak
         this.vakNr = vakNr;
     }
 
+
+
     @Override
     public String toString(){
         return x + ", " + y;
