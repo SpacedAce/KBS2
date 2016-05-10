@@ -45,7 +45,7 @@ public class TwoOptAlgoritme extends Algoritme
             currentSolution.add(0, newStartPoint);
         }
         newSolution.add(zeroPoint);
-        getBestOrderLocaties().addAll(newSolution);
+        //getBestOrderLocaties().addAll(newSolution);
         float distance = 0;
         for(int bestIndex = 0; bestIndex < newSolution.size()-1; bestIndex++)
         {
@@ -53,8 +53,60 @@ public class TwoOptAlgoritme extends Algoritme
                     (newSolution.get(bestIndex).y - newSolution.get(bestIndex+1).y) * (newSolution.get(bestIndex).y - newSolution.get(bestIndex+1).y)
             );
         }
-        setAftstand(distance);
+        //setAftstand(distance);
+        System.out.println(distance*50);
+        int improved = 0;
+        while(improved < 20)
+        {
+            for(int i = 0; i < newSolution.size(); i++)
+            {
+                for(int k = i + 1; k < newSolution.size()-1; k++)
+                {
+                    ArrayList<Vak> improvedSolution = TwoOptSwap(newSolution, i, k);
+                    System.out.println("Out Locaties: " + improvedSolution);
+                    float improvedDistance = 0;
+                    for(int improvedIndex = 0; improvedIndex < improvedSolution.size()-1; improvedIndex++)
+                    {
+                        improvedDistance += Math.sqrt((improvedSolution.get(improvedIndex).x - improvedSolution.get(improvedIndex+1).x) * (improvedSolution.get(improvedIndex).x - improvedSolution.get(improvedIndex+1).x) +
+                                (improvedSolution.get(improvedIndex).y - improvedSolution.get(improvedIndex+1).y) * (improvedSolution.get(improvedIndex).y - improvedSolution.get(improvedIndex+1).y)
+                        );
+                    }
+                    if(improvedDistance < distance)
+                    {
+                        newSolution.clear();
+                        newSolution.addAll(improvedSolution);
+                    }
+                }
+            }
+            improved++;
+        }
+        System.out.println(distance*50);
+        for(int bestIndex = 0; bestIndex < newSolution.size()-1; bestIndex++)
+        {
+            distance += Math.sqrt((newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) * (newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) +
+                    (newSolution.get(bestIndex).y - newSolution.get(bestIndex+1).y) * (newSolution.get(bestIndex).y - newSolution.get(bestIndex+1).y)
+            );
+        }
         long totalTime = System.nanoTime() / 1000 - startTime;
         setTime(totalTime);
+    }
+
+    public ArrayList<Vak> TwoOptSwap(ArrayList<Vak> locs, int i, int k)
+    {
+        //System.out.println("Incoming locaties: " + locs);
+        ArrayList<Vak> newArray = new ArrayList<>();
+        for(int im = 0;  im < i+1; im++)
+        {
+            newArray.add(locs.get(im));
+        }
+        for(int im = k; im > i; im--)
+        {
+            newArray.add(locs.get(im));
+        }
+        for(int im = k+1; im < locs.size(); im++)
+        {
+            newArray.add(locs.get(im));
+        }
+        return newArray;
     }
 }
