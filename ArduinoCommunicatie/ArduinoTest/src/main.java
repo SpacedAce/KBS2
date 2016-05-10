@@ -14,7 +14,7 @@ public class main {
 	public static OutputStream output;
 	private static int c;
 	
-	public static void main(String[] ag) {
+	public static void main(String[] args) {
 
 
 		try {

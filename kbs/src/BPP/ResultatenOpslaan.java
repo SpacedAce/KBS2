@@ -3,19 +3,23 @@ package BPP;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 public class ResultatenOpslaan {
 	
-	public void saveToXML(float time, ArrayList<Bin> bins){
+	public void saveToXML(float time, ArrayList<Bin> bins, Algoritme gekozenAlgoritme, int aantalPakketten, int totaleGrootte){
 		
 		Resultaten resultaten = new Resultaten();	//creeer resultaten object
 		resultaten.setTime(time);					//zet tijd
 		resultaten.setBins(bins);					//zet array bins in resultaten object
 		resultaten.setAantalBins();
+		resultaten.setGekozenAlgoritme(gekozenAlgoritme);
+		resultaten.setAantalPakketten(aantalPakketten);
+		resultaten.setTotaleGrootte(totaleGrootte);
+		resultaten.setVerlorenRuimte();
+		
 		try{
 			String path = "C:/Users/Kevin/Documents/GitHub/KBS2/kbs/src/BPP/Resultaten/";		//Zet bestandspad
 			int files = new File(path).listFiles().length;										//Kijk hoeveel bestanden er in de map staan
