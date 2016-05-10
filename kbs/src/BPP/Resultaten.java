@@ -1,15 +1,6 @@
 package BPP;
 
-<<<<<<< HEAD
 import javax.swing.*;
-
-public class Resultaten extends JFrame{
-	public Resultaten(){
-		setSize(1280,  720);
-		setTitle("Resultaten");
-		setLayout(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-=======
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -21,6 +12,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Resultaten")								//geeft dat aan dat het de root is met de naam 'resultaten'
 @XmlAccessorType (XmlAccessType.FIELD)								//geeft aan dat er attributen in kunnen
 public class Resultaten {
+	Algoritme gekozenAlgoritme;
+	int aantalPakketten;
+	int totaleGrootte;
+	int verlorenRuimte;
 	float time;														
 	int aantalBins;
 	List<Bin> bin = new ArrayList<Bin>();
@@ -47,11 +42,38 @@ public class Resultaten {
 	}
 
 	public void setTime(float time) {
-<<<<<<< HEAD
 		this.time = time;											//--
-=======
-		this.time = time;
->>>>>>> origin/Dev
->>>>>>> origin/Dev
+	}
+
+	public Algoritme getGekozenAlgoritme() {
+		return gekozenAlgoritme;
+	}
+
+	public void setGekozenAlgoritme(Algoritme gekozenAlgoritme) {
+		this.gekozenAlgoritme = gekozenAlgoritme;
+	}
+
+	public int getAantalPakketten() {
+		return aantalPakketten;
+	}
+
+	public void setAantalPakketten(int aantalPakketten) {
+		this.aantalPakketten = aantalPakketten;
+	}
+
+	public int getTotaleGrootte() {
+		return totaleGrootte;
+	}
+
+	public void setTotaleGrootte(int totaleGrootte) {
+		this.totaleGrootte = totaleGrootte;
+	}
+
+	public int getVerlorenRuimte() {
+		return verlorenRuimte;
+	}
+
+	public void setVerlorenRuimte() {
+		this.verlorenRuimte = (aantalBins * 12) - totaleGrootte + 1;
 	}
 }

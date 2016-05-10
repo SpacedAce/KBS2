@@ -17,25 +17,36 @@ public class Bin {
 	
 	public Bin() {
 		this.hoogte = 12;											//zet de standaard hoogte van de bin op 12
-		this.ruimte = hoogte;										//de hoogte van de bin is gelijk aan de hoogte, omdat er niks in zit
+		this.ruimte = 12;										//de hoogte van de bin is gelijk aan de hoogte, omdat er niks in zit
 	}
+	
+	public void addArtikel(Artikel artikel){
+		artikelen.add(artikel);
+	}
+	
+//	public int getRuimte(){
+//		for(Artikel artikel : this.artikelen){							//foreach loop door de arraylist van artikelen
+//			this.ruimte -= artikel.getHoogte();						//de overgebleven ruimte is de huidige ruimte min de hoogte van het artikel
+//		}
+//		return ruimte;												//geeft de overgebleven ruimte terug
+//	}
 	
 	public int getRuimte(){
-		for(Artikel artikel : artikelen){							//foreach loop door de arraylist van artikelen
-			this.ruimte -= artikel.getHoogte();						//de overgebleven ruimte is de huidige ruimte min de hoogte van het artikel
-		}
-		return ruimte;												//geeft de overgebleven ruimte terug
+		setRuimte();
+		return ruimte;
 	}
-	
-<<<<<<< HEAD
+
 	public ArrayList<Artikel> getArtikelen(){
 		return artikelen;
-=======
+	}
+	
 	public void setRuimte(){
+		int initialRuimte = 12;
+		int inhoud = 0;
 		for(Artikel artikel : artikelen){							//foreach loop door de arraylist van artikelen
-			this.ruimte -= artikel.getHoogte();						//bereken de overgebleven ruimte
+			inhoud += artikel.getHoogte();							//bereken de overgebleven ruimte
 		}
->>>>>>> origin/Dev
+		this.ruimte = (initialRuimte - inhoud);
 	}
 	
 	@Override														
@@ -45,6 +56,7 @@ public class Bin {
 			_return += artikel.getHoogte() + " ";					//voeg hoogte van het artikel toe aan returnwaarde
 //			_return += artikel;							
 		}
+//		_return += " Ruimte over: " + getRuimte();
 		return _return;												//geeft de returnwaarde terug
 	}
 }

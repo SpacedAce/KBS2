@@ -15,14 +15,13 @@ public class Artikel implements java.lang.Comparable<Artikel>{
 	public Artikel(int hoogte) {
 		this.hoogte = hoogte;
 	}
-	
-<<<<<<< HEAD
+
 	public void gevuld(){
 		verwerkt = true;
-=======
+	}
+	
 	public void setHoogte(int hoogte){
 		this.hoogte = hoogte;
->>>>>>> origin/Dev
 	}
 	
 	@Override

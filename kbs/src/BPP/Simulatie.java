@@ -3,12 +3,15 @@ package BPP;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 import javax.swing.*;
 
 public class Simulatie extends JFrame implements ActionListener{
 	JButton resultaten = new JButton();
+	ArrayList<Bin> bins = null;
+	int totaleGrootte;
 	public Simulatie(int aantalPakketten, Algoritme gekozenAlgoritme){
 		setTitle("BPP Simulatie - " + aantalPakketten + " pakketten - " + gekozenAlgoritme.getNaam());
 //		setTitle(this.getClass().getSimpleName());
@@ -23,22 +26,22 @@ public class Simulatie extends JFrame implements ActionListener{
 		JLabel time = new JLabel();
 		time.setBounds(this.getWidth() - 250, 175, 200, 25);
 		add(time);
-		resultaten.setText("Resultaten");
-		resultaten.setBounds(this.getWidth() - 158, this.getHeight() - 65, 140, 25);
-		resultaten.addActionListener(this);
-		add(resultaten);
+		
 		
 		ArrayList<Artikel> pakketten = new ArrayList<Artikel>();
 		for(int i = 0; i < aantalPakketten; i++){
 			pakketten.add(new Artikel(new Random().nextInt(11) + 1));
 		}
 
+		for(Artikel artikel : pakketten){
+			totaleGrootte += artikel.getHoogte();
+			
+		}
 //		int index = 0;
 //		for(Artikel pakket : pakketten){
 //			System.out.println((index++ + 1) + ": " + pakket.getHoogte());
 //		}
 		
-		ArrayList<Bin> bins = null;
 		if(gekozenAlgoritme.getNaam() == "First fit decreasing"){													//
 			bins = gekozenAlgoritme.firstFitDecreasing(pakketten);													//
 		}else if(gekozenAlgoritme.getNaam() == "Simpel gretig"){													//
@@ -51,14 +54,20 @@ public class Simulatie extends JFrame implements ActionListener{
 			bins = gekozenAlgoritme.simpelGretig(pakketten);														//
 		}																											//
 		int _aantalBins = 0;
+		System.out.println("debug");
+		Iterator<Bin> i = bins.iterator();
+		while(i.hasNext()){
+			Bin b = i.next();
+			if(b.getArtikelen().isEmpty()){
+				i.remove();
+			}
+		}
 		for(Bin bin : bins){
-			System.out.println(bin.toString());																		//test
+//			System.out.println(bin.toString());																		//test
 			if(!(bin.getArtikelen().isEmpty())){
 				_aantalBins++;
 			}
-			System.out.println(_aantalBins);
 		}
-		System.out.println("debug");
 		System.out.println("Aantal bins: " + _aantalBins);															//
 		String _bins = "" + _aantalBins + " bins";																	//
 		aantalBins.setText(_bins);																					//
@@ -66,15 +75,28 @@ public class Simulatie extends JFrame implements ActionListener{
 		System.out.println(elapsedTime + " milliseconden");															//
 		String timeLabel = "Tijd: " + elapsedTime / 1000 + " seconden";												//
 		time.setText(timeLabel);																					//
+		resultaten.setText("Resultaten");
+		resultaten.setBounds(this.getWidth() - 158, this.getHeight() - 65, 140, 25);
+		resultaten.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == resultaten){
+					System.out.println("test");
+					setVisible(false);
+					ResultatenOpslaan resultaten = new ResultatenOpslaan();
+					resultaten.saveToXML(elapsedTime, bins, gekozenAlgoritme, aantalPakketten, totaleGrootte);
+//					resultaten.setBins(bins);
+//					resultaten.setTime(elapsedTime);
+//					resultaten.setVisible(true);
+				}
+			}
+			
+		});
+		add(resultaten);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(arg0.getSource() == resultaten){
-			System.out.println("test");
-			setVisible(false);
-			Resultaten resultaten = new Resultaten();
-			resultaten.setVisible(true);
-		}
+		
 	}
 }
