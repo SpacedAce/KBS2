@@ -9,7 +9,7 @@ import java.util.Collections;
  */
 public class VolledigeEnumeratie extends Algoritme {
     int counter = 0;
-    ArrayList<Vak> best = new ArrayList<>();
+    ArrayList<ArrayList<Vak>> best = new ArrayList<>();
 
     public VolledigeEnumeratie() {
         super.setName("Volledige Enumeratie");
@@ -35,8 +35,24 @@ public class VolledigeEnumeratie extends Algoritme {
        else
        {
            System.out.println(loc);
+           best.add(loc);
            //for(int newLocIndex = 0; newLocIndex < )
+           for(int i = 0; i<loc.size(); i++){
+                
+           }
        }
     }
+    private double calculateDistance(ArrayList<Vak> a){
+        double sumDistance = 0;
+        for(int i = 0; i<a.size(); i++){
+            if(i!= a.size()-1) {
+                sumDistance += Math.sqrt(Math.pow((a.get(i).x) - (a.get(i + 1).x), 2) + Math.pow((a.get(i).x) - (a.get(i + 1).x), 2));
+            } else {
+                System.out.println("Done");
+            }
+        }
+        return sumDistance;
+    }
 }
+
 
