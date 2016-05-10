@@ -8,58 +8,52 @@ import java.util.Collections;
  */
 public class SimpelGretig extends Algoritme {
 
-    private Vak zeroPoint;
-    private ArrayList<Vak> tempLocaties;
-    private ArrayList<Vak> nieuweVolgorde;
-    private ArrayList<Vak> locaties;
-    private Vak dichtstbijzijnde;
-    private double dichtstAfstand;
-
     public SimpelGretig() {
         super.setName("Simpel Gretig");
-        zeroPoint = new Vak(0, 5, 99);
-        tempLocaties = new ArrayList<>();
-        nieuweVolgorde = new ArrayList<>();
-        dichtstAfstand = 999999999;
     }
 
+    @Override
     public void calculate(ArrayList<Vak> locaties) {
-        //START TIMER
         long startTime = System.nanoTime() / 1000;
-        this.locaties = locaties;
-        tempLocaties.addAll(locaties);
-        nieuweVolgorde.add(0, zeroPoint);
+        ArrayList<Vak> currentSolution = new ArrayList<>();
+        currentSolution.addAll(locaties);
 
-        for (int i = 0; i < locaties.size(); i++) {
-            while (tempLocaties.size() > 0) {
-                for (int k = 1; k < tempLocaties.size() + 1; k++) {
-                    int tempX1 = tempLocaties.get(i).x;
-                    int tempY1 = tempLocaties.get(i).y;
-                    if (k != tempLocaties.size()) {
-                        int tempX2 = tempLocaties.get(k).x;
-                        int tempY2 = tempLocaties.get(k).y;
-                        double tempSingleAfstand = Math.sqrt(Math.pow(tempX2 - tempX1, 2) + Math.pow(tempY2 - tempY1, 2));
-                        if (tempSingleAfstand < dichtstAfstand) {
-                            tempSingleAfstand = dichtstAfstand;
-                            dichtstbijzijnde = locaties.get(k);
-                        }
-                    }
+        Vak zeroPoint = new Vak(0, 5, 99);
+
+        ArrayList<Vak> newSolution = new ArrayList<>();
+        currentSolution.add(0,zeroPoint);
+        newSolution.add(0,zeroPoint);
+        while(currentSolution.size() > 1) {
+            int bestIndex = 1;
+            for (int i = 2; i < currentSolution.size(); i++)
+            {
+                double currentDistance = Math.sqrt((currentSolution.get(0).x - currentSolution.get(i).x) * (currentSolution.get(0).x - currentSolution.get(i).x) +
+                        (currentSolution.get(0).y - currentSolution.get(i).y) * (currentSolution.get(0).y - currentSolution.get(i).y)
+                );;
+                double currentBestDistance = Math.sqrt((currentSolution.get(0).x - currentSolution.get(bestIndex).x) * (currentSolution.get(0).x - currentSolution.get(bestIndex).x) +
+                        (currentSolution.get(0).y - currentSolution.get(bestIndex).y) * (currentSolution.get(0).y - currentSolution.get(bestIndex).y)
+                );;
+                if(currentDistance < currentBestDistance)
+                {
+                    bestIndex = i;
                 }
-                nieuweVolgorde.add(dichtstbijzijnde);
-                dichtstAfstand = 99999999;
-                tempLocaties.remove(i);
             }
+            newSolution.add(currentSolution.get(bestIndex));
+            Vak newStartPoint = currentSolution.get(bestIndex);
+            currentSolution.remove(bestIndex);
+            currentSolution.remove(0);
+            currentSolution.add(0, newStartPoint);
         }
-        nieuweVolgorde.add(nieuweVolgorde.size(), zeroPoint);
-        //getBestOrderLocaties().addAll(nieuweVolgorde);
-        for (int c = 0; c < nieuweVolgorde.size(); c++) {
-            System.out.println(nieuweVolgorde.get(c));
+        newSolution.add(zeroPoint);
+        getBestOrderLocaties().addAll(newSolution);
+        float distance = 0;
+        for(int bestIndex = 0; bestIndex < newSolution.size()-1; bestIndex++)
+        {
+            distance += Math.sqrt((newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) * (newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) +
+                    (newSolution.get(bestIndex).y - newSolution.get(bestIndex+1).y) * (newSolution.get(bestIndex).y - newSolution.get(bestIndex+1).y)
+            );
         }
-
-        //END TIMER
-        long totalTime = System.nanoTime() / 1000 - startTime;
-
-        setTime(totalTime);
+        setAftstand(distance);
     }
 }
 
