@@ -11,7 +11,14 @@ public class ASRS {
     private File pakbon;
     private File xmlOrder;
     
-    
+    /**
+     * filter de XML met XmlImport
+     * aan de hand van de XmlImportBestellingFromFile kunne de atikelgegevens opgehaald worden uit database
+     * 
+     * 
+     * 
+     * @param pakbon 
+     */
     
     
 
