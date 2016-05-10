@@ -12,46 +12,22 @@ public class ResultatenOpslaan {
 	
 	public void saveToXML(float time, ArrayList<Bin> bins){
 		
-		ArrayList<Bin> bins_ = new ArrayList<Bin>();
-		
-		for(Bin bin : bins){
-			
-		}
-		
-//		Artikelen artikelen = new Artikelen();
-//		ArrayList<Artikel> _artikelen = new ArrayList<Artikel>();
-//		
-//		Artikel artikel1 = new Artikel();		//creeer artikelen
-//		Artikel artikel2 = new Artikel();
-//		artikel1.setHoogte(10);					//zet hoogte
-//		artikel2.setHoogte(5);
-//		
-//		ArrayList<Bin> _bins = new ArrayList<Bin>();
-//		_bins.add(new Bin());					//creeer bins
-//		_bins.add(new Bin());
-//		
-//		_artikelen.add(artikel1);				//zet artikel1 in list
-//		Artikelen artikelen1 = new Artikelen();	//creeer artikelen houder
-//		artikelen1.setArtikelen(_artikelen);	//zet lijst artikelen in artikelen houder
-//		_bins.get(0).setArtikelen(artikelen1);	//zet artikelen houder in bin
-//		_artikelen.add(artikel2);				//voeg artikel 2 toe aan lijst
-//		Artikelen artikelen2 = new Artikelen();	//creeer nieuwe artikel houder
-//		artikelen2.setArtikelen(_artikelen);	//voeg bijgewerkte artikelen lijst toe aan artikkelen houder
-//		bins.get(1).setArtikelen(artikelen1);	//zet nieuwe artikelen houder in bin 2
-		
 		Resultaten resultaten = new Resultaten();	//creeer resultaten object
 		resultaten.setTime(time);					//zet tijd
 		resultaten.setBins(bins);					//zet array bins in resultaten object
 		resultaten.setAantalBins();
 		try{
-			File file = new File("C:/Users/Kevin/Documents/GitHub/KBS2/kbs/src/BPP/test.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(Resultaten.class);
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+			String path = "C:/Users/Kevin/Documents/GitHub/KBS2/kbs/src/BPP/Resultaten/";		//Zet bestandspad
+			int files = new File(path).listFiles().length;										//Kijk hoeveel bestanden er in de map staan
+			String filename = "resultaten" + (files + 1);										//genereer bestandsnaam
+			File file = new File(path + filename + ".xml");										//creëer bestand
+			JAXBContext jaxbContext = JAXBContext.newInstance(Resultaten.class);				//het object resultaten vertalen naar xml
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();							//object wat xml bestand genereerd
 			
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);					//opmaak van het xml bestand maken
 			
-			jaxbMarshaller.marshal(resultaten, file);
-			jaxbMarshaller.marshal(resultaten, System.out);
+			jaxbMarshaller.marshal(resultaten, file);											//genereren van het xml bestand
+			jaxbMarshaller.marshal(resultaten, System.out);										//weergeven van het xml bestand in de console
 		}
 		catch(JAXBException e){
 			e.printStackTrace();

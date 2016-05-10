@@ -6,6 +6,7 @@
 package ASRS;
 // Door: Jeroen Gerrese, s1097417, ICTM2b, WTJ01
 
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -21,7 +22,8 @@ import java.util.Enumeration;
  */
 
     public class SerialConnection implements SerialPortEventListener {
-	SerialPort serialPort;
+	
+        public SerialPort serialPort;
         
         /** The port we're normally going to use. */
 	private static final String PORT_NAMES[] = {
@@ -37,7 +39,7 @@ import java.util.Enumeration;
 	*/
 	private BufferedReader input;
 	/** The output stream to the port */
-	private OutputStream output;
+	private static OutputStream output;
 	/** Milliseconds to block while waiting for port open */
 	private static final int TIME_OUT = 2000;
 	/** Default bits per second for COM port. */
@@ -122,6 +124,15 @@ import java.util.Enumeration;
 			}
 		}
 		// Ignore all the other eventTypes, but you should consider the other ones.
+	}
+        
+        public static synchronized void writeData(String data) {
+		System.out.println("Sent: " + data);
+		try {
+			output.write(data.getBytes());
+		} catch (Exception e) {
+			System.out.println("could not write to port");
+		}
 	}
 
     public static String getNaam() {
