@@ -9,17 +9,15 @@ public class TSPMain
 {
     public static void main(String[] arg)
     {
-        TSP tsp = new TSP();
-        /*Vak een = new Vak(1, 1, 99);
-        Vak twee = new Vak(5, 1, 33);
-        Vak drie = new Vak(1, 5, 99);
-        Vak vier = new Vak(5, 5, 99);
+        //TSP tsp = new TSP();
+        Vak een = new Vak(4, 4, 99);
+        Vak twee = new Vak(2, 3, 33);
+        Vak drie = new Vak(4, 2, 99);
         ArrayList<Vak> locatia = new ArrayList<>();
         locatia.add(een);
         locatia.add(twee);
         locatia.add(drie);
-        locatia.add(vier);
-        TwoOptAlgoritme wille = new TwoOptAlgoritme();
-        wille.calculate(locatia);*/
+        VolledigeEnumeratie wille = new VolledigeEnumeratie();
+        wille.calculate(locatia);
     }
 }
