@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType (XmlAccessType.FIELD)								//geeft aan dat er attributen in kunnen
 public class Bin {
 	int hoogte;
-	@XmlTransient													//negeert de arraylist (voor een duidelijkere opmaak en laat onnodige informatie weg)
+//	@XmlTransient													//negeert de arraylist (voor een duidelijkere opmaak en laat onnodige informatie weg)
 	ArrayList<Artikel> artikelen = new ArrayList<Artikel>();		//aanmaken arralist met de naam artikelen
 	int ruimte;
 	
