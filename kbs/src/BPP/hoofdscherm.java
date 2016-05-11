@@ -139,21 +139,6 @@ public class hoofdscherm extends JFrame implements ActionListener{
 		resultaten.setBounds(this.getWidth() - 158, this.getHeight() - 65, 140, 25);
 		resultaten.addActionListener(this);
 		add(resultaten);
-//		ArrayList<Bin> bins = firstFitDecr.firstFitDecreasing(artikelen);
-//		for(Bin binLoop : bins){
-//			for(Artikel artikel : binLoop.artikelen){
-//				System.out.println(artikel.toString());
-//			}
-//		}
-		resultaten.setText("Resultaten");
-		resultaten.setBounds(this.getWidth() - 158, this.getHeight() - 65, 140, 25);
-		resultaten.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		add(resultaten);
 		
 	}
 	@Override

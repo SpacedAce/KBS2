@@ -85,6 +85,8 @@ public class Simulatie extends JFrame implements ActionListener{
 					setVisible(false);
 					ResultatenOpslaan resultaten = new ResultatenOpslaan();
 					resultaten.saveToXML(elapsedTime, bins, gekozenAlgoritme, aantalPakketten, totaleGrootte);
+					ResultatenScherm resultsScreen = new ResultatenScherm();
+					resultsScreen.setVisible(true);
 //					resultaten.setBins(bins);
 //					resultaten.setTime(elapsedTime);
 //					resultaten.setVisible(true);

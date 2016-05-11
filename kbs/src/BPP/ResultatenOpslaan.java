@@ -21,7 +21,8 @@ public class ResultatenOpslaan {
 		resultaten.setVerlorenRuimte();
 		
 		try{
-			String path = "C:/Users/Kevin/Documents/GitHub/KBS2/kbs/src/BPP/Resultaten/";		//Zet bestandspad
+			String path = System.getProperty("user.dir");
+			path += "/kbs/src/BPP/Resultaten/";
 			int files = new File(path).listFiles().length;										//Kijk hoeveel bestanden er in de map staan
 			String filename = "resultaten" + (files + 1);										//genereer bestandsnaam
 			File file = new File(path + filename + ".xml");										//creëer bestand
@@ -32,6 +33,7 @@ public class ResultatenOpslaan {
 			
 			jaxbMarshaller.marshal(resultaten, file);											//genereren van het xml bestand
 			jaxbMarshaller.marshal(resultaten, System.out);										//weergeven van het xml bestand in de console
+			System.out.println(file);
 		}
 		catch(JAXBException e){
 			e.printStackTrace();
