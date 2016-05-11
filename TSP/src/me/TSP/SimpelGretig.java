@@ -60,6 +60,7 @@ public class SimpelGretig extends Algoritme {
             );
         }
         setAftstand(distance);
+        setTime((System.nanoTime()-1000)-startTime);
     }
 }
 

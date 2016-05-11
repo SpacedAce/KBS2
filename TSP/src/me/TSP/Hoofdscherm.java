@@ -168,6 +168,9 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             //CHECK SIZE AND SELECTED ITEM FROM JCOMBOBOX
             int selectedIndex = selectCoordinates.getSelectedIndex();
             int size = selectCoordinates.getItemCount();
+            if(size == 0){
+                errorMessage.append("Er zijn geen coordinaten meer aanwezig.");
+            }
             try {
                 for (int i = 0; i < size; i++) {
                     if (i == selectedIndex) {
@@ -180,7 +183,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
                     }
                 }
             } catch (ArrayIndexOutOfBoundsException ai) {
-                System.out.println("Geen items meer");
+                //NO ACTION NEEDED.
             }
             //WHEN BUTTON "VOEG TOE" WAS PRESSED
         } else if (e.getSource() == addCoordinates) {
@@ -205,6 +208,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
                     } else if (!coorCheck) {
                         xInput.setBackground(Color.RED);
                         yInput.setBackground(Color.RED);
+                        errorMessage.append("De gekozen coordinaten zijn al aanwezig");
                     }
                 } else {
                     xInput.setBackground(Color.RED);
@@ -214,6 +218,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
             } catch (NumberFormatException nf) {
                 xInput.setBackground(Color.RED);
                 yInput.setBackground(Color.RED);
+                errorMessage.append("Invoer velden zijn leeg");
             }
             //WHEN BUTTON "START SIMULATIE" WAS PRESSED
         } else if (e.getSource() == startSimulation) {
