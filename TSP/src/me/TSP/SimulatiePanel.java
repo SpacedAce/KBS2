@@ -29,13 +29,14 @@ public class SimulatiePanel extends JPanel
         this.tsp = tsp;
         try
         {
-            vakImg = ImageIO.read(new File("../TSP/src/me/TSP/images/border.png"));
-            artikelImg = ImageIO.read(new File("../TSP/src/me/TSP/images/locatie.png"));
+        vakImg  = ImageIO.read(getClass().getResource("images/border.png"));
+        artikelImg = ImageIO.read(getClass().getResource("images/locatie.png"));
         }
-        catch (IOException e)
+        catch(IOException e)
         {
-            e.printStackTrace();
+
         }
+
         JPanel dataPanel = new JPanel();
         add(dataPanel, BorderLayout.SOUTH);
         dataPanel.setLayout(new GridLayout(5,1));

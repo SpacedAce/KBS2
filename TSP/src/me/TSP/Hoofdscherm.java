@@ -160,6 +160,7 @@ public class Hoofdscherm extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        errorMessage.setText("");
         //WHEN BUTTON "BEKIJK RESULTATEN" WAS PRESSED
         if (e.getSource() == showResults) {
             System.out.println("Show results");
