@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Resultaten>
+    <gekozenAlgoritme>
+        <naam>Simpel gretig</naam>
+    </gekozenAlgoritme>
+    <aantalPakketten>20</aantalPakketten>
+    <totaleGrootte>112</totaleGrootte>
+    <verlorenRuimte>21</verlorenRuimte>
+    <time>1.0</time>
+    <aantalBins>11</aantalBins>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>0</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>0</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>0</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>2</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>4</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>2</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>3</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>2</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>4</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>1</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>6</ruimte>
+    </bin>
+</Resultaten>

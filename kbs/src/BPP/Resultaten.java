@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "Resultaten")								//geeft dat aan dat het de root is met de naam 'resultaten'
-@XmlAccessorType (XmlAccessType.FIELD)								//geeft aan dat er attributen in kunnen
+@XmlRootElement(name = "Resultaten")								//Geeft dat aan dat het de root is met de naam 'Resultaten'.
+@XmlAccessorType (XmlAccessType.FIELD)								//Geeft aan dat er attributen in kunnen.
 public class Resultaten {
 	Algoritme gekozenAlgoritme;
 	int aantalPakketten;
@@ -21,59 +21,59 @@ public class Resultaten {
 	List<Bin> bin = new ArrayList<Bin>();
 
 	public int getAantalBins(){
-		return bin.size();											//zet het aantal bins dat gebruikt wordt in de reultaten van het xml bestand
+		return bin.size();											//Zet het aantal bins dat gebruikt wordt in de reultaten van het XML-bestand.
 	}
 	
 	public void setAantalBins(){
-		this.aantalBins = bin.size();								//berekend het aantal bins
+		this.aantalBins = bin.size();								//Berekent het aantal bins.
 	}
 	
 	public List<Bin> getBins(){
-		return bin;													//geeft een lijst van bins terug
+		return bin;													//Geeft een lijst van bins terug.
 	}
 	
-	@XmlElement(name = "bin")										//geeft aan dat bin een element is en geen attribuut
+	@XmlElement(name = "bin")										//Geeft aan dat bin een element is en geen attribuut.
 	public void setBins(ArrayList<Bin> bins){
-		this.bin = bins;											//--
+		this.bin = bins;											
 	}
 	
 	public float getTime() {
-		return time;												//geeft de verwerktijd van de simulatie terug
+		return time;												//Geeft de verwerktijd van de simulatie terug.
 	}
 
 	public void setTime(float time) {
-		this.time = time;											//--
+		this.time = time;											//Zet de verwerktijd van de simulatie.
 	}
 
 	public Algoritme getGekozenAlgoritme() {
-		return gekozenAlgoritme;
+		return gekozenAlgoritme;									//Geeft het door de gebruiker geselecteerde algortime terug.
 	}
 
 	public void setGekozenAlgoritme(Algoritme gekozenAlgoritme) {
-		this.gekozenAlgoritme = gekozenAlgoritme;
+		this.gekozenAlgoritme = gekozenAlgoritme;					//Zet het geselecteerde algortime welke gebruikt gaat worden voor de simulatie.
 	}
 
 	public int getAantalPakketten() {
-		return aantalPakketten;
+		return aantalPakketten;										//Geeft het aantal pakketten terug.
 	}
 
 	public void setAantalPakketten(int aantalPakketten) {
-		this.aantalPakketten = aantalPakketten;
+		this.aantalPakketten = aantalPakketten;						//Zet het aantal pakketten dat gebruikt gaat worden in de simulatie
 	}
 
 	public int getTotaleGrootte() {
-		return totaleGrootte;
+		return totaleGrootte;										//Geeft de grootte van alle pakketten (bij elkaar opgeteld) terug.
 	}
 
 	public void setTotaleGrootte(int totaleGrootte) {
-		this.totaleGrootte = totaleGrootte;
+		this.totaleGrootte = totaleGrootte;							//Zet de totale grootte van de pakketten (bij elkaar opgeteld).
 	}
 
 	public int getVerlorenRuimte() {
-		return verlorenRuimte;
+		return verlorenRuimte;										//Geeft de ruimte terug die niet meer gevuld kon worden door artikelen.
 	}
 
 	public void setVerlorenRuimte() {
-		this.verlorenRuimte = (aantalBins * 12) - totaleGrootte + 1;
+		this.verlorenRuimte = (aantalBins * 12) - totaleGrootte + 1;	//Zet de verloren ruimte door het aantal bin te vermenigvulding met de grootte van de bin en daar de totale grootte van de pakketten van af te trekken.
 	}
 }
