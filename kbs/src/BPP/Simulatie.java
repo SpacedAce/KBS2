@@ -54,7 +54,7 @@ public class Simulatie extends JFrame implements ActionListener{
 			bins = gekozenAlgoritme.simpelGretig(pakketten);														//
 		}																											//
 		int _aantalBins = 0;
-		System.out.println("debug");
+//		System.out.println("debug");
 		Iterator<Bin> i = bins.iterator();
 		while(i.hasNext()){
 			Bin b = i.next();
@@ -81,7 +81,7 @@ public class Simulatie extends JFrame implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == resultaten){
-					System.out.println("test");
+//					System.out.println("test");
 					setVisible(false);
 					ResultatenOpslaan resultaten = new ResultatenOpslaan();
 					resultaten.saveToXML(elapsedTime, bins, gekozenAlgoritme, aantalPakketten, totaleGrootte);

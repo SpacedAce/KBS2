@@ -3,6 +3,7 @@ package BPP;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 
 public class Algoritme extends Timer{
 	private String naam;
@@ -10,6 +11,7 @@ public class Algoritme extends Timer{
 	long startTime;
 	long endTime;
 	float elapsedTime;
+//	boolean binIsVol;
 	
 	public String getBeschrijving(){
 		return beschrijving;
@@ -53,7 +55,7 @@ public class Algoritme extends Timer{
 		bins.add(new Bin());															//add 1st bin
 		for(Artikel artikel : artikelen){												//loop 1st arraylist
 			for(Bin bin : bins){														//loop 2nd arraylist
-				if(artikel.getHoogte() <= bin.getRuimte() && !(artikel.isVerwerkt())){								//check if product fits the bin
+				if(artikel.getHoogte() <= bin.getRuimte() && !(artikel.isVerwerkt())){	//check if product fits the bin
 					bin.addArtikel(artikel);											//add product to bin
 					artikel.gevuld();
 				}
@@ -67,23 +69,38 @@ public class Algoritme extends Timer{
 	}
 	
 	public ArrayList<Bin> fullBin(ArrayList<Artikel> artikelen){
-		startTime = startTimer();														//get start time
-		ArrayList<Bin> bins = new ArrayList<Bin>(); 									//create bins arraylist
-		bins.add(new Bin());															//add 1st bin
-		
-		//process list of products
-		
-		endTime = endTimer();															//get end time
-		elapsedTime = calculateTime(startTime, endTime);								//calculate elapsed time
-		return bins;																	//return bins list
+		startTime = startTimer();																		//Zet de starttijd van de simulatie.
+		Collections.sort(artikelen);																	//Sorteert de ArrayList van groot naar klein.
+		ArrayList<Bin> bins = new ArrayList<Bin>();														//Maakt een nieuwe ArrayList bins aan.
+		bins.add(new Bin());																			//Voegt de eerste bin toe.
+		for(Artikel artikel : artikelen){																//Foreach-loop door de eerste ArrayList.
+			if(!(artikel.isVerwerkt())){																//Als een artikel nog niet verwerkt, dan geldt de if-statement.
+				for(Bin bin : bins){																	//Foreach-loop door de tweede ArrayList.
+					if((artikel.getHoogte() == bin.getRuimte()) && !(artikel.isVerwerkt())){			//Als de grootte van het artikel gelijk is aan de beschikbare ruimte en het artikel is nog niet verwerkt, dan geldt de if-statement.
+						bin.addArtikel(artikel);														//Voegt het artikel toe aan de bin.
+						artikel.gevuld();																//Laat weten dat het artikel verwerkt is en niet meer gebruikt kan worden in de foreach-loop.
+//						System.out.println("grootte van product (toegevoegd): " + artikel.getHoogte());
+//						System.out.println("uiteindelijke overgebleven ruimte: " + bin.getRuimte());
+					}else if((artikel.getHoogte() < bin.getRuimte()) && !(artikel.isVerwerkt())){		//Als de grootte van het artikel kleiner is dan de beschikbare ruimte en het artikel is nog niet verwerkt, dan geldt de if-statement.
+						bin.addArtikel(artikel);														//Voegt het artikel toe aan de bin.
+						artikel.gevuld();																//Laat weten dat het artikel verwerkt is en niet meer gebruikt kan worden in de foreach-loop.
+//						System.out.println("grootte van product: " + artikel.getHoogte());
+//						System.out.println("overgebleven ruimte: " + bin.getRuimte());
+					}else{
+					}	
+				}
+			}
+			bins.add(new Bin());																		//Voegt een bin toe als de vorige bin vol is of niet meer bijgevuld kan worden.
+		}
+		endTime = endTimer();																			//Zet de eindtijd van de simulatie.
+		elapsedTime = calculateTime(startTime, endTime);												//Berekent de verstreken tijd met de starttijd en de eindtijd.
+		return bins;																					//Geeft een lijst van alle gevulde bins terug.
 	}
 	
 	public ArrayList<Bin> volledigeEnum(ArrayList<Artikel> artikelen){
 		startTime = startTimer();														//get start time
 		ArrayList<Bin> bins = new ArrayList<Bin>(); 									//create bins arraylist
 		bins.add(new Bin());															//add 1st bin
-		
-		//process list of products
 		
 		endTime = endTimer();															//get end time
 		elapsedTime = calculateTime(startTime, endTime);								//calculate elapsed time
@@ -94,4 +111,3 @@ public class Algoritme extends Timer{
 		return elapsedTime;
 	}
 }
-// commit test

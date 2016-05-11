@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Resultaten>
+    <gekozenAlgoritme>
+        <naam>Full bin packing</naam>
+    </gekozenAlgoritme>
+    <aantalPakketten>10</aantalPakketten>
+    <totaleGrootte>43</totaleGrootte>
+    <verlorenRuimte>6</verlorenRuimte>
+    <time>1.0</time>
+    <aantalBins>4</aantalBins>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>0</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>0</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>0</ruimte>
+    </bin>
+    <bin>
+        <hoogte>12</hoogte>
+        <ruimte>6</ruimte>
+    </bin>
+</Resultaten>

@@ -31,10 +31,7 @@ public class Bin {
 //		return ruimte;												//geeft de overgebleven ruimte terug
 //	}
 	
-	public int getRuimte(){
-		setRuimte();
-		return ruimte;
-	}
+	
 
 	public ArrayList<Artikel> getArtikelen(){
 		return artikelen;
@@ -47,6 +44,11 @@ public class Bin {
 			inhoud += artikel.getHoogte();							//bereken de overgebleven ruimte
 		}
 		this.ruimte = (initialRuimte - inhoud);
+	}
+	
+	public int getRuimte(){
+		setRuimte();
+		return ruimte;
 	}
 	
 	@Override														
