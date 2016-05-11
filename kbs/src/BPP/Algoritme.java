@@ -11,7 +11,6 @@ public class Algoritme extends Timer{
 	long startTime;
 	long endTime;
 	float elapsedTime;
-//	boolean binIsVol;
 	
 	public String getBeschrijving(){
 		return beschrijving;
@@ -73,29 +72,86 @@ public class Algoritme extends Timer{
 		Collections.sort(artikelen);																	//Sorteert de ArrayList van groot naar klein.
 		ArrayList<Bin> bins = new ArrayList<Bin>();														//Maakt een nieuwe ArrayList bins aan.
 		bins.add(new Bin());																			//Voegt de eerste bin toe.
-		for(Artikel artikel : artikelen){																//Foreach-loop door de eerste ArrayList.
-			if(!(artikel.isVerwerkt())){																//Als een artikel nog niet verwerkt, dan geldt de if-statement.
-				for(Bin bin : bins){																	//Foreach-loop door de tweede ArrayList.
-					if((artikel.getHoogte() == bin.getRuimte()) && !(artikel.isVerwerkt())){			//Als de grootte van het artikel gelijk is aan de beschikbare ruimte en het artikel is nog niet verwerkt, dan geldt de if-statement.
-						bin.addArtikel(artikel);														//Voegt het artikel toe aan de bin.
-						artikel.gevuld();																//Laat weten dat het artikel verwerkt is en niet meer gebruikt kan worden in de foreach-loop.
-//						System.out.println("grootte van product (toegevoegd): " + artikel.getHoogte());
-//						System.out.println("uiteindelijke overgebleven ruimte: " + bin.getRuimte());
-					}else if((artikel.getHoogte() < bin.getRuimte()) && !(artikel.isVerwerkt())){		//Als de grootte van het artikel kleiner is dan de beschikbare ruimte en het artikel is nog niet verwerkt, dan geldt de if-statement.
-						bin.addArtikel(artikel);														//Voegt het artikel toe aan de bin.
-						artikel.gevuld();																//Laat weten dat het artikel verwerkt is en niet meer gebruikt kan worden in de foreach-loop.
-//						System.out.println("grootte van product: " + artikel.getHoogte());
-//						System.out.println("overgebleven ruimte: " + bin.getRuimte());
-					}else{
-					}	
+		ArrayList<Artikel> gesorteerd = new ArrayList<>();
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 12) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 11) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 1) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 10) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 2) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 9) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 3) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 8) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 4) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 7) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 5) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel artikel : artikelen){
+			if((artikel.getHoogte() == 6) && !(artikel.isVerwerkt())){
+				gesorteerd.add(artikel);
+			}
+		}
+		for(Artikel sort : gesorteerd){
+			if(!(sort.isVerwerkt())){
+				for(Bin bin : bins){
+					if((sort.getHoogte() == bin.getRuimte()) && !(sort.isVerwerkt())){			//Als de grootte van het artikel gelijk is aan de beschikbare ruimte en het artikel is nog niet verwerkt, dan geldt de if-statement.
+						bin.addArtikel(sort);													//Voegt het artikel toe aan de bin.
+						sort.gevuld();															//Laat weten dat het artikel verwerkt is en niet meer gebruikt kan worden in de foreach-loop.
+					}else if((sort.getHoogte() < bin.getRuimte()) && !(sort.isVerwerkt())){		//Als de grootte van het artikel kleiner is dan de beschikbare ruimte en het artikel is nog niet verwerkt, dan geldt de if-statement.
+						bin.addArtikel(sort);													//Voegt het artikel toe aan de bin.
+						sort.gevuld();															//Laat weten dat het artikel verwerkt is en niet meer gebruikt kan worden in de foreach-loop.
+					}
 				}
 			}
-			bins.add(new Bin());																		//Voegt een bin toe als de vorige bin vol is of niet meer bijgevuld kan worden.
+			bins.add(new Bin());
 		}
-		endTime = endTimer();																			//Zet de eindtijd van de simulatie.
-		elapsedTime = calculateTime(startTime, endTime);												//Berekent de verstreken tijd met de starttijd en de eindtijd.
-		return bins;																					//Geeft een lijst van alle gevulde bins terug.
+		endTime = endTimer();																	//Zet de eindtijd van de simulatie.
+		elapsedTime = calculateTime(startTime, endTime);										//Berekent de verstreken tijd met de starttijd en de eindtijd.
+		return bins;																			//Geeft een lijst van alle gevulde bins terug.
 	}
+	
 	
 	public ArrayList<Bin> volledigeEnum(ArrayList<Artikel> artikelen){
 		startTime = startTimer();														//get start time

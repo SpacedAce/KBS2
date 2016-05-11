@@ -34,6 +34,11 @@ public class Artikel implements java.lang.Comparable<Artikel>{
 			return -1;		//het artikel schuift een plaats op naar beneden in de lijst
 		}
 	}
+	
+	@Override
+	public String toString(){
+		return("grootte: " + this.hoogte);
+	}
 
 	public int getHoogte() {
 		return hoogte;
@@ -43,4 +48,3 @@ public class Artikel implements java.lang.Comparable<Artikel>{
 		return verwerkt;
 	}
 }
-// commit test
