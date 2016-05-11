@@ -5,12 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Jeroen on 4-5-2016.
- */
 public class CheckBoxError extends JDialog implements ActionListener{
     private JButton sluiten;
-    private JTextArea waarschuwing;
+    private JTextArea warning;
 
     public CheckBoxError(JFrame frame){
         super(frame, true);
@@ -18,11 +15,11 @@ public class CheckBoxError extends JDialog implements ActionListener{
         setLayout(new FlowLayout());
         setResizable(false);
 
-        waarschuwing = new JTextArea("Er is geen algoritme geselecteerd. \nSelecteer een algoritme om door te gaan.");
-        waarschuwing.setOpaque(false);
-        waarschuwing.setEditable(false);
-        waarschuwing.setFocusable(false);
-        add(waarschuwing);
+        warning = new JTextArea("Er is geen algoritme geselecteerd. \nSelecteer een algoritme om door te gaan.");
+        warning.setOpaque(false);
+        warning.setEditable(false);
+        warning.setFocusable(false);
+        add(warning);
 
         sluiten = new JButton("Sluiten");
         add(sluiten);

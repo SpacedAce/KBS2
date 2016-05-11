@@ -6,9 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-/**
- * Created by Kevin on 29-4-2016.
- */
 public class Hoofdscherm extends JFrame implements ActionListener {
 
     //DEFINE SCREEN ELEMENTS

@@ -5,9 +5,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-/**
- * Created by Kevin on 29-4-2016.
- */
 public class Simulatie extends JFrame
 {
     public Simulatie(ArrayList<Vak> locaties, int simulatieNr, TSP tsp)

@@ -4,9 +4,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * Created by Kevin on 29-4-2016.
- */
 public class VolledigeEnumeratie extends Algoritme {
 
     ArrayList<Vak> best = new ArrayList<>();
@@ -16,8 +13,8 @@ public class VolledigeEnumeratie extends Algoritme {
     }
 
     @Override
-    public void calculate(ArrayList<Vak> locaties)
-    {
+    //CALCULATE ALGORITHM: ROUTE, TIME AND DISTANCE
+    public void calculate(ArrayList<Vak> locaties) {
         long startTime = System.nanoTime() / 1000;
         Vak zeropoint = new Vak(0,5);
         locaties.add(0,zeropoint);
@@ -29,9 +26,8 @@ public class VolledigeEnumeratie extends Algoritme {
         long totalTime = System.nanoTime() / 1000 - startTime;
         setTime(totalTime);
     }
-
-    public void iteration(ArrayList<Vak> loc, int t)
-    {
+    //FUNCTION WHICH SWAPS ARRAYLIST FOR EVERY POSSIBLE COMBINATION ARRAYLIST
+    public void iteration(ArrayList<Vak> loc, int t) {
        if(t < loc.size()-1)
        {
            for(int i = t; i < loc.size()-1; ++i)
@@ -40,9 +36,7 @@ public class VolledigeEnumeratie extends Algoritme {
                iteration(loc, t+1);
                Collections.swap(loc,t,i);
            }
-       }
-       else
-       {
+       } else {
            //System.out.println(loc);
            if(best.size() != 0) {
                double bestDistance = calculateDistance(best);
@@ -52,14 +46,12 @@ public class VolledigeEnumeratie extends Algoritme {
                    best.clear();
                    best.addAll(loc);
                }
-           }
-           else
-           {
+           } else {
                best.addAll(loc);
            }
        }
     }
-
+    //THIS FUNCTIONS CALCULATES DISTANCE BETWEEN VAK ELEMENTS IN INCOMING ARRAYLIST
     private double calculateDistance(ArrayList<Vak> a){
         double sumDistance = 0;
         for(int i = 0; i < a.size()-1; i++){
