@@ -1,3 +1,5 @@
+package ArduLink.src;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -7,12 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import org.zu.ardulink.Link;
 import org.zu.ardulink.gui.ConnectionPanel;
 import org.zu.ardulink.gui.PWMController;
+import sun.awt.image.ImageWatched.Link;
 
 
 public class Tutorial1 extends JFrame {

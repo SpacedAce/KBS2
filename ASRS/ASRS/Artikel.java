@@ -10,38 +10,34 @@ package ASRS;
  *
  * @author ace
  */
-public class Artikel {
+public class Artikel extends Vak{
     
-    private Vak vak;
-    private int artikelnummer;
+    private int artikelID;
     private String naam;
-    private int lengte;
     private int breedte;
     private int hoogte;
+    private Vak vak;
     
     
     
     //Constructors
-    public Artikel(int artikelnummer, String naam, int lengte, int breedte, int hoogte, Vak vak) {
-        this.artikelnummer = artikelnummer;
+    public Artikel(int artikelID, String naam, int breedte, int hoogte, int locatiex, int locatiey) {
+        setCoordinaat_X(locatiex);
+        setCoordinaat_Y(locatiey);
+        this.artikelID = artikelID;
         this.naam = naam;
-        this.lengte = lengte;
         this.breedte = breedte;
         this.hoogte = hoogte;
         this.vak = vak;
     }
 
     //Setters
-    public void setArtikelnummer(int artikelnummer) {
-        this.artikelnummer = artikelnummer;
+    public void setArtikelnummer(int artikelID) {
+        this.artikelID = artikelID;
     }
 
     public void setNaam(String naam) {
         this.naam = naam;
-    }
-
-    public void setLengte(int lengte) {
-        this.lengte = lengte;
     }
 
     public void setBreedte(int breedte) {
@@ -60,7 +56,7 @@ public class Artikel {
 
     @Override
     public String toString() {
-        return "Artikel{" + "vak=" + vak + ", artikelnummer=" + artikelnummer + ", naam=" + naam + ", lengte=" + lengte + ", breedte=" + breedte + ", hoogte=" + hoogte + '}';
+        return "Artikel(" +  "artikelID=" + artikelID + ", naam=" + naam + ", breedte=" + breedte + ", hoogte=" + hoogte + '}';
     }
 
     

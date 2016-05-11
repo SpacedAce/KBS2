@@ -33,16 +33,10 @@ public class ASRSmain {
 //		System.out.println("Thread Started");
 //                
 //                Scherm scherm = new Scherm();
-      
-        ArrayList bestelling = XmlImport.XmlImportFromFile("/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml");
-        ArrayList gegevens = XmlImport.XmlImportGegevensFromFile("/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml");
-        ArrayList bestelling2 = XmlImport.XmlImportBestellingFromFile("/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml");
-        
-        System.out.println(bestelling);
-        System.out.println(gegevens);
-        System.out.println(bestelling2);
-        
-        Scherm scherm = new Scherm();
+        String locatie = "/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml";
+        ASRS asrs = new ASRS(locatie);
+                
+        //Scherm scherm = new Scherm();
         
         
     }
