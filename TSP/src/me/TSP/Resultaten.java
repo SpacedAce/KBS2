@@ -25,6 +25,7 @@ public class Resultaten extends JFrame implements ActionListener
         //setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("TSP Simulatie Resultaten");
         setLayout(new FlowLayout());
+        setResizable(false);
 
         //Data Object for JTable
         DefaultTableModel tabelModel = new DefaultTableModel(columnName,0)
