@@ -19,8 +19,8 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author ace
  */
 public class XmlImport {
-    private static ArrayList contactGegevens2;
-    private static ArrayList bestelling2;
+    private static ArrayList<String> contactGegevens2;
+    private static ArrayList<String> bestelling2;
     
     public static ArrayList XmlImportFromFile(String bestandslocatie){
     

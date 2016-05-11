@@ -16,16 +16,25 @@ public class ASRS
     private static final String driverName = "com.mysql.jdbc.Driver";
     
     public ASRS(String bestandslocatie) throws SQLException
-    {
+    { 
+        //XML importeren en in ArrayList plaatsen.
         ArrayList bestelling = XmlImport.XmlImportFromFile(bestandslocatie);
         ArrayList gegevens = XmlImport.XmlImportGegevensFromFile(bestandslocatie);
         ArrayList bestelling2 = XmlImport.XmlImportBestellingFromFile(bestandslocatie);
         
-        System.out.println(bestelling);
+        //System.out.println(bestelling);
         
         try
         {
             Class.forName(driverName).newInstance();
+            ArrayList<Artikel> artikelen = Database.getArtikelen(bestelling2);
+            System.out.println(artikelen);
+            
+                for(Artikel artikel : artikelen)
+                {
+                    System.out.println(artikel.toString());
+                }
+            
             
         }catch (ClassNotFoundException e){
             System.err.println(e.getMessage());
@@ -35,11 +44,7 @@ public class ASRS
             System.err.println(e.getMessage());
         }
         
-        ArrayList<Artikel> artikelen = Database.getArtikelen();
-        for(Artikel artikel : artikelen)
-        {
-            System.out.println(artikel.toString());
-        }
+        
         
     }
     

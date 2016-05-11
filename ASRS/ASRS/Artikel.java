@@ -52,6 +52,28 @@ public class Artikel extends Vak{
         this.vak = vak;
     }
     
+    
+    //Getters
+    public int getArtikelID() {
+        return artikelID;
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public int getBreedte() {
+        return breedte;
+    }
+
+    public int getHoogte() {
+        return hoogte;
+    }
+
+    public Vak getVak() {
+        return vak;
+    }    
+    
     //toString
 
     @Override

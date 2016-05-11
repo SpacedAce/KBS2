@@ -16,8 +16,7 @@ public class Database
     private static final String serverUrl = "//86.86.212.234";
     private static final String serverPort = "3306";
     private static final String dbms = "mysql";
-    private static final String driverName = "com.mysql.jdbc.Driver";
-    
+    private static final String driverName = "com.mysql.jdbc.Driver";   
     
     
     
@@ -53,12 +52,17 @@ public class Database
                     , connectionProperties);
             
             System.out.println(".....Done!");
-            
+            //debug
+            System.out.println("succes"+ dbconnection);
             return dbconnection;
             
         }catch(SQLException e)
-        {
+        {            
+            System.out.println(".....Failed!");            
             System.err.println(e.getMessage());
+            //debug
+            System.out.println("Fail"+ dbconnection);
+            
         }
         
         
@@ -69,36 +73,37 @@ public class Database
     
     
     
-    public static ArrayList getArtikelen() throws SQLException
+    public static ArrayList getArtikelen(ArrayList bestelling) throws SQLException
     {
         ArrayList<Artikel> artikelen = new ArrayList<>();
+        ArrayList<String> bestelling2 = new ArrayList<String>(bestelling);
         Connection dbConnection = null;
         PreparedStatement pstmt = null;
         
-        String selectArtikelen = ("SELECT * FROM artikel");
-        
         try
         {
-            dbConnection = getDBConnection();
-            pstmt = dbConnection.prepareStatement(selectArtikelen);
-            //pstmt.setInt(1, 1001);
-            
-            ResultSet resultaat = pstmt.executeQuery();
-            
-            
-            while(resultaat.next())
-            {
-                Artikel art = null;
-                int artikelID = resultaat.getInt("artikelID");
-                String naam = resultaat.getString("naam");
-                int breedte = resultaat.getInt("breedte");
-                int hoogte = resultaat.getInt("hoogte");
-                int locatiex = resultaat.getInt("locatiex");
-                int locatiey = resultaat.getInt("locatiey");
-                art = new Artikel(artikelID, naam, breedte, hoogte, locatiex, locatiey);
-                artikelen.add(art);                
-                
-            }  
+            dbConnection = getDBConnection();            
+            pstmt = dbConnection.prepareStatement("SELECT * FROM artikel WHERE artikelID = ? ");
+            for(String be : bestelling2){                
+                if(!be.equals(bestelling.get(0)))
+                {
+                    pstmt.setInt(1, Integer.parseInt(be));                    
+                    ResultSet resultaat = pstmt.executeQuery();
+                    
+                    if(resultaat.next())
+                    {
+                        Artikel art = null;
+                        int artikelID = resultaat.getInt("artikelID");
+                        String naam = resultaat.getString("naam");
+                        int breedte = resultaat.getInt("breedte");
+                        int hoogte = resultaat.getInt("hoogte");
+                        int locatiex = resultaat.getInt("locatiex");
+                        int locatiey = resultaat.getInt("locatiey");
+                        art = new Artikel(artikelID, naam, breedte, hoogte, locatiex, locatiey);
+                        artikelen.add(art);
+                    }
+                }
+            }
             
         } catch (SQLException e)
         {            
