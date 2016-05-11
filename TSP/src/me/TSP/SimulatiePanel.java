@@ -8,9 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by Kevin on 4-5-2016.
- */
 public class SimulatiePanel extends JPanel
 {
     private BufferedImage vakImg;

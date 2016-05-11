@@ -3,9 +3,6 @@ package me.TSP;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by Kevin on 29-4-2016.
- */
 public class ResultatenVergelijking extends JDialog
 {
     private JTable resultatenTable;
