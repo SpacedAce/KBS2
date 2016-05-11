@@ -18,7 +18,7 @@ public class SimpelGretig extends Algoritme {
         ArrayList<Vak> currentSolution = new ArrayList<>();
         currentSolution.addAll(locaties);
 
-        Vak zeroPoint = new Vak(0, 5, 99);
+        Vak zeroPoint = new Vak(0, 5);
 
         ArrayList<Vak> newSolution = new ArrayList<>();
         currentSolution.add(0,zeroPoint);

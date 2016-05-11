@@ -8,8 +8,8 @@ import java.util.Collections;
  * Created by Kevin on 29-4-2016.
  */
 public class VolledigeEnumeratie extends Algoritme {
-    int counter = 0;
-    ArrayList<ArrayList<Vak>> best = new ArrayList<>();
+
+    ArrayList<Vak> best = new ArrayList<>();
 
     public VolledigeEnumeratie() {
         super.setName("Volledige Enumeratie");
@@ -18,14 +18,23 @@ public class VolledigeEnumeratie extends Algoritme {
     @Override
     public void calculate(ArrayList<Vak> locaties)
     {
-        iteration(locaties,0);
+        long startTime = System.nanoTime() / 1000;
+        Vak zeropoint = new Vak(0,5);
+        locaties.add(0,zeropoint);
+        locaties.add(zeropoint);
+        iteration(locaties,1);
+        getBestOrderLocaties().addAll(best);
+        float distance = (float)calculateDistance(best);
+        setAftstand(distance);
+        long totalTime = System.nanoTime() / 1000 - startTime;
+        setTime(totalTime);
     }
 
     public void iteration(ArrayList<Vak> loc, int t)
     {
-       if(t < loc.size())
+       if(t < loc.size()-1)
        {
-           for(int i = t; i < loc.size(); ++i)
+           for(int i = t; i < loc.size()-1; ++i)
            {
                Collections.swap(loc,t,i);
                iteration(loc, t+1);
@@ -34,22 +43,27 @@ public class VolledigeEnumeratie extends Algoritme {
        }
        else
        {
-           System.out.println(loc);
-           best.add(loc);
-           //for(int newLocIndex = 0; newLocIndex < )
-           for(int i = 0; i<loc.size(); i++){
-                
+           //System.out.println(loc);
+           if(best.size() != 0) {
+               double bestDistance = calculateDistance(best);
+               double currentDistance = calculateDistance(loc);
+               if(currentDistance < bestDistance)
+               {
+                   best.clear();
+                   best.addAll(loc);
+               }
+           }
+           else
+           {
+               best.addAll(loc);
            }
        }
     }
+
     private double calculateDistance(ArrayList<Vak> a){
         double sumDistance = 0;
-        for(int i = 0; i<a.size(); i++){
-            if(i!= a.size()-1) {
-                sumDistance += Math.sqrt(Math.pow((a.get(i).x) - (a.get(i + 1).x), 2) + Math.pow((a.get(i).x) - (a.get(i + 1).x), 2));
-            } else {
-                System.out.println("Done");
-            }
+        for(int i = 0; i < a.size()-1; i++){
+            sumDistance += Math.sqrt(Math.pow((a.get(i).x) - (a.get(i + 1).x), 2) + Math.pow((a.get(i).x) - (a.get(i + 1).x), 2));
         }
         return sumDistance;
     }

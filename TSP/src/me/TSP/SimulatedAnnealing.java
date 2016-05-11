@@ -22,7 +22,7 @@ public class SimulatedAnnealing extends Algoritme
         ArrayList<Vak> startOplossing = new ArrayList<>();
         startOplossing.addAll(locaties);
         Collections.shuffle(startOplossing);
-        Vak zeroPoint = new Vak(0, 5, 99);
+        Vak zeroPoint = new Vak(0, 5);
         startOplossing.add(0, zeroPoint);
         startOplossing.add(startOplossing.size(), zeroPoint);
         ArrayList<Vak> best = new ArrayList<>();

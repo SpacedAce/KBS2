@@ -16,7 +16,7 @@ public class WillekeurigAlgoritme extends Algoritme {
     public void calculate(ArrayList<Vak> locaties) {
         //START TIMER
         long startTime = System.nanoTime() / 1000;
-        Vak zeroPoint = new Vak(0, 5, 99);
+        Vak zeroPoint = new Vak(0, 5);
         for(int i = 0; i < locaties.size(); i++) {
             getBestOrderLocaties().add(locaties.get(i));
         }

@@ -18,7 +18,7 @@ public class TwoOptAlgoritme extends Algoritme
         ArrayList<Vak> currentSolution = new ArrayList<>();
         currentSolution.addAll(locaties);
 
-        Vak zeroPoint = new Vak(0, 5, 99);
+        Vak zeroPoint = new Vak(0, 5);
 
         ArrayList<Vak> newSolution = new ArrayList<>();
         currentSolution.add(0,zeroPoint);
@@ -80,13 +80,15 @@ public class TwoOptAlgoritme extends Algoritme
             }
             improved++;
         }
-        System.out.println(distance*50);
+        int newDistance = 0;
         for(int bestIndex = 0; bestIndex < newSolution.size()-1; bestIndex++)
         {
-            distance += Math.sqrt((newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) * (newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) +
+            newDistance += Math.sqrt((newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) * (newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) +
                     (newSolution.get(bestIndex).y - newSolution.get(bestIndex+1).y) * (newSolution.get(bestIndex).y - newSolution.get(bestIndex+1).y)
             );
         }
+        getBestOrderLocaties().addAll(newSolution);
+        setAftstand(newDistance);
         long totalTime = System.nanoTime() / 1000 - startTime;
         setTime(totalTime);
     }

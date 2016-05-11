@@ -9,8 +9,8 @@ public class TSPMain
 {
     public static void main(String[] arg)
     {
-        //TSP tsp = new TSP();
-        Vak een = new Vak(3, 3, 99);
+        TSP tsp = new TSP();
+        /*Vak een = new Vak(3, 3, 99);
         Vak twee = new Vak(1, 2, 33);
         Vak drie = new Vak(4, 2, 99);
         Vak vier = new Vak(5,5,99);
@@ -20,6 +20,6 @@ public class TSPMain
         locatia.add(drie);
         locatia.add(vier);
         TwoOptAlgoritme wille = new TwoOptAlgoritme();
-        wille.calculate(locatia);
+        wille.calculate(locatia);*/
     }
 }
