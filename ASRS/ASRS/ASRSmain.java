@@ -35,6 +35,7 @@ public class ASRSmain {
 //                Scherm scherm = new Scherm();
         String locatie = "/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml";
         ASRS asrs = new ASRS(locatie);
+        System.out.println(asrs.getVakken());
                 
         //Scherm scherm = new Scherm();
         

@@ -33,7 +33,7 @@ public class ASRS
                 vakken.add(vak);
                                 
             }
-        System.out.println(vakken);
+        
     }
     
     /**
