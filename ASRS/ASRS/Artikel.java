@@ -22,13 +22,14 @@ public class Artikel extends Vak{
     
     //Constructors
     public Artikel(int artikelID, String naam, int breedte, int hoogte, int locatiex, int locatiey) {
-        setCoordinaat_X(locatiex);
-        setCoordinaat_Y(locatiey);
+        vak = new Vak();
+        vak.setCoordinaat_X(locatiex);
+        vak.setCoordinaat_Y(locatiey);
         this.artikelID = artikelID;
         this.naam = naam;
         this.breedte = breedte;
         this.hoogte = hoogte;
-        this.vak = vak;
+        
     }
 
     //Setters
@@ -70,17 +71,19 @@ public class Artikel extends Vak{
         return hoogte;
     }
 
+    public Vak getVak() {
+        return vak;
+    }
+    
+    
+
        
     //toString
 
     @Override
     public String toString() {
-        return "Artikel(" +  "artikelID=" + artikelID + ", naam=" + naam + ", breedte=" + breedte + ", hoogte=" + hoogte + '}';
+        return "Artikel(" + "artikelID=" + artikelID + ", naam=" + naam + ", breedte=" + breedte + ", hoogte=" + hoogte + ", vak=" + vak + ')';
     }
-
-    
-    
-    
     
     
     

@@ -7,10 +7,9 @@ package ASRS;
  */
 public class Vak {
     private int coordinaat_X;
-    private int coordinaat_Y;
-
+    private int coordinaat_Y;    
     
-    //setters
+    // Setters
     public void setCoordinaat_X(int coordinaat_X) {
         this.coordinaat_X = coordinaat_X;
     }
@@ -20,7 +19,7 @@ public class Vak {
     }
     
     
-    //getters
+    // Getters
     public int getCoordinaat_X() {
         return coordinaat_X;
     }

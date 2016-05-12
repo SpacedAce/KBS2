@@ -42,11 +42,8 @@ public class ASRS
             }
         // Uit de opgevraagde Artikelen de Vakken filteren.                
         for(Artikel art : artikelen)
-        {
-            Vak vak = new Vak();
-            vak.setCoordinaat_X(art.getCoordinaat_X());
-            vak.setCoordinaat_Y(art.getCoordinaat_Y());
-            vakken.add(vak);
+        {            
+            vakken.add(art.getVak());
         }
             if(ASRSmain.debug)
             {
