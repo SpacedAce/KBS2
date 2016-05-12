@@ -13,39 +13,27 @@ public class ASRS
     private Order order;
     private File pakbon;
     private File xmlOrder;
-    private static final String driverName = "com.mysql.jdbc.Driver";
+    private ArrayList<Vak> vakken = new ArrayList<Vak>();
+    //private static final String driverName = "com.mysql.jdbc.Driver";
     
     public ASRS(String bestandslocatie) throws SQLException
     { 
         //XML importeren en in ArrayList plaatsen.
-        ArrayList bestelling = XmlImport.XmlImportFromFile(bestandslocatie);
-        ArrayList gegevens = XmlImport.XmlImportGegevensFromFile(bestandslocatie);
-        ArrayList bestelling2 = XmlImport.XmlImportBestellingFromFile(bestandslocatie);
+        ArrayList<String> bestelling = XmlImport.XmlImportFromFile(bestandslocatie);
+        ArrayList<String> gegevens = XmlImport.XmlImportGegevensFromFile(bestandslocatie);
+        ArrayList<String> bestelling2 = XmlImport.XmlImportBestellingFromFile(bestandslocatie);        
         
-        //System.out.println(bestelling);
-        
-        try
-        {
-            Class.forName(driverName).newInstance();
-            ArrayList<Artikel> artikelen = Database.getArtikelen(bestelling2);
-            System.out.println(artikelen);
-            
-                for(Artikel artikel : artikelen)
-                {
-                    System.out.println(artikel.toString());
-                }
-            
-            
-        }catch (ClassNotFoundException e){
-            System.err.println(e.getMessage());
-        }catch (InstantiationException e){
-            System.err.println(e.getMessage());
-        }catch (IllegalAccessException e){
-            System.err.println(e.getMessage());
-        }
-        
-        
-        
+        ArrayList<Artikel> artikelen = Database.getArtikelen(bestelling2);
+                        
+            for(Artikel art : artikelen)
+            {
+                Vak vak = new Vak();
+                vak.setCoordinaat_X(art.getCoordinaat_X());
+                vak.setCoordinaat_Y(art.getCoordinaat_Y());
+                vakken.add(vak);
+                                
+            }
+        System.out.println(vakken);
     }
     
     /**
@@ -74,6 +62,8 @@ public class ASRS
         this.xmlOrder = xmlOrder;
     }
     
-    
+    public ArrayList<Vak> getVakken(){        
+        return this.vakken;
+    }
     
 }

@@ -70,10 +70,7 @@ public class Artikel extends Vak{
         return hoogte;
     }
 
-    public Vak getVak() {
-        return vak;
-    }    
-    
+       
     //toString
 
     @Override

@@ -53,7 +53,7 @@ public class Database
             
             System.out.println(".....Done!");
             //debug
-            System.out.println("succes"+ dbconnection);
+            //System.out.println("succes"+ dbconnection);
             return dbconnection;
             
         }catch(SQLException e)
@@ -61,7 +61,7 @@ public class Database
             System.out.println(".....Failed!");            
             System.err.println(e.getMessage());
             //debug
-            System.out.println("Fail"+ dbconnection);
+            //System.out.println("Fail"+ dbconnection);
             
         }
         
@@ -73,7 +73,7 @@ public class Database
     
     
     
-    public static ArrayList getArtikelen(ArrayList bestelling) throws SQLException
+    public static ArrayList<Artikel> getArtikelen(ArrayList bestelling) throws SQLException
     {
         ArrayList<Artikel> artikelen = new ArrayList<>();
         ArrayList<String> bestelling2 = new ArrayList<String>(bestelling);

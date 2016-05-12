@@ -118,8 +118,9 @@ public class hoofdscherm extends JFrame implements ActionListener{
 						Integer.parseInt(_pakketten.getText());																																		//is er een int ingevuld?
 						setVisible(false);																																							//scherm uit
 						int aantalPakketten = Integer.parseInt(_pakketten.getText());																												//
-						Simulatie simulatie1 = new Simulatie();																									//Simulatie maken
-						SimulatieFrame frame1 = new SimulatieFrame(simulatie1);
+						Simulatie simulatie1 = new Simulatie(aantalPakketten, gekozenAlgoritme);																									//Simulatie maken
+						simulatie1.setVisible(true);
+//						SimulatieFrame frame1 = new SimulatieFrame(simulatie1);
 					}
 					catch(NumberFormatException e2){
 						Popup waarschuwing2 = new Popup("Vul een heel getal in lager dan 2147483648");																								//waarschuwing als er geen int is ingevuld
