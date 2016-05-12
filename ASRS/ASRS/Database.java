@@ -22,7 +22,10 @@ public class Database
     
     private static Connection getDBConnection() throws SQLException 
     {
-        System.out.print("Connecting to database");
+        if(ASRSmain.debug)
+        {
+            System.out.print("Connecting to database");
+        }
         
         Connection dbconnection = null;
         Properties connectionProperties = new Properties();
@@ -51,14 +54,21 @@ public class Database
                     serverUrl + ":" + serverPort + "/" + dbName
                     , connectionProperties);
             
-            System.out.println(".....Done!");
-            //debug
-            //System.out.println("succes"+ dbconnection);
+            if(ASRSmain.debug)
+            {
+                System.out.println(".....Done!");
+            }
+            
             return dbconnection;
             
         }catch(SQLException e)
         {            
-            System.out.println(".....Failed!");            
+            if(ASRSmain.debug)
+            {
+            System.out.println(".....Failed!");
+            System.out.println();
+            }
+                        
             System.err.println(e.getMessage());
             //debug
             //System.out.println("Fail"+ dbconnection);
@@ -101,9 +111,17 @@ public class Database
                         int locatiey = resultaat.getInt("locatiey");
                         art = new Artikel(artikelID, naam, breedte, hoogte, locatiex, locatiey);
                         artikelen.add(art);
+                        if(ASRSmain.debug)
+                        {
+                            System.out.println("  fetching " + art);
+                        }
                     }
                 }
             }
+                if(ASRSmain.debug)
+                {
+                    System.out.println(">Forward Artikelen to ASRS");
+                }
             
         } catch (SQLException e)
         {            

@@ -13,9 +13,12 @@ import java.util.ArrayList;
 
 
 
-public class ASRSmain {
+public class ASRSmain {  
+    
+    public static boolean debug = true;
+        
     public static void main(String[] arg) throws Exception 
-    {
+    {        
 //        SerialConnection arduino1 = new SerialConnection();
 //		arduino1.initialize();
 //		Thread t=new Thread() {
@@ -35,8 +38,7 @@ public class ASRSmain {
 //                Scherm scherm = new Scherm();
         String locatie = "/home/ace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml";
         ASRS asrs = new ASRS(locatie);
-        System.out.println(asrs.getVakken());
-                
+                        
         //Scherm scherm = new Scherm();
         
         

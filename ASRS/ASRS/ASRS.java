@@ -18,22 +18,59 @@ public class ASRS
     
     public ASRS(String bestandslocatie) throws SQLException
     { 
-        //XML importeren en in ArrayList plaatsen.
-        ArrayList<String> bestelling = XmlImport.XmlImportFromFile(bestandslocatie);
-        ArrayList<String> gegevens = XmlImport.XmlImportGegevensFromFile(bestandslocatie);
-        ArrayList<String> bestelling2 = XmlImport.XmlImportBestellingFromFile(bestandslocatie);        
-        
-        ArrayList<Artikel> artikelen = Database.getArtikelen(bestelling2);
-                        
-            for(Artikel art : artikelen)
+        // XML importeren en in ArrayList plaatsen.
+        ArrayList<String> bestelling = XmlImport.XmlImportBestellingFromFile(bestandslocatie);        
+            if(ASRSmain.debug)
             {
-                Vak vak = new Vak();
-                vak.setCoordinaat_X(art.getCoordinaat_X());
-                vak.setCoordinaat_Y(art.getCoordinaat_Y());
-                vakken.add(vak);
-                                
+                System.out.println(">>XML import<");
+                System.out.println(" " + bestelling);
+                System.out.println(">Forward to database");
+                System.out.println(" ");
             }
         
+        // Artikelen uit de XML opvragen uit de database.     
+        ArrayList<Artikel> artikelen = Database.getArtikelen(bestelling);
+            if(ASRSmain.debug)
+            {   
+                System.out.println();
+                System.out.println(">Recieved artikelen from database");
+                for(Artikel ar : artikelen)
+                {
+                   System.out.println("  " + ar); 
+                }
+                System.out.println();
+            }
+        // Uit de opgevraagde Artikelen de Vakken filteren.                
+        for(Artikel art : artikelen)
+        {
+            Vak vak = new Vak();
+            vak.setCoordinaat_X(art.getCoordinaat_X());
+            vak.setCoordinaat_Y(art.getCoordinaat_Y());
+            vakken.add(vak);
+        }
+            if(ASRSmain.debug)
+            {
+                System.out.println(">Filter vakken from querry ");
+                for(Vak v: vakken)
+                {
+                    System.out.println("  " + v);
+                }
+                System.out.println(">Forward Vakken to TSP");
+                System.out.println();
+            }
+        
+        // Bepaal de gunstigste route m.b.v. de TSP-applicatie.
+        TSP tsp = new TSP(vakken);
+        ArrayList<Vak> route = tsp.getRoute();
+            if(ASRSmain.debug)
+            {
+                System.out.println(">Recieved Route from TSP");
+                for(Vak rt : route){
+                    System.out.println(" " + rt);
+                }
+                System.out.println(">Forward Route to warehouse Arduino");
+                System.out.println("");
+            }
     }
     
     /**
@@ -53,17 +90,22 @@ public class ASRS
      */
     
     
-
-    public void setPakbon(File pakbon) {
+    //Setters
+    public void setPakbon(File pakbon) 
+    {
         this.pakbon = pakbon;
     }
 
-    public void setXmlOrder(File xmlOrder) {
+    public void setXmlOrder(File xmlOrder) 
+    {
         this.xmlOrder = xmlOrder;
     }
+
     
-    public ArrayList<Vak> getVakken(){        
+    // Getters
+    public ArrayList<Vak> getVakken()
+    {        
         return this.vakken;
     }
-    
+
 }
