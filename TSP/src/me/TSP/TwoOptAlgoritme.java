@@ -76,7 +76,7 @@ public class TwoOptAlgoritme extends Algoritme
             }
             improved++;
         }
-        int newDistance = 0;
+        float newDistance = 0;
         for(int bestIndex = 0; bestIndex < newSolution.size()-1; bestIndex++)
         {
             newDistance += Math.sqrt((newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) * (newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) +
