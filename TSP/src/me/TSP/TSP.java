@@ -22,6 +22,7 @@ public class TSP {
     }
 
     public ArrayList<Vak> getLocaties(){
+        System.out.println(locaties);
         return this.locaties;
     }
 

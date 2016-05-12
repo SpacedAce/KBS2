@@ -11,8 +11,6 @@ public class Vak
         this.y = y;
     }
 
-
-
     @Override
     public String toString(){
         return x + ":" + y;

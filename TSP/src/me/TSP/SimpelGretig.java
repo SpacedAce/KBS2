@@ -12,7 +12,6 @@ public class SimpelGretig extends Algoritme {
     @Override
     public void calculate(ArrayList<Vak> locaties) {
         //STARTS TIMER
-
         long startTime = System.nanoTime() / 1000;
         ArrayList<Vak> currentSolution = new ArrayList<>();
         currentSolution.addAll(locaties);
@@ -51,7 +50,6 @@ public class SimpelGretig extends Algoritme {
         newSolution.add(zeroPoint);
         getBestOrderLocaties().addAll(newSolution);
         float distance = 0;
-
         //CALCULATES TOTAL DISTANCE
         for(int bestIndex = 0; bestIndex < newSolution.size()-1; bestIndex++)
         {
@@ -60,7 +58,8 @@ public class SimpelGretig extends Algoritme {
             );
         }
         setAftstand(distance);
-        setTime((System.nanoTime()-1000)-startTime);
+        long totalTime = System.nanoTime() / 1000 - startTime;
+        setTime(totalTime);
     }
 }
 

@@ -24,7 +24,6 @@ public class SimulatedAnnealing extends Algoritme
         startOplossing.add(startOplossing.size(), zeroPoint);
         ArrayList<Vak> best = new ArrayList<>();
         best.addAll(startOplossing);
-
         while(startTemp > 1)
         {
             ArrayList<Vak> newOplossing = new ArrayList<>();
@@ -33,6 +32,7 @@ public class SimulatedAnnealing extends Algoritme
             int randomIndex2 = (int)(newOplossing.size()-1 * Math.random());
             if(randomIndex1 == 0 || randomIndex2 == 0)
             {
+                System.out.println("0");
                 continue;
             }
             Collections.swap(newOplossing, randomIndex1, randomIndex2);

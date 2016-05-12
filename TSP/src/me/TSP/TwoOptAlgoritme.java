@@ -51,7 +51,6 @@ public class TwoOptAlgoritme extends Algoritme
             );
         }
         //setAftstand(distance);
-        System.out.println(distance*50);
         int improved = 0;
         while(improved < 20)
         {
@@ -77,7 +76,7 @@ public class TwoOptAlgoritme extends Algoritme
             }
             improved++;
         }
-        int newDistance = 0;
+        float newDistance = 0;
         for(int bestIndex = 0; bestIndex < newSolution.size()-1; bestIndex++)
         {
             newDistance += Math.sqrt((newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) * (newSolution.get(bestIndex).x - newSolution.get(bestIndex+1).x) +
@@ -92,22 +91,17 @@ public class TwoOptAlgoritme extends Algoritme
 
     public ArrayList<Vak> TwoOptSwap(ArrayList<Vak> locs, int i, int k)
     {
-        System.out.print("-------------------------------------------");
-        //System.out.println("Incoming locaties: " + locs);
         ArrayList<Vak> newArray = new ArrayList<>();
         for(int im = 0;  im < i+1; im++)
         {
-            System.out.println("Adding before: " + locs.get(im));
             newArray.add(locs.get(im));
         }
         for(int im = k; im > i; im--)
         {
-            System.out.println("Adding middle: " + locs.get(im));
             newArray.add(locs.get(im));
         }
         for(int im = k+1; im < locs.size(); im++)
         {
-            System.out.println("Adding after: " + locs.get(im));
             newArray.add(locs.get(im));
         }
         return newArray;
