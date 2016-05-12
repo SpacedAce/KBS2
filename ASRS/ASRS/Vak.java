@@ -18,6 +18,18 @@ public class Vak {
     public void setCoordinaat_Y(int coordinaat_Y) {
         this.coordinaat_Y = coordinaat_Y;
     }
+    
+    
+    //getters
+    public int getCoordinaat_X() {
+        return coordinaat_X;
+    }
+
+    public int getCoordinaat_Y() {
+        return coordinaat_Y;
+    }
+    
+    
 
     //toString
     @Override
