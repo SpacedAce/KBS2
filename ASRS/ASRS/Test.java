@@ -4,7 +4,7 @@
  * ICTm2b
  */
 
-package test;
+package ASRS;
 
 public class Test {
     public static void main(String[] args) {

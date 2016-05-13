@@ -4,7 +4,7 @@
  * ICTm2b
  */
 
-package test;
+package ASRS;
 
 import ASRS.XML;
 import ASRS.Status;
