@@ -23,7 +23,7 @@ public class Menu extends JPanel implements ActionListener{
     private Status s = new Status();
     private XML xml = new XML();
     private Scherm scherm;
-    private CreateXMLOrder c;
+
     
     public Menu(Scherm scherm) {
         this.scherm = scherm;
@@ -108,29 +108,13 @@ public class Menu extends JPanel implements ActionListener{
         
         if(e.getSource() == jbGenerate) { //De knop Genereer XML afhandelen/een functie geven
                //Genereren van een XML dmv de generator en deze weergeven op het scherm
-               c = new CreateXMLOrder(this);    
-               c.setVisible(true);
                
-               System.out.println("hoi");
         }
         
         
         if(e.getSource() == jbStart) { //De knop Start afhandelen/een functie geven
-               //Starten van het proces
-               c = new CreateXMLOrder(this);    
-               c.setVisible(true);
+               //Starten van het CreateXMLOrderproces
                
-               System.out.println("hoi");
-        }
-    }
-
-    private static class CreateXMLOrder {
-
-        public CreateXMLOrder() {
-        }
-
-        private CreateXMLOrder(Menu aThis) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
 }
