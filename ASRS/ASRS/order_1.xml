@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- // Door: Jeroen Gerrese, s1097417, ICTM2b, WTJ01 -->
+<bestelling>
+    <ordernummer>1415</ordernummer>
+    <klant>
+        <voornaam>Piet</voornaam>
+        <achternaam>Jansen</achternaam>
+        <adres>Kalverstraat 17</adres>
+        <postcode>1012NX</postcode>
+        <plaats>Amsterdam</plaats>
+    </klant>
+    <datum>2014-03-28</datum>
+    
+</bestelling>
+
+

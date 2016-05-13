@@ -23,53 +23,61 @@ public class ASRS
             if(ASRSmain.debug)
             {
                 System.out.println(">>XML import<");
-                System.out.println(" " + bestelling);
-                System.out.println(">Forward to database");
-                System.out.println(" ");
+                if(bestelling.size() >1){                    
+                    System.out.println(" " + bestelling);
+                    System.out.println(">Forward to database");
+                    System.out.println(" ");
+                }else{
+                    System.out.println("  No artikelen found in the imported XML file");
+                    System.out.println(">Stopping operation");
+                }
+                
             }
         
-        // Artikelen uit de XML opvragen uit de database.     
-        ArrayList<Artikel> artikelen = Database.getArtikelen(bestelling);
-            if(ASRSmain.debug)
-            {   
-                System.out.println();
-                System.out.println(">Recieved artikelen from database");
-                for(Artikel ar : artikelen)
-                {
-                   System.out.println("  " + ar); 
+        // Artikelen uit de XML opvragen uit de database als er artikelen in de bestelling zitten.
+        if(bestelling.size() > 1)
+        {
+            ArrayList<Artikel> artikelen = Database.getArtikelen(bestelling);
+                if(ASRSmain.debug)
+                {   
+                    System.out.println();
+                    System.out.println(">Recieved artikelen from database");
+                    for(Artikel ar : artikelen)
+                    {
+                       System.out.println("  " + ar); 
+                    }
+                    System.out.println();
                 }
-                System.out.println();
+            // Uit de opgevraagde Artikelen de Vakken filteren.                
+            for(Artikel art : artikelen)
+            {            
+                vakken.add(art.getVak());
             }
-        // Uit de opgevraagde Artikelen de Vakken filteren.                
-        for(Artikel art : artikelen)
-        {            
-            vakken.add(art.getVak());
+                if(ASRSmain.debug)
+                {
+                    System.out.println(">Filter vakken from querry ");
+                    for(Vak v: vakken)
+                    {
+                        System.out.println("  " + v);
+                    }
+                    System.out.println(">Forward Vakken to TSP");
+                    System.out.println();
+                }
+
+            // Bepaal de gunstigste route m.b.v. de TSP-applicatie.
+            TSP tsp = new TSP(vakken);
+            ArrayList<Vak> route = tsp.getRoute();
+                if(ASRSmain.debug)
+                {
+                    System.out.println(">Recieved Route from TSP");
+                    for(Vak rt : route){
+                        System.out.println(" " + rt);
+                    }
+                    System.out.println(">Forward Route to warehouse Arduino");
+                    System.out.println("");
+                }
         }
-            if(ASRSmain.debug)
-            {
-                System.out.println(">Filter vakken from querry ");
-                for(Vak v: vakken)
-                {
-                    System.out.println("  " + v);
-                }
-                System.out.println(">Forward Vakken to TSP");
-                System.out.println();
-            }
-        
-        // Bepaal de gunstigste route m.b.v. de TSP-applicatie.
-        TSP tsp = new TSP(vakken);
-        ArrayList<Vak> route = tsp.getRoute();
-            if(ASRSmain.debug)
-            {
-                System.out.println(">Recieved Route from TSP");
-                for(Vak rt : route){
-                    System.out.println(" " + rt);
-                }
-                System.out.println(">Forward Route to warehouse Arduino");
-                System.out.println("");
-            }
     }
-    
     /**
      * 
      * aan de hand van de XmlImportBestellingFromFile kunnen
