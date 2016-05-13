@@ -16,28 +16,27 @@ public class Pakbon extends JPanel implements ActionListener{
     private JScrollPane jspPakbon;
     private JButton jbSave;
     private JFileChooser jfcSave;
-    private Status s; 
-    private PakbonXML pakbonXML;
+    private Status s;
     private Scherm scherm;
     
-    public Pakbon(PakbonXML scherm) {
-        this.pakbonXML = scherm;
+    public Pakbon(Scherm scherm) {
+        this.scherm = scherm;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //Lay-out manager bepalen, BoxLayout gebruikt omdat dan alles makkelijk onder elkaar kan worden gezet (Y-AXIS)
-        
+
         jfcSave = new JFileChooser(); //Dit wordt gebruikt in de ActionListener, er wordt een window geopend waarme je een bestand kan openen of opslaan
         s = new Status();
          
         jlPakbon = new JLabel("Pakbon" /* + pakbonnaam en ordernummer */); //Label Pakbon toevoegen
         add(jlPakbon);
-      
+
         jtaPakbon = new JTextArea(10, 30); //textArea voor de pakbon toevoegen
         add(jtaPakbon);
         jtaPakbon.setEditable(false); //Zorgen dat er niet in de textArea getypt kan worden
         
         jspPakbon = new JScrollPane(jtaPakbon); //Aanmaken van een scrollPane en de textArea hieraan toevoegen
         add(jspPakbon);
-       
-        jbSave = new JButton("Opslaan"); //Knop Opslaan toevoegen
+
+        jbSave = new JButton("Pakbon opslaan"); //Knop Opslaan toevoegen
         add(jbSave);
         jbSave.addActionListener(this);       
     }
@@ -51,7 +50,7 @@ public class Pakbon extends JPanel implements ActionListener{
                 //This is where a real application would save the file.
                 scherm.getStatus().jtaStatus.append("Opslaan: " + file.getName() + "\n");
             } else { //Als het opslaan niet lukt
-                scherm.getStatus().jtaStatus.append("Opslaan geannuleerd.");
+                scherm.getStatus().jtaStatus.append("Opslaan geannuleerd\n");
             }
         }        
     }

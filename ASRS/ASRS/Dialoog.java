@@ -1,67 +1,70 @@
 package ASRS;
 
-import javax.swing.*;
-
 /**
  * Charlene Hoogkamer
  * s1092106
  * ICTm2b
  */
-public class Dialoog extends JPanel{
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Dialoog extends JFrame{
     private JLabel jlOrdernr1;
     private JLabel jlOrdernr2;
     private JLabel jlKlant;
     private JLabel jlDatum1;
     private JLabel jlDatum2;
     private JLabel jlProducten;
-    private JComboBox jcbKlant;
-    private JComboBox jcbProducten;
-    private JScrollBar jsbOverzicht;
+    private JComboBox<String> jcbKlant = new JComboBox<String>();
+    private JComboBox<String> jcbProducten = new JComboBox<String>();
+    private JScrollPane jsbOverzicht;
     private JTextField jtfOverzicht;
     private JTable jtOverzicht;
     private JButton jbToevoegen;
     private JButton jbVerwijder;
     private JButton jbMaak;   
     
-    public Dialoog(JFrame frame) {
-        super(frame, true);
-        setSize(300, 300);
+    public Dialoog() {
+        setSize(400, 400);
         setTitle("XML-editor");
+        setLayout(new FlowLayout());
+
+        String[] klanten = new String[] {"1. John Doe", "2. Jane Doe", "3. Jim Bar"};
+        String[] producten = new String[] {"1. Stoel", "2. Tafel", "3. Bank"};
         
-        
-        jlOrdernr1 = new JLabel("");
+        jlOrdernr1 = new JLabel("Ordernummer: ");
         add(jlOrdernr1);
         
-        jlOrdernr2 = new JLabel("");
+        jlOrdernr2 = new JLabel("1234567");
         add(jlOrdernr2);
-        
-        jlKlant = new JLabel("");
-        add(jlKlant);
-        
-        jlDatum1 = new JLabel("");
+
+        jlDatum1 = new JLabel("Datum: ");
         add(jlDatum1);
         
-        jlDatum2 = new JLabel("");
+        jlDatum2 = new JLabel("DD-MM-YYYY");
         add(jlDatum2);
-        
-        jlProducten = new JLabel("");
+
+        jlKlant = new JLabel("Klant: ");
+        add(jlKlant);
+
+        jcbKlant = new JComboBox(klanten);
+        add(jcbKlant);
+
+        jlProducten = new JLabel("Producten: ");
         add(jlProducten);
         
-        jcbKlant = new JComboBox();
-        add(jcbKlant);
-        
-        jcbProducten = new JComboBox();
+        jcbProducten = new JComboBox(producten);
         add(jcbProducten);
-        
-        jsbOverzicht = new JScrollBar();
-        add(jsbOverzicht);
-        
-        jtfOverzicht = new JTextField();
-        add(jtfOverzicht);
-        
-        jtOverzicht = new JTable();
+
+        Object tabelData[][] = {{"Stoel", "2", "/"}, {"Tafel", "1", "/"}, {"Bank", 2, "/"}};
+        Object tabelNaam[] = {"Naam", "Aantal", "Verwijder"};
+        jtOverzicht = new JTable(tabelData, tabelNaam);
         add(jtOverzicht);
-        
+
+        jsbOverzicht = new JScrollPane(jtOverzicht);
+        add(jsbOverzicht);
+
         jbToevoegen = new JButton("Toevoegen");
         add(jbToevoegen);
         
@@ -73,5 +76,5 @@ public class Dialoog extends JPanel{
         
         setVisible(true);
     
-    }   
+    }
 }
