@@ -1,13 +1,14 @@
-package ASRS;
-
-import javax.swing.*;
-
 /**
  * Charlene Hoogkamer
  * s1092106
  * ICTm2b
  */
-public class Dialoog extends JPanel{
+
+package ASRS;
+
+import javax.swing.*;
+
+public class Dialoog extends JDialog{
     private JLabel jlOrdernr1;
     private JLabel jlOrdernr2;
     private JLabel jlKlant;
@@ -23,8 +24,8 @@ public class Dialoog extends JPanel{
     private JButton jbVerwijder;
     private JButton jbCreeer;   
     
-    public Dialoog() {
-        super();
+    public Dialoog(JFrame frame) {
+        super(frame, true);
         setSize(300, 300);
         setTitle("XML-editor");
         
@@ -68,11 +69,10 @@ public class Dialoog extends JPanel{
         jbVerwijder = new JButton("Verwijder");
         add(jbVerwijder);
         
-        jbCreeer = new JButton("CreÃ«er");
+        jbCreeer = new JButton("Creëer");
         add(jbCreeer);
         
-        setVisible(false);
+        setVisible(true);
     
     }   
 }
-
