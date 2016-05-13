@@ -85,11 +85,11 @@ public class Simulatie extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == resultaten){
 //					System.out.println("test");
-					setVisible(false);
-					ResultatenOpslaan resultaten = new ResultatenOpslaan();
-					resultaten.saveToXML(elapsedTime, bins, gekozenAlgoritme, aantalPakketten, totaleGrootte);
-					ResultatenScherm resultsScreen = new ResultatenScherm();
-					resultsScreen.setVisible(true);
+//					setVisible(false);
+//					ResultatenOpslaan resultaten = new ResultatenOpslaan();
+//					resultaten.saveToXML(elapsedTime, bins, gekozenAlgoritme, aantalPakketten, totaleGrootte);
+//					ResultatenScherm resultsScreen = new ResultatenScherm();
+//					resultsScreen.setVisible(true);
 //					resultaten.setBins(bins);
 //					resultaten.setTime(elapsedTime);
 //					resultaten.setVisible(true);
@@ -101,21 +101,23 @@ public class Simulatie extends JFrame{
 		simulatiePanel simulatie = new simulatiePanel();
 		simulatie.setBounds(0, 100, 1080, 520);
 		add(simulatie);
+		setVisible(true);
 		simulatie.setResultaten(bins);
-		simulatie.animate();
-	}
-	
-//	public void paint(Graphics g){
-//		g.setColor(Color.BLACK);
-//		g.drawRect(250, 200, 700, 100);		//draw first bin
-//		g.drawRect(250, 400, 700, 100);		//draw second bin
-//		g.drawRect(50, 300, 300, 100);		//draw track
-//		System.out.println("test");
-//	}
-	
-	public void animate(){
-		//TODO product rendering and moving
-		
-		repaint();
+		setVisible(false);
+		Popup melding = new Popup("De resultaten van deze simulatie zijn opgeslagen.");
+		ResultatenOpslaan resultaten = new ResultatenOpslaan();
+		resultaten.saveToXML(elapsedTime, bins, gekozenAlgoritme, aantalPakketten, totaleGrootte);
+		ResultatenScherm resultsScreen = new ResultatenScherm();
+		resultsScreen.setVisible(true);
+		Resultaten _resultaten = new Resultaten();
+		_resultaten.setBins(bins);
+		_resultaten.setAantalBins();
+		_resultaten.setGekozenAlgoritme(gekozenAlgoritme);
+		_resultaten.setTime(elapsedTime);
+		_resultaten.setAantalPakketten(aantalPakketten);
+		_resultaten.setTotaleGrootte(totaleGrootte);
+		_resultaten.setVerlorenRuimte();
+		resultsScreen.addResultaten1(_resultaten);
+//		simulatie.animate();
 	}
 }

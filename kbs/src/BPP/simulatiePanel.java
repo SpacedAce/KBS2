@@ -48,29 +48,30 @@ public class simulatiePanel extends JPanel{
 	}
 	
 	public void animate(){
-		for(Bin bin : resultaten){
-			ArrayList<Artikel> artikelen = new ArrayList<Artikel>();
-			artikelen = bin.getArtikelen();
-			for(Artikel artikel : artikelen){
-				aantalArtikelen++;
+		while(true){
+			for(Bin bin : resultaten){
+				ArrayList<Artikel> artikelen = new ArrayList<Artikel>();
+				artikelen = bin.getArtikelen();
+				for(Artikel artikel : artikelen){
+					aantalArtikelen++;
+				}
+	//			System.out.println(aantalArtikelen);
+				index++;
 			}
-//			System.out.println(aantalArtikelen);
-			index++;
-		}
-		for(int i = 0; i < aantalArtikelen; i++){
-			for(int j = 0; j < 10; j++){
-//				Timer timer = new Timer();
-//				try {
-//					timer.wait(20);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-				xPos += 20;
-				repaint();
-			}
-			if(index % 2 == 0){
-				
+			for(int i = 0; i < aantalArtikelen; i++){
+				for(int j = 0; j < 10; j++){
+					try {
+						Thread.sleep(20);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					xPos += 20;
+					repaint();
+				}
+				if(index % 2 == 0){
+					
+				}
 			}
 		}
 	}

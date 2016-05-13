@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Resultaten>
+    <gekozenAlgoritme>
+        <naam>First fit decreasing</naam>
+    </gekozenAlgoritme>
+    <aantalPakketten>1</aantalPakketten>
+    <totaleGrootte>11</totaleGrootte>
+    <verlorenRuimte>2</verlorenRuimte>
+    <time>3.0</time>
+    <aantalBins>1</aantalBins>
+    <bin>
+        <hoogte>12</hoogte>
+        <artikelen>
+            <hoogte>11</hoogte>
+        </artikelen>
+        <ruimte>12</ruimte>
+    </bin>
+</Resultaten>

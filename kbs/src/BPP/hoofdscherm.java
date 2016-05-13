@@ -118,8 +118,7 @@ public class hoofdscherm extends JFrame implements ActionListener{
 						Integer.parseInt(_pakketten.getText());																																		//is er een int ingevuld?
 						setVisible(false);																																							//scherm uit
 						int aantalPakketten = Integer.parseInt(_pakketten.getText());																												//
-						Simulatie simulatie1 = new Simulatie(aantalPakketten, gekozenAlgoritme);																									//Simulatie maken
-						simulatie1.setVisible(true);
+						Simulatie simulatie1 = new Simulatie(aantalPakketten, gekozenAlgoritme);
 //						SimulatieFrame frame1 = new SimulatieFrame(simulatie1);
 					}
 					catch(NumberFormatException e2){
