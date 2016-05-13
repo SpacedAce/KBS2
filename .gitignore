@@ -29,3 +29,7 @@ target/
 /kbs/nbproject/private/
 /kbs/build/
 /DatabaseEditor/dist/
+manifest.mf
+*.xml
+nbproject/genfiles.properties
+*.properties

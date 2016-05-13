@@ -4,11 +4,8 @@
  * ICTm2b
  */
 
-package test;
+package ASRS;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
 import javax.swing.*;
 
 public class CreateXMLOrder extends JDialog{
@@ -27,13 +24,55 @@ public class CreateXMLOrder extends JDialog{
     private JButton jbVerwijder;
     private JButton jbCreeer;   
     
-    public CreateXMLOrder() {
+    public CreateXMLOrder(JFrame frame) {
+        super(frame, true);
+        setSize(300, 300);
         setTitle("XML-editor");
+        
+        
+        jlOrdernr1 = new JLabel("");
+        add(jlOrdernr1);
+        
+        jlOrdernr2 = new JLabel("");
+        add(jlOrdernr2);
+        
+        jlKlant = new JLabel("");
+        add(jlKlant);
+        
+        jlDatum1 = new JLabel("");
+        add(jlDatum1);
+        
+        jlDatum2 = new JLabel("");
+        add(jlDatum2);
+        
+        jlProducten = new JLabel("");
+        add(jlProducten);
+        
+        jcbKlant = new JComboBox();
+        add(jcbKlant);
+        
+        jcbProducten = new JComboBox();
+        add(jcbProducten);
+        
+        jsbOverzicht = new JScrollBar();
+        add(jsbOverzicht);
+        
+        jtfOverzicht = new JTextField();
+        add(jtfOverzicht);
+        
+        jtOverzicht = new JTable();
+        add(jtOverzicht);
+        
+        jbToevoegen = new JButton("Toevoegen");
+        add(jbToevoegen);
+        
+        jbVerwijder = new JButton("Verwijder");
+        add(jbVerwijder);
+        
+        jbCreeer = new JButton("Creëer");
+        add(jbCreeer);
+        
         setVisible(true);
     
-    }
-
-    
-    
-    
+    }   
 }

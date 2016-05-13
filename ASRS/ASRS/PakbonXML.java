@@ -6,15 +6,9 @@
 
 package ASRS;
 
-import test.Pakbon;
-import ASRS.XML;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
 import javax.swing.*;
-import ASRS.Scherm;
-import ASRS.Scherm;
-import ASRS.XML;
+
 
 public class PakbonXML extends JPanel{ //Aan dit Panel worden twee panels toegevoegd(Pakbon en XML), hierdoor is het maken van de lay-out makkelijker
     private Pakbon jpPakbon;

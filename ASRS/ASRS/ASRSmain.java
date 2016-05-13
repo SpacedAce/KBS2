@@ -1,3 +1,5 @@
+//hoi
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,7 +38,7 @@ public class ASRSmain {
 //		System.out.println("Thread Started");
 //                
 //                Scherm scherm = new Scherm();
-        String locatie = "/home/aace/KBS2/Code/PrivateKBS2/ASRS/ASRS/order.xml";
+        String locatie = "C:/Users/Charlene/Documents/Github/KBS2/ASRS/ASRS/order.xml";
         ASRS asrs = new ASRS(locatie);
                         
         //Scherm scherm = new Scherm();
