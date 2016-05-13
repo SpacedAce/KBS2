@@ -21,10 +21,10 @@ public class Dialoog extends JPanel{
     private JTable jtOverzicht;
     private JButton jbToevoegen;
     private JButton jbVerwijder;
-    private JButton jbCreeer;   
+    private JButton jbMaak;   
     
-    public Dialoog() {
-        super();
+    public Dialoog(JFrame frame) {
+        super(frame, true);
         setSize(300, 300);
         setTitle("XML-editor");
         
@@ -68,11 +68,10 @@ public class Dialoog extends JPanel{
         jbVerwijder = new JButton("Verwijder");
         add(jbVerwijder);
         
-        jbCreeer = new JButton("Creëer");
-        add(jbCreeer);
+        jbMaak = new JButton("Maak");
+        add(jbMaak);
         
-        setVisible(false);
+        setVisible(true);
     
     }   
 }
-

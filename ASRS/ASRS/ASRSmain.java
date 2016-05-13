@@ -10,11 +10,6 @@ package ASRS;
 
 import java.util.ArrayList;
 
-
-
-
-
-
 public class ASRSmain {  
     
     public static boolean debug = true;

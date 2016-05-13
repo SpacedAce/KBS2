@@ -23,7 +23,6 @@ public class Menu extends JPanel implements ActionListener{
     private Status s = new Status();
     private XML xml = new XML();
     private Scherm scherm;
-
     
     public Menu(Scherm scherm) {
         this.scherm = scherm;
@@ -107,7 +106,8 @@ public class Menu extends JPanel implements ActionListener{
             }
         
         if(e.getSource() == jbGenerate) { //De knop Genereer XML afhandelen/een functie geven
-            
+            Dialoog dialoog = new Dialoog();
+            dialoog.setVisible(true);
             
                //Genereren van een XML dmv de generator en deze weergeven op het scherm
                
