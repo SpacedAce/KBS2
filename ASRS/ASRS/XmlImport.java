@@ -149,8 +149,10 @@ public class XmlImport {
         saxParser.parse(bestandslocatie, handler);
  
     } catch (Exception e) {
-        System.out.println("Crap");
-        e.printStackTrace();
+        contactGegevens2 = null;
+        bestelling2 = null;
+        System.out.println("  No XML file found at that location");
+        //e.printStackTrace();
     }
     
     
