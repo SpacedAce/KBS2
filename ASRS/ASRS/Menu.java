@@ -77,7 +77,7 @@ public class Menu extends JPanel implements ActionListener{
         jbStart.setBackground(Color.WHITE);
         jbStart.setOpaque(true);
         add(jbStart, gbc);
-        jbStart.addActionListener(this); 
+        jbStart.addActionListener(this);
 
         setVisible(true);
     }
@@ -119,7 +119,7 @@ public class Menu extends JPanel implements ActionListener{
             }
         
         if(e.getSource() == jbGenerate) { //De knop Genereer XML afhandelen een functie geven
-            dialoog = new Dialoog(this);
+            //dialoog = new Dialoog(this);
             dialoog.setVisible(true);
             
                //Genereren van een XML dmv de generator en deze weergeven op het scherm

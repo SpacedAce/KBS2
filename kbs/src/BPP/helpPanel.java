@@ -1,3 +1,9 @@
+/**
+ * Charlene Hoogkamer
+ * s1092106
+ * ICTm2b
+ */
+
 package BPP;
 
 import java.awt.*;

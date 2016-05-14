@@ -7,6 +7,8 @@
 package ASRS;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
 public class Scherm extends JFrame {
@@ -14,11 +16,46 @@ public class Scherm extends JFrame {
     private Status statusPanel;
     private Pakbon pakbonPanel;
     private XML xmlPanel;
+    public boolean helpOpened = false;
     
     public Scherm() {
         setTitle("AS/RS-Systeem");
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS)); //BorderLayout gebruiken om panels makkelijk te kunnen uitlijnen
         setResizable(false); //Zorgen dat het scherm van een vaste grootte is, om een lelijke lay-out te voorkomen
+
+        JLabel help = new JLabel("Help");
+        help.setFont(new Font("", Font.BOLD, 12));
+        help.setBounds(getWidth() - 30, 0, 15, 15);
+        add(help);
+        help.addMouseListener(new MouseListener(){
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+                helpPanelASRS help1 = new helpPanelASRS();
+                helpOpened = true;
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+        });
+
     
         menuPanel = new Menu(this); //Panel van klasse Menu toevoegen en deze bovenaan het scherm plaatsen
         add(menuPanel, BorderLayout.NORTH);        
