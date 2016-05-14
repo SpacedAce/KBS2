@@ -20,7 +20,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class XmlImport {
     private static ArrayList<String> contactGegevens2;
-    private static ArrayList<String> bestelling2;
+    protected static ArrayList<String> bestelling2;
     
     public static ArrayList XmlImportFromFile(String bestandslocatie){
     

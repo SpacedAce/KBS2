@@ -23,11 +23,15 @@ public class Menu extends JPanel implements ActionListener{
     private Status s = new Status();
     private Scherm scherm;
     private Dialoog dialoog;
+    private XmlImport xmlimport;
     
     public Menu(Scherm scherm) {
         this.scherm = scherm;
         jfcXML = new JFileChooser(); //Dit wordt gebruikt in de ActionListener, er wordt een window geopend waarme je een bestand kan openen of opslaan
         setLayout(new GridBagLayout()); //Lay-out manager die werkt met posities(coördinaten)
+
+        Color two = new Color(222, 232, 236);
+        this.setBackground(two);
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 20, 0, 20); //Hiermee zorg je ervoor dat elke button/label een padding heeft
@@ -35,12 +39,16 @@ public class Menu extends JPanel implements ActionListener{
         gbc.gridx = 0; //Dit is de x-coördinaat van de knop
         gbc.gridy = 0; //Dit is de y-coördinaat van de knop
         jbSelectPakbon = new JButton("Selecteer pakbon"); //Knop Selecteer Pakbon wordt aangemaakt
+        jbSelectPakbon.setBackground(Color.WHITE);
+        jbSelectPakbon.setOpaque(true);
         add(jbSelectPakbon, gbc); //Knop toevoegen aan het scherm en de padding toevoegen
         jbSelectPakbon.addActionListener(this); //Toevoegen van de ActionListener, zodat de knop iets gaat doen als er op geklikt wordt
         
         gbc.gridx = 0;
         gbc.gridy = 1;        
         jbSelectXML = new JButton("Selecteer XML"); //Knop Selecteer XML toevoegen
+        jbSelectXML.setBackground(Color.WHITE);
+        jbSelectXML.setOpaque(true);
         add(jbSelectXML, gbc);
         jbSelectXML.addActionListener(this);   
         
@@ -58,15 +66,19 @@ public class Menu extends JPanel implements ActionListener{
         gbc.gridx = 2;
         gbc.gridy = 0; 
         jbGenerate = new JButton("Genereer XML"); //Knop Genereer XML toevoegen
+        jbGenerate.setBackground(Color.WHITE);
+        jbGenerate.setOpaque(true);
         add(jbGenerate, gbc);
         jbGenerate.addActionListener(this);    
         
         gbc.gridx = 2;
         gbc.gridy = 1; 
         jbStart = new JButton("Start"); //Knop Start toevoegen
+        jbStart.setBackground(Color.WHITE);
+        jbStart.setOpaque(true);
         add(jbStart, gbc);
         jbStart.addActionListener(this); 
-         
+
         setVisible(true);
     }
    
@@ -79,7 +91,7 @@ public class Menu extends JPanel implements ActionListener{
                 
                 FileNameExtensionFilter filter = new FileNameExtensionFilter("XML-files", "xml");
                 jfcXML.setFileFilter(filter); //Dit zorgt ervoor dat er alleen een bestand met de extensie .xml geselecteerd kan worden
-                
+
                 //This is where a real application would open the file.
                 scherm.getStatus().jtaStatus.append("Openen: " + file.getName() + "\n"); //Printen in het statusscherm dat het bestand wordt geopend
             } else { //Als het opslaan niet lukt
@@ -107,7 +119,7 @@ public class Menu extends JPanel implements ActionListener{
             }
         
         if(e.getSource() == jbGenerate) { //De knop Genereer XML afhandelen een functie geven
-            dialoog = new Dialoog();
+            dialoog = new Dialoog(this);
             dialoog.setVisible(true);
             
                //Genereren van een XML dmv de generator en deze weergeven op het scherm

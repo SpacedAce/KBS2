@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Dialoog extends JFrame implements ActionListener{
+public class Dialoog extends JDialog implements ActionListener{
     private JLabel jlOrdernr1;
     private JLabel jlOrdernr2;
     private JLabel jlKlant;
@@ -30,11 +30,15 @@ public class Dialoog extends JFrame implements ActionListener{
     private JButton jbMaak;
     private MyTableModel model;
     
-    public Dialoog() {
+    public Dialoog(JFrame scherm) {
+        super(scherm, true);
         setSize(520, 580);
         setTitle("XML-editor");
         setLayout(new FlowLayout(FlowLayout.CENTER, 50, 10));
         setResizable(false);
+
+        Color two = new Color(222, 232, 236);
+        this.setBackground(two);
 
         String[] klanten = new String[] {"1. John Doe", "2. Jane Doe", "3. Jim Bar"};
         String[] producten = new String[] {"1. Stoel", "2. Tafel", "3. Bank"};
@@ -76,12 +80,18 @@ public class Dialoog extends JFrame implements ActionListener{
         add(jsbOverzicht);
 
         jbToevoegen = new JButton("Toevoegen");
+        jbToevoegen.setBackground(Color.WHITE);
+        jbToevoegen.setOpaque(true);
         add(jbToevoegen);
         
         jbVerwijder = new JButton("Verwijder");
+        jbVerwijder.setBackground(Color.WHITE);
+        jbVerwijder.setOpaque(true);
         add(jbVerwijder);
         
         jbMaak = new JButton("Maak");
+        jbMaak.setBackground(Color.WHITE);
+        jbMaak.setOpaque(true);
         add(jbMaak);
         
         setVisible(true);
