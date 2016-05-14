@@ -90,18 +90,19 @@ public class Menu extends JPanel implements ActionListener{
         if(e.getSource() == jbSelectXML) { //De knop Selecteer XML afhandelen een functie geven
             int returnVal = jfcXML.showOpenDialog(Menu.this);
                 if (returnVal == JFileChooser.APPROVE_OPTION) { //Code voor het openen van een window waarmee je een bestand kan openen
+
+                    FileNameExtensionFilter filter = new FileNameExtensionFilter("Pakbon en XML", "xml");
+                    jfcXML.setFileFilter(filter); //Dit zorgt ervoor dat er alleen een bestand met de extensie .xml geselecteerd kan worden
+
                     File file = jfcXML.getSelectedFile();
                     String fileName = file.getAbsolutePath();
                     jtfXML.setText(fileName);
-                    
-                    FileNameExtensionFilter filter = new FileNameExtensionFilter("Pakbon en XML", "xml");
-                    jfcXML.setFileFilter(filter); //Dit zorgt ervoor dat er alleen een bestand met de extensie .xml geselecteerd kan worden
-                                    
+
                     //This is where a real application would open the file.
-                    scherm.getStatus().jtaStatus.append("Openen: " + file.getName() + "\n"); //WERKT NOG NIET!!!
+                    scherm.getStatus().jtaStatus.append("Openen: " + file.getName() + "\n");
           
                 } else { //Als het openen niet lukt     
-                    scherm.getStatus().jtaStatus.append("Openen geannuleerd.\n"); //WERKT NOG NIET!!!
+                    scherm.getStatus().jtaStatus.append("Openen geannuleerd.\n");
                 }
             }
         
