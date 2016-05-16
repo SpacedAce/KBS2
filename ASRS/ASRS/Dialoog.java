@@ -10,10 +10,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Dialoog extends JFrame implements ActionListener{
+public class Dialoog extends JFrame implements ActionListener {
     private JLabel jlOrdernr1;
     private JLabel jlOrdernr2;
     private JLabel jlKlant;
@@ -29,7 +30,8 @@ public class Dialoog extends JFrame implements ActionListener{
     private JButton jbVerwijder;
     private JButton jbMaak;
     private MyTableModel model;
-    
+    private JFileChooser jfcMaak;
+
     public Dialoog() {
         //super(scherm, true);
         setSize(520, 580);
@@ -37,15 +39,17 @@ public class Dialoog extends JFrame implements ActionListener{
         setLayout(new FlowLayout(FlowLayout.CENTER, 50, 10));
         setResizable(false);
 
+        jfcMaak = new JFileChooser(); //Dit wordt gebruikt in de ActionListener, er wordt een window geopend waarme je een bestand kan openen of opslaan
+
         Color two = new Color(222, 232, 236);
         this.getContentPane().setBackground(two);
 
-        String[] klanten = new String[] {"1. John Doe", "2. Jane Doe", "3. Jim Bar"};
-        String[] producten = new String[] {"1. Stoel", "2. Tafel", "3. Bank"};
+        String[] klanten = new String[]{"1. John Doe", "2. Jane Doe", "3. Jim Bar"};
+        String[] producten = new String[]{"1. Stoel", "2. Tafel", "3. Bank"};
 
         jlOrdernr1 = new JLabel("Ordernummer: ");
         add(jlOrdernr1);
-        
+
         jlOrdernr2 = new JLabel("1234567");
         add(jlOrdernr2);
 
@@ -64,12 +68,12 @@ public class Dialoog extends JFrame implements ActionListener{
 
         jlProducten = new JLabel("Producten: ");
         add(jlProducten);
-        
+
         jcbProducten = new JComboBox(producten);
         add(jcbProducten);
 
         model = new MyTableModel();
-        model.addRow(new Object[]{"Stoel", 2 , false});
+        model.addRow(new Object[]{"Stoel", 2, false});
         model.addRow(new Object[]{"Tafel", 3, false});
         model.addRow(new Object[]{"Bank", 3, false});
         model.addRow(new Object[]{"Lamp", 1, false});
@@ -83,30 +87,33 @@ public class Dialoog extends JFrame implements ActionListener{
         jbToevoegen.setBackground(Color.WHITE);
         jbToevoegen.setOpaque(true);
         add(jbToevoegen);
-        
+        jbToevoegen.addActionListener(this);
+
         jbVerwijder = new JButton("Verwijder");
         jbVerwijder.setBackground(Color.WHITE);
         jbVerwijder.setOpaque(true);
         add(jbVerwijder);
-        
+        jbVerwijder.addActionListener(this);
+
         jbMaak = new JButton("Maak");
         jbMaak.setBackground(Color.WHITE);
         jbMaak.setOpaque(true);
         add(jbMaak);
-        
+        jbMaak.addActionListener(this);
+
         setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == jbToevoegen) {
+        if (e.getSource() == jbToevoegen) {
             //WERKT NOG NIET --> model.addRow(new Object[]{jcbProducten.getSelectedItem().toString(), 1, false});
         }
-        if(e.getSource() == jbVerwijder) {
+        if (e.getSource() == jbVerwijder) {
 
         }
-        if(e.getSource() == jbMaak) {
-
+        if (e.getSource() == jbMaak) {
+            new CreateNewXML();
         }
     }
 }

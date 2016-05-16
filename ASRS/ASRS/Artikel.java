@@ -17,9 +17,7 @@ public class Artikel extends Vak{
     private int breedte;
     private int hoogte;
     private Vak vak;
-    
-    
-    
+
     //Constructors
     public Artikel(int artikelID, String naam, int breedte, int hoogte, int locatiex, int locatiey) {
         vak = new Vak();
