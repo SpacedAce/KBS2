@@ -9,6 +9,7 @@ package ASRS;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -119,7 +120,11 @@ public class Menu extends JPanel implements ActionListener{
             }
         
         if(e.getSource() == jbGenerate) { //De knop Genereer XML afhandelen een functie geven
-            dialoog = new Dialoog(scherm);
+            try {
+                dialoog = new Dialoog(scherm);
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
             dialoog.setVisible(true);
             
                //Genereren van een XML dmv de generator en deze weergeven op het scherm

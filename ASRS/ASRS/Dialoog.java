@@ -11,7 +11,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Dialoog extends JDialog implements ActionListener {
@@ -31,9 +36,10 @@ public class Dialoog extends JDialog implements ActionListener {
     private JButton jbMaak;
     private MyTableModel model;
     private JFileChooser jfcMaak;
+    private PreparedStatement stmt = null;
 
-    public Dialoog(JFrame frame) {
-        super(frame, true);
+    public Dialoog(JFrame frame) throws SQLException {
+        super(frame, false);
         setSize(520, 580);
         setTitle("XML-editor");
         setLayout(new FlowLayout(FlowLayout.CENTER, 50, 10));
@@ -44,8 +50,26 @@ public class Dialoog extends JDialog implements ActionListener {
         Color two = new Color(222, 232, 236);
         this.getContentPane().setBackground(two);
 
-        String[] klanten = new String[]{"1. John Doe", "2. Jane Doe", "3. Jim Bar"};
-        String[] producten = new String[]{"1. Stoel", "2. Tafel", "3. Bank"};
+        ArrayList<String> artikelList = new ArrayList<>();
+
+        try {
+            Connection con = Database.getDBConnection();
+            stmt = con.prepareStatement("SELECT naam, breedte FROM artikel");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String naam = rs.getString("Naam");
+                String breedte = rs.getString("Breedte");
+                String artikel = naam + ", " + breedte;
+                artikelList.add(artikel);
+            }
+        } catch (SQLException sq) {
+            sq.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        artikelList.toArray();
 
         jlOrdernr1 = new JLabel("Ordernummer: ");
         add(jlOrdernr1);
@@ -63,20 +87,19 @@ public class Dialoog extends JDialog implements ActionListener {
         jlKlant = new JLabel("Klant: ");
         add(jlKlant);
 
-        jcbKlant = new JComboBox(klanten);
+        jcbKlant = new JComboBox();
         add(jcbKlant);
 
         jlProducten = new JLabel("Producten: ");
         add(jlProducten);
 
-        jcbProducten = new JComboBox(producten);
+        jcbProducten = new JComboBox();
         add(jcbProducten);
 
         model = new MyTableModel();
-        model.addRow(new Object[]{"Stoel", 2, false});
-        model.addRow(new Object[]{"Tafel", 3, false});
-        model.addRow(new Object[]{"Bank", 3, false});
-        model.addRow(new Object[]{"Lamp", 1, false});
+        for(String a: artikelList) {
+            model.addRow(new Object[]{a});
+        }
         jtOverzicht = new JTable(model);
         add(jtOverzicht);
 
@@ -113,7 +136,7 @@ public class Dialoog extends JDialog implements ActionListener {
 
         }
         if (e.getSource() == jbMaak) {
-            new CreateNewXML();
+
         }
     }
 }

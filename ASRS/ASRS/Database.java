@@ -20,7 +20,7 @@ public class Database
     
     
     
-    private static Connection getDBConnection() throws SQLException 
+    public static Connection getDBConnection() throws SQLException
     {
         if(ASRSmain.debug)
         {
