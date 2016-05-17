@@ -14,7 +14,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Dialoog extends JFrame implements ActionListener {
+public class Dialoog extends JDialog implements ActionListener {
     private JLabel jlOrdernr1;
     private JLabel jlOrdernr2;
     private JLabel jlKlant;
@@ -32,8 +32,8 @@ public class Dialoog extends JFrame implements ActionListener {
     private MyTableModel model;
     private JFileChooser jfcMaak;
 
-    public Dialoog() {
-        //super(scherm, true);
+    public Dialoog(JFrame frame) {
+        super(frame, true);
         setSize(520, 580);
         setTitle("XML-editor");
         setLayout(new FlowLayout(FlowLayout.CENTER, 50, 10));

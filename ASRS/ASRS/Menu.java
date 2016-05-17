@@ -119,8 +119,8 @@ public class Menu extends JPanel implements ActionListener{
             }
         
         if(e.getSource() == jbGenerate) { //De knop Genereer XML afhandelen een functie geven
-            dialoog = new Dialoog();
-            //dialoog.setVisible(true);
+            dialoog = new Dialoog(scherm);
+            dialoog.setVisible(true);
             
                //Genereren van een XML dmv de generator en deze weergeven op het scherm
                
